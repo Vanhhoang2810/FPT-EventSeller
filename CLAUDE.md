@@ -6,14 +6,14 @@
 - Thuật ngữ kỹ thuật giữ nguyên tiếng Anh
 
 ## Tài liệu
-- Docs nằm trong `docs/` (9 files) + `design.md` (root)
+- Docs nằm trong `docs/` (9 files) + `DESIGN.md` (root)
 - Hub file: `docs/plan.md` — overview, phases, mapping tiêu chí
-- Đề bài gốc: `CONTEXT.MD` — nguồn sự thật, không được sửa
+- Đề bài gốc: `CONTEXT.md` — nguồn sự thật, không được sửa
 
 ## Quy tắc khi implement
 
 ### Docs-sync: Tự sửa docs khi phát hiện sai sót
-Khi implement mà phát hiện docs (docs/*.md hoặc design.md) **sai, thiếu, hoặc conflict** với code thực tế:
+Khi implement mà phát hiện docs (docs/*.md hoặc DESIGN.md) **sai, thiếu, hoặc conflict** với code thực tế:
 1. **Sửa docs ngay** trong cùng commit — không để "sửa sau"
 2. Ghi rõ trong commit message: `docs: cập nhật [file] — [lý do]`
 3. Ưu tiên: code đúng > docs đúng. Nếu docs sai mà code đúng → sửa docs. Nếu code sai → sửa code.

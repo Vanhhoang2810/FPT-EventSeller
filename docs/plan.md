@@ -2,7 +2,7 @@
 
 > Nền tảng đặt vé sự kiện online — entertainment-focused, chịu tải flash sale, real-time seat map.
 
-> **TicketRush Docs** | **Tổng quan** | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | [Pages](pages.md) | [Security](security.md) | [Setup](setup.md) | [Design](../design.md)
+> **TicketRush Docs** | **Tổng quan** | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | [Pages](pages.md) | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
 
 ---
 
@@ -18,11 +18,11 @@
 | [Pages](pages.md) | Frontend pages chi tiết: layout, responsive, UX |
 | [Security](security.md) | Routing + Authentication + Security checklist + Rate limiting + DDoS |
 | [Setup](setup.md) | Setup môi trường dev, cài đặt, biến môi trường |
-| [Design](../design.md) | Design system chi tiết (file riêng) |
+| [Design](../DESIGN.md) | Design system chi tiết (file riêng) |
 
 ---
 
-## 9. Design System (→ chi tiết trong `design.md`)
+## 9. Design System (→ chi tiết trong `DESIGN.md`)
 
 ### 9.1 Visual Direction
 
@@ -149,7 +149,7 @@
 |---|----------|-------|-------|
 | 1 | Chức năng & features | 0.35 | Auth (JWT+OAuth+CAPTCHA+email verify), Events CRUD+search+filter+favorites+remind, Seat map interactive, Booking flow+promo codes, Payment (VNPay+MoMo sandbox+simulated), Tickets QR+PDF download, Virtual Queue, Admin Dashboard+user mgmt+booking mgmt+reports+promo mgmt+venues+clone event, Notification system (in-app+email+WebSocket), Cookie consent, i18n vi/en |
 | 2 | Thiết kế logic, dễ dùng | 0.10 | Booking flow tự nhiên, admin wizard, breadcrumb, edge case UX (return URL, duplicate prevention), accessibility (keyboard nav, screen reader) |
-| 3 | Giao diện responsive, đẹp, bản sắc | 0.20 | Entertainment vibe, immersive hero, glassmorphism cards, ambient colors, Space Grotesk heading, gradient blobs+particles, responsive per-page (mobile-first), dark mode, Framer Motion animations, brand motifs (ticket-shaped, spotlight), design.md chi tiết |
+| 3 | Giao diện responsive, đẹp, bản sắc | 0.20 | Entertainment vibe, immersive hero, glassmorphism cards, ambient colors, Space Grotesk heading, gradient blobs+particles, responsive per-page (mobile-first), dark mode, Framer Motion animations, brand motifs (ticket-shaped, spotlight), DESIGN.md chi tiết |
 | 4 | Hiệu năng (AJAX, JSON, DOM) | 0.10 | RTK Query (fetch+JSON+cache), SPA (no reload), lazy loading routes, code splitting admin/customer, WebSocket real-time, skeleton loading, debounce search, image lazy load |
 | 5 | Phong cách lập trình | 0.05 | Feature-based modules, Controller-Service-Model, TypeScript strict, ESLint+Prettier, tách UI/logic (components vs hooks+services) |
 | 6 | Xử lý nhập liệu | 0.05 | React Hook Form+Zod, autocomplete search, phone mask (0912 345 678), currency format (1.000.000₫), date picker, autofill checkout, auto-save draft, error messages tiếng Việt |

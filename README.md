@@ -57,8 +57,8 @@ TicketRush/
 │   ├── pages.md       # 30+ frontend pages chi tiết
 │   ├── security.md    # Auth flow, rate limit, DDoS, checklist
 │   └── setup.md       # Hướng dẫn cài đặt
-├── design.md          # Design system (1000+ dòng): colors, components, wireframes
-├── CONTEXT.MD         # Đề bài gốc
+├── DESIGN.md          # Design system (1000+ dòng): colors, components, wireframes
+├── CONTEXT.md         # Đề bài gốc
 └── README.md
 ```
 
@@ -154,7 +154,7 @@ Sau khi chạy backend: [http://localhost:3001/api-docs](http://localhost:3001/a
 | [docs/pages.md](docs/pages.md) | 30+ frontend pages + responsive specs |
 | [docs/security.md](docs/security.md) | Auth flow, OAuth2, rate limit, DDoS, checklist |
 | [docs/setup.md](docs/setup.md) | Hướng dẫn cài đặt chi tiết |
-| [design.md](design.md) | Design system: colors, typography, components, wireframes, animations |
+| [DESIGN.md](DESIGN.md) | Design system: colors, typography, components, wireframes, animations |
 
 ---
 
@@ -189,7 +189,7 @@ npm run lint       # ESLint check
 |---|----------|-------|-----------|
 | 1 | Chức năng & features | 0.35 | Xem [docs/plan.md](docs/plan.md) §11 |
 | 2 | Thiết kế logic | 0.10 | Booking flow, admin wizard, a11y |
-| 3 | Giao diện đẹp, bản sắc | 0.20 | Xem [design.md](design.md) — entertainment vibe |
+| 3 | Giao diện đẹp, bản sắc | 0.20 | Xem [DESIGN.md](DESIGN.md) — entertainment vibe |
 | 4 | Hiệu năng | 0.10 | SPA, RTK Query, WebSocket, lazy loading |
 | 5 | Phong cách lập trình | 0.05 | Feature-based, Controller-Service-Model, TypeScript |
 | 6 | Xử lý nhập liệu | 0.05 | Zod, autocomplete, phone mask, currency format |

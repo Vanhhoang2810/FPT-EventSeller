@@ -1,6 +1,6 @@
 # Frontend Pages
 
-> **TicketRush Docs** | [Tổng quan](plan.md) | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | **Pages** | [Security](security.md) | [Setup](setup.md) | [Design](../design.md)
+> **TicketRush Docs** | [Tổng quan](plan.md) | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | **Pages** | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
 
 ---
 
@@ -51,7 +51,7 @@
 ### 6.4 Seat Selection (`/events/:id/seats`)
 
 - ★ **Sơ đồ ghế interactive** — SVG/Canvas grid
-- Màu: xanh lá (available), xám (sold), vàng (locked), tím (bạn chọn), xám đậm nét đứt (disabled) — xem design.md Section 2.7
+- Màu: xanh lá (available), xám (sold), vàng (locked), tím (bạn chọn), xám đậm nét đứt (disabled) — xem DESIGN.md Section 2.7
 - Real-time updates qua WebSocket
 - **Keyboard:** Arrow keys navigate, Enter select, Escape clear
 - **Screen reader:** aria-label cho mỗi ghế
@@ -64,7 +64,7 @@
 ### 6.5 Checkout (`/checkout/:bookingId`)
 
 - Layout minimal (không header/footer)
-- **Countdown timer** nổi bật (đổi amber khi <2 phút, đổi đỏ + nhấp nháy khi <30 giây — theo design.md §5.13)
+- **Countdown timer** nổi bật (đổi amber khi <2 phút, đổi đỏ + nhấp nháy khi <30 giây — theo DESIGN.md §5.13)
 - Tóm tắt: sự kiện, ghế, giá, tổng (auto-format VND)
 - **Chọn phương thức thanh toán:** Radio buttons: VNPay / MoMo / Giả lập
   - VNPay: FE gọi `POST /payments/vnpay/create` → nhận URL → redirect VNPay sandbox → VNPay callback `GET /api/payments/vnpay/return` (backend verify) → backend redirect FE `/booking/:id/success` hoặc `/checkout/:id?error=payment_failed`
