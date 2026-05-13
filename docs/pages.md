@@ -51,7 +51,7 @@
 ### 6.4 Seat Selection (`/events/:id/seats`)
 
 - ★ **Sơ đồ ghế interactive** — SVG/Canvas grid
-- Màu: xanh lá (available), xám (sold), vàng (locked), tím (bạn chọn), xám đậm nét đứt (disabled) — xem DESIGN.md Section 2.7
+- Màu: xanh lá (available), xám (sold), vàng (locked), cam (bạn chọn), xám đậm nét đứt (disabled) — xem DESIGN.md Section 2.7
 - Real-time updates qua WebSocket
 - **Keyboard:** Arrow keys navigate, Enter select, Escape clear
 - **Screen reader:** aria-label cho mỗi ghế

@@ -36,17 +36,17 @@
 ### 2.1 Core Palette
 
 ```css
-/* Primary — Violet (năng lượng, giải trí) */
---primary-50:  #F5F3FF;
---primary-100: #EDE9FE;
---primary-200: #DDD6FE;
---primary-300: #C4B5FD;
---primary-400: #A78BFA;
---primary-500: #8B5CF6;
---primary-600: #7C3AED;  /* ← Main */
---primary-700: #6D28D9;
---primary-800: #5B21B6;
---primary-900: #4C1D95;
+/* Primary — Emerald (sang trọng, exclusive, high-end) */
+--primary-50:  #ECFDF5;
+--primary-100: #D1FAE5;
+--primary-200: #A7F3D0;
+--primary-300: #6EE7B7;
+--primary-400: #34D399;
+--primary-500: #10B981;
+--primary-600: #059669;  /* ← Main */
+--primary-700: #047857;
+--primary-800: #065F46;
+--primary-900: #064E3B;
 
 /* Accent — Coral/Orange (CTA, urgency) */
 --accent-50:  #FFF7ED;
@@ -56,7 +56,7 @@
 --accent-600: #EA580C;
 
 /* Semantic */
---success: #10B981;  /* Emerald — ghế available, thanh toán thành công */
+--success: #14B8A6;  /* Teal — thanh toán thành công (phân biệt với primary emerald) */
 --warning: #F59E0B;  /* Amber — ghế locked, sắp hết hạn */
 --error:   #F43F5E;  /* Rose — lỗi, hết hạn, countdown <30s */
 --info:    #3B82F6;  /* Blue — thông tin, tooltip */
@@ -91,7 +91,7 @@
 --shadow-sm:  0 1px 2px rgba(0,0,0,0.05);
 --shadow-md:  0 4px 6px rgba(0,0,0,0.07);
 --shadow-lg:  0 10px 15px rgba(0,0,0,0.1);
---shadow-glow: 0 0 20px rgba(124,58,237,0.15);
+--shadow-glow: 0 0 20px rgba(5,150,105,0.15);
 
 /* Light mode semantic — giảm saturation cho dễ đọc */
 --success-light: #059669;
@@ -141,7 +141,7 @@
 /* Hero section, landing page background */
 .mesh-gradient {
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(124,58,237,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 50%, rgba(5,150,105,0.15) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 20%, rgba(249,115,22,0.1) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 80%, rgba(16,185,129,0.08) 0%, transparent 50%),
     var(--bg-primary);
@@ -158,8 +158,8 @@
 
 | Trạng thái | Dark mode | Light mode | Icon/Pattern |
 |-----------|-----------|------------|--------------|
-| Available | `#10B981` (emerald) | `#059669` | Hình tròn rỗng |
-| Selected (bạn) | `#8B5CF6` (violet) | `#7C3AED` | Hình tròn đầy + check |
+| Available | `#059669` (emerald-600) | `#047857` | Hình tròn rỗng |
+| Selected (bạn) | `#F97316` (orange-500) | `#EA580C` | Hình tròn đầy + check |
 | Locked (người khác) | `#F59E0B` (amber) | `#D97706` | Hình tròn + khóa |
 | Sold | `#52525B` (zinc-600) | `#A1A1AA` | Hình tròn + X |
 | Disabled | `#3F3F46` (zinc-700) | `#D4D4D8` | Hình tròn nét đứt |
@@ -235,7 +235,7 @@ body { font-size: clamp(0.875rem, 1.5vw, 1rem); } /* 14px → 16px */
 --shadow-sm:  0 1px 2px rgba(0,0,0,0.3);
 --shadow-md:  0 4px 6px rgba(0,0,0,0.4);
 --shadow-lg:  0 10px 15px rgba(0,0,0,0.5);
---shadow-glow: 0 0 20px rgba(139,92,246,0.3);  /* Violet glow cho cards hover */
+--shadow-glow: 0 0 20px rgba(5,150,105,0.3);  /* Violet glow cho cards hover */
 ```
 
 ---
@@ -246,7 +246,7 @@ body { font-size: clamp(0.875rem, 1.5vw, 1rem); } /* 14px → 16px */
 
 | Variant | Background | Text | Border | Hover |
 |---------|-----------|------|--------|-------|
-| Primary | violet-600 | white | none | violet-700 + shadow-glow |
+| Primary | emerald-600 | white | none | emerald-700 + shadow-glow |
 | Secondary | zinc-800 | zinc-100 | zinc-700 | zinc-700 |
 | Accent | gradient orange-500→red-500 | white | none | opacity 90% + shadow |
 | Ghost | transparent | zinc-300 | none | zinc-800 |
@@ -268,18 +268,18 @@ Sizes: `sm` (h-8, text-sm), `md` (h-10, text-sm), `lg` (h-12, text-base), `xl` (
 │  Tên sự kiện              │  ← h3, Space Grotesk, 1 dòng truncate
 │  📅 15/06/2026 • 20:00   │  ← body-sm, zinc-400
 │  📍 Nhà hát Lớn, Hà Nội  │  ← body-sm, zinc-400
-│  Từ 500.000₫              │  ← body, violet-400, font-semibold
+│  Từ 500.000₫              │  ← body, emerald-400, font-semibold
 └──────────────────────────┘
    border: 1px zinc-800
    bg: zinc-900
-   hover: border-violet-600 + shadow-glow
+   hover: border-emerald-600 + shadow-glow
    border-radius: 12px
 ```
 
 ### 5.3 Input
 
 - Height: 40px (md), 48px (lg)
-- Border: 1px zinc-700, focus: violet-500 + ring-2 violet-500/20
+- Border: 1px zinc-700, focus: emerald-500 + ring-2 emerald-500/20
 - Placeholder: zinc-500
 - Error state: border rose-500, message rose-400 bên dưới
 - Disabled: opacity 50%
@@ -305,7 +305,7 @@ Sizes: `sm` (h-8, text-sm), `md` (h-10, text-sm), `lg` (h-12, text-base), `xl` (
 | Type | Background | Text |
 |------|-----------|------|
 | Hot | gradient orange→red | white |
-| Mới | violet-600 | white |
+| Mới | emerald-600 | white |
 | Sắp hết | amber-500/20 | amber-400 |
 | Đã kết thúc | zinc-700 | zinc-400 |
 | Sold out | rose-500/20 | rose-400 |
@@ -324,7 +324,7 @@ Padding: `px-2.5 py-0.5`, font: caption (12px), rounded-full.
 
 ### 5.8 Tooltip
 
-- bg-zinc-800, border-violet-500/30, text-sm, rounded-lg, shadow-lg
+- bg-zinc-800, border-emerald-500/30, text-sm, rounded-lg, shadow-lg
 - Arrow: 6px triangle matching bg
 - Delay: 300ms show, 100ms hide
 - Mobile: long-press trigger (thay hover)
@@ -332,7 +332,7 @@ Padding: `px-2.5 py-0.5`, font: caption (12px), rounded-full.
 ### 5.9 Tabs
 
 - Inactive: text-zinc-400, bg transparent
-- Active: text-white, border-b-2 violet-500
+- Active: text-white, border-b-2 emerald-500
 - Hover: text-zinc-200
 - Variant underline (default) + variant pills (bg-zinc-800 active)
 - Mobile: horizontal scroll, no wrap
@@ -342,7 +342,7 @@ Padding: `px-2.5 py-0.5`, font: caption (12px), rounded-full.
 - Width: 240px (desktop), collapsed 64px (icons only), hidden (mobile → bottom nav)
 - bg-zinc-950, border-r zinc-800
 - Item: h-10, px-3, rounded-lg, text-zinc-400
-- Item active: bg-violet-600/10, text-violet-400, border-l-2 violet-500
+- Item active: bg-emerald-600/10, text-emerald-400, border-l-2 emerald-500
 - Item hover: bg-zinc-800, text-zinc-200
 - Logo top, user avatar + name bottom
 - Collapse toggle button
@@ -351,7 +351,7 @@ Padding: `px-2.5 py-0.5`, font: caption (12px), rounded-full.
 
 - Sizes: `xs` (24px), `sm` (32px), `md` (40px), `lg` (48px), `xl` (64px)
 - Border-radius: rounded-full
-- Fallback: initials (bg-violet-600, text-white, font-semibold)
+- Fallback: initials (bg-emerald-600, text-white, font-semibold)
 - Online indicator: emerald dot bottom-right, border-2 bg-primary
 - Upload overlay: hover → dark overlay + camera icon
 
@@ -359,7 +359,7 @@ Padding: `px-2.5 py-0.5`, font: caption (12px), rounded-full.
 
 - Height: 4px (slim), 8px (default), 12px (thick)
 - Track: bg-zinc-800
-- Fill: gradient violet-600→violet-400, animated shimmer
+- Fill: gradient emerald-600→emerald-400, animated shimmer
 - Percentage label: text-xs, right-aligned
 - Queue progress: dùng variant thick + percentage
 
@@ -382,7 +382,7 @@ Padding: `px-2.5 py-0.5`, font: caption (12px), rounded-full.
 - Trigger: bell icon (Lucide `Bell`) + unread count badge (rose-500, absolute top-right)
 - Dropdown: w-80, max-h-96 scroll, bg-zinc-900, border zinc-800, rounded-xl, shadow-lg
 - Item: hover bg-zinc-800, p-3, border-b zinc-800
-- Unread item: border-l-2 violet-500
+- Unread item: border-l-2 emerald-500
 - Item structure: icon (left) + title bold + message truncate + time relative (caption)
 - Footer: "Đánh dấu tất cả đã đọc" link
 - Empty: "Không có thông báo mới" + illustration
@@ -524,26 +524,26 @@ Padding: `px-2.5 py-0.5`, font: caption (12px), rounded-full.
 - Background: zinc-900, border zinc-800, rounded-xl
 - Title: h4 góc trên trái
 - Legend: dưới chart, text-xs, zinc-400
-- Tooltip: bg-zinc-800, border-violet-500, rounded-lg, text-sm
+- Tooltip: bg-zinc-800, border-emerald-500, rounded-lg, text-sm
 - Grid lines: zinc-800, dashed
 
 ### 8.2 Revenue Chart (Line)
 
-- Line: gradient violet-500 → violet-300, strokeWidth 2
-- Area fill: violet-500/10
-- Dots: violet-500, r=4, hover r=6
+- Line: gradient emerald-500 → emerald-300, strokeWidth 2
+- Area fill: emerald-500/10
+- Dots: emerald-500, r=4, hover r=6
 - X-axis: ngày/tuần/tháng labels
 - Y-axis: formatted VND (1M, 5M, 10M)
 
 ### 8.3 Seat Fill (Bar)
 
-- Bars: gradient violet-600 → violet-400
+- Bars: gradient emerald-600 → emerald-400
 - Hover: orange-500
 - Labels: event name (truncate), percentage
 
 ### 8.4 Demographics (Pie + Bar)
 
-- Pie: violet-500 (male), orange-400 (female), zinc-500 (other)
+- Pie: emerald-500 (male), orange-400 (female), zinc-500 (other)
 - Bar: horizontal, grouped by age range (18-24, 25-34, 35-44, 45+)
 - Colors: violet scale (400→700)
 
@@ -551,7 +551,7 @@ Padding: `px-2.5 py-0.5`, font: caption (12px), rounded-full.
 
 - Stages: View → Select seat → Lock → Checkout → Confirm
 - Funnel shape: trapezoid bars, decreasing width
-- Colors: violet-300 → violet-700 gradient per stage
+- Colors: emerald-300 → emerald-700 gradient per stage
 - Labels: count + percentage of previous
 
 ### 8.6 Stats Cards
@@ -561,10 +561,10 @@ Padding: `px-2.5 py-0.5`, font: caption (12px), rounded-full.
 │ 📊 Doanh thu hôm nay │  ← caption, zinc-400
 │ 12.500.000₫          │  ← h3, white
 │ ▲ 15% so với hôm qua │  ← caption, emerald-400
-│ ~~~~~~~~ (sparkline)  │  ← mini line chart 60x20px, violet-400
+│ ~~~~~~~~ (sparkline)  │  ← mini line chart 60x20px, emerald-400
 └──────────────────────┘
   bg: zinc-900, border zinc-800
-  hover: border-violet-600
+  hover: border-emerald-600
 ```
 
 ---
@@ -608,7 +608,7 @@ Padding: `px-2.5 py-0.5`, font: caption (12px), rounded-full.
 - [ ] Color contrast: WCAG AA (4.5:1 text, 3:1 UI) — test tất cả trạng thái
 - [ ] Seat status: phân biệt bằng icon + pattern (không chỉ màu)
 - [ ] Keyboard navigation: Tab order logic, arrow keys cho seat map
-- [ ] Focus visible: ring-2 violet-500 cho mọi focusable element
+- [ ] Focus visible: ring-2 emerald-500 cho mọi focusable element
 - [ ] Screen reader: aria-label cho seats, buttons, images
 - [ ] Skip nav: "Bỏ qua đến nội dung chính" link ẩn
 - [ ] Form labels: mọi input có label hoặc aria-label
@@ -710,9 +710,9 @@ Dùng cho: admin dashboard stats, landing page "Tại sao TicketRush".
 ```css
 .neon-glow {
   box-shadow:
-    0 0 5px rgba(139,92,246,0.3),
-    0 0 20px rgba(139,92,246,0.15),
-    0 0 40px rgba(139,92,246,0.05);
+    0 0 5px rgba(5,150,105,0.3),
+    0 0 20px rgba(5,150,105,0.15),
+    0 0 40px rgba(5,150,105,0.05);
 }
 .neon-glow-orange {
   box-shadow:
@@ -939,8 +939,8 @@ Admin (thêm nút Quản trị):
 - Height: 64px, sticky top, z-50
 - bg-zinc-950/80, backdrop-blur-lg, border-b zinc-800
 - Logo: h-8, clickable → home
-- Nav links: text-zinc-400, hover text-white, active text-violet-400
-- **"Quản trị" button:** Chỉ hiện khi `user.role === 'admin'`. Lucide `LayoutDashboard` icon + text. bg-violet-600/10, text-violet-400, hover bg-violet-600/20. Click → `/admin`
+- Nav links: text-zinc-400, hover text-white, active text-emerald-400
+- **"Quản trị" button:** Chỉ hiện khi `user.role === 'admin'`. Lucide `LayoutDashboard` icon + text. bg-emerald-600/10, text-emerald-400, hover bg-emerald-600/20. Click → `/admin`
 - **Language switcher (🌐):** Dropdown "Tiếng Việt" / "English", Lucide `Globe` icon. Persist localStorage
 - Search icon: expand → full-width search bar (glass bg)
 - Notification bell: Lucide `Bell`, unread badge
@@ -965,14 +965,14 @@ Admin (thêm nút Quản trị):
 ```
 - bg-zinc-950, border-t zinc-800
 - Grid: 3 columns (brand, links, support). Mobile: stack
-- Links: text-zinc-400, hover text-violet-400
+- Links: text-zinc-400, hover text-emerald-400
 - Newsletter: input sm + button sm
 
 ### 14.3 Search Bar (Expanded)
 
 - Height: 48px, rounded-full (pill shape)
 - bg: glass (zinc-900/60 + backdrop-blur)
-- border: 1px zinc-700, focus: violet-500
+- border: 1px zinc-700, focus: emerald-500
 - Icon: Lucide `Search` left, `X` clear right
 - Autocomplete dropdown: bg-zinc-900, border zinc-800, max-h-80
 - Suggestion item: hover bg-zinc-800, icon left (event/category), text + badge
@@ -996,7 +996,7 @@ Admin (thêm nút Quản trị):
 
 ### 14.6 Carousel (Embla)
 
-- Dots indicator: bottom center, dot 8px, active violet-500, inactive zinc-600
+- Dots indicator: bottom center, dot 8px, active emerald-500, inactive zinc-600
 - Navigation arrows: 40px circles, glass bg, Lucide `ChevronLeft/Right`
 - Slide: snap scroll, gap 16px
 - Mobile: swipe, no arrows (touch only), dots smaller (6px)

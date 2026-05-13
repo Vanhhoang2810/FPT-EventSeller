@@ -30,9 +30,9 @@
 
 | Thuộc tính | Giá trị |
 |------------|---------|
-| Primary | Deep violet (#7C3AED → #6D28D9 gradient) |
-| Accent | Coral (#F97316) — CTA, urgency |
-| Success | Emerald (#10B981) |
+| Primary | Emerald (#059669 → #047857 gradient) — sang trọng, exclusive |
+| Accent | Coral/Orange (#F97316) — CTA, urgency |
+| Success | Teal (#14B8A6) — phân biệt với primary |
 | Warning | Amber (#F59E0B) |
 | Error | Rose (#F43F5E) |
 | Neutral | Zinc scale |
