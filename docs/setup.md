@@ -1,110 +1,265 @@
-# Setup môi trường dev
+# Hướng dẫn cài đặt & chạy
 
-> **TicketRush Docs** | [Tổng quan](plan.md) | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | [Pages](pages.md) | [Security](security.md) | **Setup** | [Design](../DESIGN.md)
+> **Ticket Rush Docs** | [Tổng quan](plan.md) | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | [Pages](pages.md) | [Security](security.md) | **Setup** | [Design](../DESIGN.md)
 
 ---
 
-## 12. Setup môi trường dev
+## 1. Yêu cầu hệ thống
 
-### 12.1 Yêu cầu
+| Phần mềm | Phiên bản | Ghi chú |
+|-----------|-----------|---------|
+| **Node.js** | 22 LTS | [nodejs.org/download](https://nodejs.org) |
+| **MySQL** | 8.x | XAMPP hoặc standalone |
+| **Redis** | 7.x | Windows: tải từ [GitHub releases](https://github.com/tporadowski/redis/releases) hoặc dùng [Memurai](https://www.memurai.com/) |
+| **Git** | 2.x+ | [git-scm.com](https://git-scm.com) |
+| **VS Code** | latest | Khuyến nghị, không bắt buộc |
 
-- Node.js 22 LTS, XAMPP (MySQL + phpMyAdmin), Redis (Memurai trên Windows hoặc WSL2/Docker), Git, VS Code
+---
 
-### 12.2 Khởi tạo
+## 2. Clone & cài đặt
 
 ```bash
+git clone <repo-url>
+cd TicketRush
+
 # Frontend
-npm create vite@latest frontend -- --template react-ts
-cd frontend && npm install
-npx shadcn@latest init
-npm install @reduxjs/toolkit react-redux react-router-dom socket.io-client
-npm install framer-motion react-hook-form @hookform/resolvers zod
-npm install recharts qrcode.react lucide-react sonner react-to-print js-cookie
-npm install @react-oauth/google @marsidev/react-turnstile
-npm install @use-gesture/react vaul embla-carousel-react react-imask
-npm install react-i18next i18next i18next-browser-languagedetector i18next-http-backend
-npm install -D @types/node @types/js-cookie
+cd frontend
+npm install
+cp .env.example .env
 
 # Backend
-cd .. && mkdir backend && cd backend && npm init -y
-npm install express cors helmet morgan cookie-parser compression
-npm install sequelize mysql2 ioredis bullmq
-npm install jsonwebtoken argon2 zod uuid qrcode
-npm install socket.io multer winston nodemailer csv-writer
-npm install passport passport-google-oauth20 google-auth-library vnpay axios
-npm install swagger-ui-express swagger-jsdoc pdfkit
-npm install express-rate-limit rate-limit-redis express-slow-down
-npm install -D typescript ts-node nodemon
-npm install -D @types/express @types/cors @types/jsonwebtoken
-npm install -D @types/cookie-parser @types/morgan @types/uuid
-npm install -D @types/nodemailer @types/passport @types/passport-google-oauth20
-npm install -D @types/multer @types/pdfkit @types/express-slow-down @types/qrcode @types/compression
-npx tsc --init && npx sequelize-cli init
+cd ../backend
+npm install
+cp .env.example .env
 ```
 
-### 12.3 Biến môi trường (`.env.example`)
+---
+
+## 3. Cấu hình biến môi trường
+
+### 3.1 Backend (`backend/.env`)
+
+Copy từ `backend/.env.example` và điền giá trị thật:
 
 ```env
-PORT=3001
-NODE_ENV=development
-
+# ===== Database =====
 DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=ticketrush
 DB_USER=root
 DB_PASSWORD=
 
+# ===== Redis =====
 REDIS_HOST=localhost
 REDIS_PORT=6379
 
-JWT_ACCESS_SECRET=your-access-secret-key-min-32-chars
-JWT_REFRESH_SECRET=your-refresh-secret-key-min-32-chars
-JWT_ACCESS_EXPIRES=15m
+# ===== JWT =====
+JWT_ACCESS_SECRET=<random-string-32-chars>
+JWT_REFRESH_SECRET=<random-string-32-chars>
+JWT_ACCESS_EXPIRES=2h
 JWT_REFRESH_EXPIRES=7d
-QR_SECRET=your-qr-signing-secret
+QR_SECRET=<random-string-32-chars>
 
-CLIENT_URL=http://localhost:5173
-SEAT_LOCK_TIMEOUT=600000
+# ===== URLs =====
 API_URL=http://localhost:3001
-QUEUE_THRESHOLD=200
+CLIENT_URL=http://localhost:5173
 
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
+# ===== Google OAuth =====
+GOOGLE_CLIENT_ID=<your-client-id>.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=<your-client-secret>
 
-TURNSTILE_SECRET_KEY=your-turnstile-secret
-
-# Frontend env vars (prefix VITE_ cho Vite expose)
-# Tạo file frontend/.env với:
-# VITE_API_URL=http://localhost:3001/api
-# VITE_SOCKET_URL=http://localhost:3001
-# VITE_GOOGLE_CLIENT_ID=your-google-client-id
-# VITE_TURNSTILE_SITE_KEY=your-turnstile-site-key
-
+# ===== SMTP =====
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
-SMTP_USER=ticketrush.notify@gmail.com
-SMTP_PASS=your-app-password
-SMTP_FROM=TicketRush <ticketrush.notify@gmail.com>
+SMTP_USER=<your-email>@gmail.com
+SMTP_PASS=<16-char-app-password>
+SMTP_FROM=TicketRush <your-email@gmail.com>
 
-# VNPay Sandbox
-VNPAY_TMN_CODE=your-sandbox-tmn-code
-VNPAY_HASH_SECRET=your-sandbox-hash-secret
+# ===== Cloudflare Turnstile =====
+TURNSTILE_SECRET_KEY=<your-secret-key>
+
+# ===== VNPay Sandbox =====
+VNPAY_TMN_CODE=<your-tmn-code>
+VNPAY_HASH_SECRET=<your-hash-secret>
 VNPAY_URL=https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
 
-# MoMo Sandbox
-MOMO_PARTNER_CODE=your-sandbox-partner-code
-MOMO_ACCESS_KEY=your-sandbox-access-key
-MOMO_SECRET_KEY=your-sandbox-secret-key
+# ===== MoMo Sandbox =====
+MOMO_PARTNER_CODE=MOMO
+MOMO_ACCESS_KEY=F8BBA842ECF85
+MOMO_SECRET_KEY=K951B6PE1waDMi640xX08PD3vg6EkVlz
 MOMO_ENDPOINT=https://test-payment.momo.vn/v2/gateway/api/create
+
+# ===== Queue =====
+SEAT_LOCK_TIMEOUT=600000
+QUEUE_THRESHOLD=200
+```
+
+### 3.2 Frontend (`frontend/.env`)
+
+```env
+VITE_GOOGLE_CLIENT_ID=<same-as-backend>
+VITE_TURNSTILE_SITE_KEY=<from-cloudflare-dashboard>
+VITE_SOCKET_URL=
 ```
 
 ---
 
-## 13. Ghi chú
+## 4. Database setup
 
-1. **Thanh toán giả lập** — bấm "Xác nhận" = thành công. Không cổng thanh toán thật.
-2. **Ưu tiên demo flow** hoạt động hơn feature nhiều nhưng lỗi.
-3. **Seed data đẹp** — ảnh event thật, tên sự kiện thật, nhiều zones.
-4. **Test concurrency** — 2 browser, 2 account, cùng 1 ghế → chỉ 1 thành công.
-5. **Redis Windows** — Memurai hoặc WSL2/Docker. Không có Redis → in-memory fallback.
-6. **Email templates** — HTML responsive, có logo TicketRush, auto-generate bằng nodemailer.
+```bash
+# Tạo database trong MySQL (phpMyAdmin hoặc CLI)
+mysql -u root -e "CREATE DATABASE ticketrush CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+# Chạy migrations + seed data
+cd backend
+npx sequelize-cli db:migrate
+npx sequelize-cli db:seed:all
+```
+
+### Tài khoản seed
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Admin** | `admin@ticketrush.vn` | `Admin@12345` |
+| **Customer** | `user@ticketrush.vn` | `User@12345` |
+
+---
+
+## 5. Chạy development
+
+```bash
+# Terminal 1 — Backend (port 3001)
+cd backend && npm run dev
+
+# Terminal 2 — Frontend (port 5173)
+cd frontend && npm run dev
+```
+
+Mở browser: **http://localhost:5173**
+
+---
+
+## 6. Setup Google OAuth
+
+1. Vào [Google Cloud Console](https://console.cloud.google.com)
+2. Tạo project mới hoặc chọn project có sẵn
+3. **APIs & Services → OAuth consent screen** → External → điền App name, email
+4. **APIs & Services → Credentials → Create Credentials → OAuth client ID**
+   - Application type: **Web application**
+   - Authorized JavaScript origins: `http://localhost:5173`
+5. Copy **Client ID** và **Client Secret** vào cả `backend/.env` và `frontend/.env`
+
+---
+
+## 7. Setup SMTP (Gmail)
+
+1. Vào [Google Account → Security](https://myaccount.google.com/security)
+2. Bật **2-Step Verification**
+3. Vào **App passwords** → tạo password cho "Mail"
+4. Copy 16-char app password vào `backend/.env` → `SMTP_PASS`
+
+---
+
+## 8. Setup VNPay Sandbox
+
+1. Đăng ký tại: **https://sandbox.vnpayment.vn/devreg/**
+   - Tên website: `TicketRush`
+   - URL: `http://localhost:3001`
+   - Email: email của bạn
+2. Nhận email chứa **TmnCode** + **HashSecret** → điền vào `backend/.env`
+3. Login merchant portal: **https://sandbox.vnpayment.vn/merchantv2/**
+4. Cài đặt **IPN URL**: `<ngrok-url>/api/payments/vnpay/ipn` (nếu test IPN)
+
+### Thẻ test VNPay
+
+| Field | Giá trị |
+|-------|---------|
+| Ngân hàng | NCB |
+| Số thẻ | `9704198526191432198` |
+| Tên chủ thẻ | `NGUYEN VAN A` |
+| Ngày phát hành | `07/15` |
+| OTP | `123456` |
+
+---
+
+## 9. Setup MoMo Sandbox
+
+MoMo sandbox credentials (public, từ docs MoMo):
+
+```env
+MOMO_PARTNER_CODE=MOMO
+MOMO_ACCESS_KEY=F8BBA842ECF85
+MOMO_SECRET_KEY=K951B6PE1waDMi640xX08PD3vg6EkVlz
+MOMO_ENDPOINT=https://test-payment.momo.vn/v2/gateway/api/create
+```
+
+**Lưu ý**: MoMo sandbox redirect cần **public URL** (không redirect về `localhost`). Dùng ngrok:
+
+```bash
+# Cài ngrok: https://ngrok.com/download
+ngrok http 3001
+
+# Copy URL https://xxx.ngrok-free.app → backend/.env
+API_URL=https://xxx.ngrok-free.app
+# CLIENT_URL giữ nguyên localhost (browser redirect)
+CLIENT_URL=http://localhost:5173
+```
+
+---
+
+## 10. Setup Cloudflare Turnstile (CAPTCHA)
+
+1. Vào [Cloudflare Dashboard](https://dash.cloudflare.com) → Turnstile
+2. Add site → Domain: `localhost`
+3. Copy **Site Key** → `frontend/.env` → `VITE_TURNSTILE_SITE_KEY`
+4. Copy **Secret Key** → `backend/.env` → `TURNSTILE_SECRET_KEY`
+
+> Nếu không setup Turnstile, login/register vẫn hoạt động (middleware skip khi key trống)
+
+---
+
+## 11. Scripts
+
+### Frontend
+
+```bash
+npm run dev        # Dev server (Vite, port 5173)
+npm run build      # Production build
+npm run preview    # Preview production build
+npm run lint       # ESLint
+npm run test       # Vitest
+```
+
+### Backend
+
+```bash
+npm run dev        # Dev server (nodemon, port 3001)
+npm run build      # TypeScript compile
+npm run start      # Production
+npm run test       # Jest + Supertest
+npm run lint       # ESLint
+```
+
+### Database
+
+```bash
+npx sequelize-cli db:migrate              # Chạy migrations
+npx sequelize-cli db:seed:all             # Seed data mẫu
+npx sequelize-cli db:migrate:undo:all     # Rollback tất cả
+npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all  # Reset
+```
+
+---
+
+## 12. Troubleshooting
+
+| Vấn đề | Giải pháp |
+|--------|-----------|
+| `EADDRINUSE :3001` | `netstat -ano \| findstr :3001` → `taskkill /F /PID <pid>` |
+| Redis connection refused | Kiểm tra Redis đã chạy: `redis-cli ping` → `PONG` |
+| MySQL access denied | Kiểm tra `DB_USER`, `DB_PASSWORD` trong `.env` |
+| VNPay "Sai chữ ký" | Kiểm tra `VNPAY_HASH_SECRET` đúng chưa, restart backend |
+| MoMo 503 | Cần ngrok cho `API_URL`, MoMo không redirect về localhost |
+| Google OAuth 500 | Kiểm tra `GOOGLE_CLIENT_ID` trong cả backend + frontend `.env` |
+| Favicon cũ (Vite tím) | Clear browser cache: `Ctrl+Shift+R` hoặc Incognito tab |
+| Logout khi reload | Kiểm tra cookie `refreshToken` trong DevTools → Application → Cookies |

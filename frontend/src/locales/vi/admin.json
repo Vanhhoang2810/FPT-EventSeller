@@ -1,0 +1,546 @@
+{
+  "nav": {
+    "dashboard": "Bảng điều khiển",
+    "events": "Sự kiện",
+    "users": "Người dùng",
+    "bookings": "Đặt vé",
+    "promo": "Mã giảm giá",
+    "venues": "Địa điểm",
+    "reports": "Báo cáo",
+    "audit": "Nhật ký",
+    "chat": "Hỗ trợ"
+  },
+  "sections": {
+    "overview": "Tổng quan",
+    "management": "Quản lý",
+    "analytics": "Phân tích"
+  },
+  "search": {
+    "placeholder": "Tìm trang...",
+    "noResults": "Không tìm thấy trang nào",
+    "select": "Chọn",
+    "move": "Di chuyển",
+    "close": "Đóng"
+  },
+  "sidebar": {
+    "today": "Hôm nay",
+    "confirmedOrders": "Đơn xác nhận",
+    "liveStats": "Thống kê",
+    "settings": "Cài đặt tài khoản"
+  },
+  "dashboard": {
+    "title": "Bảng điều khiển",
+    "subtitle": "Tổng quan hoạt động hệ thống",
+    "todayRevenue": "Doanh thu hôm nay",
+    "totalRevenue": "Tổng doanh thu",
+    "users": "Người dùng",
+    "bookings": "Đơn xác nhận",
+    "activeEvents": "Sự kiện đang hoạt động: {{count}}",
+    "refresh": "Làm mới",
+    "revenue": {
+      "title": "Doanh thu",
+      "unit": "Triệu đồng",
+      "period": {
+        "hour": "Giờ",
+        "day": "Ngày",
+        "month": "Tháng",
+        "year": "Năm"
+      },
+      "periodDesc": {
+        "hour": "24 giờ gần nhất",
+        "day": "30 ngày gần nhất",
+        "month": "12 tháng gần nhất",
+        "year": "Tất cả năm"
+      },
+      "tooltipLabel": {
+        "hour": "Lúc {{val}}",
+        "day": "Ngày {{val}}",
+        "month": "Tháng {{val}}",
+        "year": "Năm {{val}}"
+      },
+      "tooltipName": "Doanh thu"
+    },
+    "seatFill": {
+      "title": "Tỷ lệ lấp đầy ghế",
+      "subtitle": "Top sự kiện đang hoạt động",
+      "noData": "Chưa có dữ liệu"
+    },
+    "demographics": {
+      "title": "Nhân khẩu học",
+      "subtitle": "Phân bổ giới tính & độ tuổi khán giả",
+      "noData": "Chưa có dữ liệu",
+      "tooltipCount": "Khán giả",
+      "genderLabel": "Giới tính",
+      "ageLabel": "Nhóm tuổi",
+      "genderNames": {
+        "male": "Nam",
+        "female": "Nữ",
+        "other": "Khác"
+      },
+      "ageNames": {
+        "under18": "Dưới 18",
+        "18_24": "18 – 24",
+        "25_34": "25 – 34",
+        "35_44": "35 – 44",
+        "45plus": "45+",
+        "unknown": "Không rõ"
+      }
+    },
+    "peakHours": {
+      "title": "Giờ cao điểm đặt vé",
+      "subtitle": "Số đơn xác nhận theo giờ trong ngày",
+      "tooltipName": "Đơn đặt"
+    },
+    "funnel": {
+      "title": "Phễu chuyển đổi",
+      "subtitle": "Tỷ lệ chuyển đổi từ chọn ghế → thanh toán",
+      "stages": [
+        "Chọn ghế",
+        "Thanh toán",
+        "Xác nhận",
+        "Doanh thu"
+      ]
+    },
+    "liveActivity": {
+      "title": "Hoạt động trực tiếp",
+      "live": "Trực tiếp",
+      "waiting": "Đang chờ hoạt động mới..."
+    },
+    "categoryLabels": {
+      "music": "Âm nhạc",
+      "sports": "Thể thao",
+      "theater": "Sân khấu",
+      "comedy": "Hài kịch",
+      "festival": "Lễ hội",
+      "conference": "Hội nghị",
+      "other": "Khác"
+    }
+  },
+  "events": {
+    "title": "Sự kiện",
+    "subtitle": "{{total}} sự kiện · trang {{page}}/{{totalPages}}",
+    "create": "Tạo sự kiện",
+    "searchPlaceholder": "Tìm theo tên sự kiện...",
+    "filterAll": "Tất cả",
+    "columns": {
+      "event": "Sự kiện",
+      "time": "Thời gian",
+      "venue": "Địa điểm",
+      "status": "Trạng thái",
+      "actions": "Thao tác"
+    },
+    "status": {
+      "draft": "Nháp",
+      "published": "Đã đăng",
+      "on_sale": "Đang bán",
+      "sold_out": "Hết vé",
+      "completed": "Đã xong",
+      "cancelled": "Đã hủy"
+    },
+    "actions": {
+      "view": "Xem trang sự kiện",
+      "edit": "Chỉnh sửa",
+      "publish": "Đăng bài",
+      "openSale": "Mở bán vé",
+      "delete": "Xóa sự kiện",
+      "confirmDelete": "Xóa"
+    },
+    "empty": {
+      "title": "Không có sự kiện nào",
+      "filtered": "Thử thay đổi bộ lọc",
+      "noEvents": "Bắt đầu bằng cách tạo sự kiện đầu tiên",
+      "createLink": "+ Tạo sự kiện →"
+    },
+    "toast": {
+      "deleteSuccess": "Đã xóa sự kiện",
+      "deleteError": "Không thể xóa",
+      "error": "Đã xảy ra lỗi"
+    }
+  },
+  "users": {
+    "title": "Người dùng",
+    "subtitle": "{{total}} tài khoản",
+    "searchPlaceholder": "Tìm email, tên...",
+    "columns": {
+      "user": "Người dùng",
+      "createdAt": "Ngày tạo",
+      "status": "Trạng thái",
+      "actions": "Thao tác"
+    },
+    "status": {
+      "active": "Hoạt động",
+      "banned": "Đã ban"
+    },
+    "role": {
+      "admin": "Admin",
+      "customer": "Khách hàng"
+    },
+    "actions": {
+      "viewDetail": "Xem chi tiết",
+      "ban": "Ban người dùng",
+      "unban": "Gỡ ban"
+    },
+    "toast": {
+      "banSuccess": "Đã ban người dùng",
+      "unbanSuccess": "Đã gỡ ban người dùng",
+      "error": "Đã xảy ra lỗi"
+    },
+    "empty": "Không tìm thấy người dùng",
+    "drawer": {
+      "title": "Chi tiết người dùng",
+      "statusActive": "● Hoạt động",
+      "statusBanned": "● Đã ban",
+      "emailVerified": "✓ Đã xác thực",
+      "stats": {
+        "totalBookings": "Tổng đơn",
+        "confirmed": "Thành công",
+        "spent": "Chi tiêu"
+      },
+      "info": {
+        "title": "Thông tin",
+        "createdAt": "Ngày tạo",
+        "role": "Vai trò"
+      },
+      "recentBookings": {
+        "title": "Đơn đặt vé gần nhất",
+        "empty": "Chưa có đơn nào",
+        "status": {
+          "confirmed": "Xác nhận",
+          "expired": "Hết hạn"
+        }
+      }
+    }
+  },
+  "bookings": {
+    "title": "Đặt vé",
+    "subtitle": "{{total}} đơn",
+    "searchPlaceholder": "Email hoặc tên khách...",
+    "filterAll": "Tất cả",
+    "clearFilters": "Xóa bộ lọc",
+    "columns": {
+      "orderId": "Mã đơn",
+      "customer": "Khách hàng",
+      "event": "Sự kiện",
+      "amount": "Số tiền",
+      "status": "Trạng thái",
+      "bookedAt": "Ngày đặt",
+      "actions": "Thao tác"
+    },
+    "status": {
+      "pending": "Chờ TT",
+      "confirmed": "Xác nhận",
+      "cancelled": "Đã hủy",
+      "expired": "Hết hạn"
+    },
+    "method": {
+      "simulated": "Giả lập",
+      "vnpay": "VNPay",
+      "momo": "MoMo"
+    },
+    "seatCount": "{{count}} ghế",
+    "refund": {
+      "label": "Hoàn tiền đơn này",
+      "confirm": "Hoàn tiền",
+      "button": "Hoàn tiền",
+      "success": "Hoàn tiền thành công",
+      "error": "Không thể hoàn tiền"
+    },
+    "empty": "Không tìm thấy đơn đặt vé nào"
+  },
+  "reports": {
+    "title": "Báo cáo",
+    "subtitle": "Phân tích doanh thu và xuất dữ liệu",
+    "chart": {
+      "title": "Doanh thu 30 ngày",
+      "revenue": "Doanh thu",
+      "day": "Ngày"
+    },
+    "kpi": {
+      "revenue30d": "Doanh thu 30 ngày",
+      "bookings30d": "Đơn xác nhận 30 ngày",
+      "avgPerOrder": "Trung bình/đơn"
+    },
+    "export": {
+      "title": "Xuất báo cáo CSV",
+      "description": "Tải về file CSV chứa tất cả đơn xác nhận trong khoảng thời gian. Có thể mở bằng Excel, Google Sheets.",
+      "fromDate": "Từ ngày",
+      "toDate": "Đến ngày",
+      "download": "Tải CSV",
+      "downloading": "Đang xuất...",
+      "error": "Không thể xuất báo cáo. Vui lòng thử lại."
+    },
+    "demographics": {
+      "title": "Phân bổ giới tính",
+      "genderSubtitle": "Thống kê theo giới tính khán giả",
+      "ageTitle": "Phân bổ độ tuổi",
+      "ageSubtitle": "Thống kê theo nhóm tuổi khán giả",
+      "columns": {
+        "gender": "Giới tính",
+        "ageGroup": "Nhóm tuổi",
+        "count": "Số lượng",
+        "percent": "% tổng"
+      },
+      "genderNames": {
+        "male": "Nam",
+        "female": "Nữ",
+        "other": "Khác"
+      },
+      "ageNames": {
+        "under18": "Dưới 18",
+        "18_24": "18 – 24",
+        "25_34": "25 – 34",
+        "35_44": "35 – 44",
+        "45plus": "45+",
+        "unknown": "Không rõ"
+      },
+      "noData": "Chưa có dữ liệu"
+    },
+    "funnel": {
+      "title": "Phễu chuyển đổi",
+      "stages": [
+        "Chọn ghế",
+        "Thanh toán",
+        "Xác nhận",
+        "Doanh thu"
+      ]
+    },
+    "categoryLabels": {
+      "music": "Âm nhạc",
+      "sports": "Thể thao",
+      "theater": "Sân khấu",
+      "comedy": "Hài kịch",
+      "festival": "Lễ hội",
+      "conference": "Hội nghị",
+      "other": "Khác"
+    }
+  },
+  "auditLogs": {
+    "title": "Nhật ký thao tác",
+    "subtitle": "Lịch sử toàn bộ hành động admin — chỉ đọc",
+    "columns": {
+      "admin": "Admin",
+      "action": "Hành động",
+      "entity": "Đối tượng",
+      "details": "Chi tiết",
+      "time": "Thời gian"
+    },
+    "actions": {
+      "create_event": "Tạo sự kiện",
+      "update_event": "Cập nhật sự kiện",
+      "delete_event": "Xóa sự kiện",
+      "update_event_status": "Đổi trạng thái",
+      "setup_zones": "Cấu hình ghế",
+      "refund_booking": "Hoàn tiền",
+      "ban_user": "Ban người dùng",
+      "unban_user": "Gỡ ban",
+      "create_venue": "Tạo địa điểm",
+      "update_venue": "Cập nhật địa điểm",
+      "delete_venue": "Xóa địa điểm"
+    },
+    "paginationLabel": "Nhật ký — Trang",
+    "empty": "Chưa có log nào",
+    "noResults": "Không tìm thấy kết quả",
+    "clearFilters": "Xóa bộ lọc",
+    "records": "bản ghi",
+    "searchPlaceholder": "Tìm theo admin, hành động...",
+    "groups": {
+      "all": "Tất cả",
+      "event": "Sự kiện",
+      "user": "Người dùng",
+      "booking": "Đặt vé",
+      "venue": "Địa điểm",
+      "zone": "Khu ghế"
+    }
+  },
+  "venues": {
+    "title": "Địa điểm",
+    "subtitle": "{{count}} địa điểm",
+    "addButton": "Thêm địa điểm",
+    "empty": {
+      "title": "Chưa có địa điểm nào",
+      "addFirst": "+ Thêm địa điểm đầu tiên"
+    },
+    "form": {
+      "addTitle": "Thêm địa điểm mới",
+      "editTitle": "Chỉnh sửa địa điểm",
+      "fields": {
+        "name": "Tên địa điểm *",
+        "city": "Thành phố",
+        "capacity": "Sức chứa *",
+        "address": "Địa chỉ *"
+      },
+      "placeholders": {
+        "name": "VD: Nhà hát Hòa Bình",
+        "city": "VD: TP. Hồ Chí Minh",
+        "capacity": "500",
+        "address": "VD: 240 3 Tháng 2, Quận 10"
+      },
+      "cancel": "Hủy",
+      "create": "Tạo địa điểm",
+      "update": "Cập nhật"
+    },
+    "seating": "{{count}} chỗ ngồi",
+    "confirmDelete": "Xóa địa điểm",
+    "confirmDeleteLabel": "Xóa",
+    "toast": {
+      "createSuccess": "Đã tạo địa điểm",
+      "updateSuccess": "Đã cập nhật địa điểm",
+      "deleteSuccess": "Đã xóa địa điểm",
+      "deleteError": "Không thể xóa",
+      "error": "Đã xảy ra lỗi"
+    }
+  },
+  "promo": {
+    "title": "Mã giảm giá",
+    "subtitle": "{{active}} đang hoạt động · {{total}} tổng cộng",
+    "createButton": "Tạo mã",
+    "cancelButton": "Hủy",
+    "empty": {
+      "title": "Chưa có mã giảm giá",
+      "createFirst": "+ Tạo mã đầu tiên"
+    },
+    "sections": {
+      "active": "Đang hoạt động ({{count}})",
+      "inactive": "Đã tắt / hết hạn ({{count}})"
+    },
+    "columns": {
+      "code": "Mã",
+      "discount": "Giảm",
+      "used": "Đã dùng",
+      "expires": "Hết hạn",
+      "toggle": "Bật/tắt",
+      "enable": "Bật lại",
+      "actions": "Thao tác"
+    },
+    "form": {
+      "title": "Tạo mã giảm giá mới",
+      "editTitle": "Chỉnh sửa mã giảm giá",
+      "update": "Lưu thay đổi",
+      "fields": {
+        "code": "Mã giảm giá *",
+        "discountType": "Loại giảm",
+        "discountValue": "Giá trị giảm *",
+        "minAmount": "Đơn hàng tối thiểu (₫)",
+        "usageLimit": "Tổng lượt dùng (để trống = không giới hạn)",
+        "perUserLimit": "Lượt/người",
+        "startsAt": "Bắt đầu",
+        "expiresAt": "Hết hạn"
+      },
+      "placeholders": {
+        "code": "VD: SUMMER2026",
+        "usageLimit": "Không giới hạn"
+      },
+      "discountTypes": {
+        "fixed": "Số tiền cố định (₫)",
+        "percentage": "Phần trăm (%)"
+      },
+      "cancel": "Hủy",
+      "create": "Tạo mã",
+      "creating": "Đang tạo..."
+    },
+    "minAmount": "Tối thiểu {{amount}}",
+    "toggleOff": "Tắt mã",
+    "toggleOn": "Bật lại mã",
+    "toast": {
+      "codeRequired": "Nhập mã giảm giá",
+      "createSuccess": "Tạo mã thành công",
+      "updateSuccess": "Cập nhật mã thành công",
+      "deleteSuccess": "Đã xóa mã",
+      "toggleError": "Lỗi",
+      "error": "Đã xảy ra lỗi"
+    }
+  },
+  "pagination": {
+    "page": "Trang",
+    "items": "mục",
+    "prev": "Trước",
+    "next": "Sau"
+  },
+  "wizard": {
+    "steps": {
+      "info": "Thông tin cơ bản",
+      "venue": "Địa điểm & Thời gian",
+      "seats": "Sơ đồ ghế",
+      "sale": "Bán vé",
+      "preview": "Xem trước & Đăng"
+    },
+    "actions": {
+      "next": "Tiếp theo",
+      "back": "Quay lại",
+      "saveDraft": "Lưu nháp",
+      "publish": "Đăng sự kiện",
+      "publishing": "Đang tạo..."
+    }
+  },
+  "wizardForm": {
+    "fields": {
+      "title": "Tên sự kiện *",
+      "category": "Danh mục *",
+      "shortDesc": "Mô tả ngắn",
+      "description": "Mô tả chi tiết",
+      "thumbnail": "URL ảnh thumbnail",
+      "banner": "URL ảnh banner",
+      "venue": "Địa điểm *",
+      "startTime": "Ngày bắt đầu *",
+      "endTime": "Ngày kết thúc",
+      "saleStart": "Thời gian mở bán *",
+      "saleEnd": "Kết thúc bán vé",
+      "maxTickets": "Tối đa vé/người",
+      "queueEnabled": "Bật hàng chờ ảo",
+      "queueEnabled_desc": "Khi sự kiện hot, user sẽ xếp hàng trước khi vào trang đặt vé"
+    },
+    "placeholders": {
+      "title": "VD: Đêm nhạc Trịnh Công Sơn",
+      "shortDesc": "Tóm tắt 1-2 câu về sự kiện",
+      "thumbnail": "https://example.com/thumbnail.jpg",
+      "banner": "https://example.com/banner.jpg"
+    },
+    "validation": {
+      "titleRequired": "Thiếu tên sự kiện",
+      "venueRequired": "Chọn địa điểm",
+      "startTimeRequired": "Thiếu ngày bắt đầu",
+      "endTimeRequired": "Thiếu ngày kết thúc",
+      "saleStartRequired": "Thiếu thời gian mở bán"
+    },
+    "preview": {
+      "draft": "Lưu nháp",
+      "publish": "Đăng sự kiện",
+      "publishing": "Đang tạo...",
+      "confirmPublish": "Xác nhận đăng sự kiện này?"
+    }
+  },
+  "chat": {
+    "title": "Live Chat",
+    "searchPlaceholder": "Tìm khách hàng...",
+    "noConversations": "Không có cuộc trò chuyện nào",
+    "selectConversation": "Chọn cuộc trò chuyện để bắt đầu",
+    "replyPlaceholder": "Nhập phản hồi...",
+    "close": "Đóng",
+    "reopen": "Mở lại",
+    "typing": "Đang soạn tin nhắn...",
+    "conversationClosed": "Cuộc trò chuyện đã đóng",
+    "delete": "Xóa cuộc trò chuyện",
+    "status": {
+      "open": "Mới",
+      "in_progress": "Đang xử lý",
+      "closed": "Đã đóng"
+    },
+    "markRead": "Đánh dấu đã đọc",
+    "markUnread": "Đánh dấu chưa đọc",
+    "readAll": "Đọc hết",
+    "deleteSelected": "Xóa đã chọn",
+    "selected": "Đã chọn {{count}}",
+    "selectAll": "Chọn tất cả",
+    "deselectAll": "Bỏ chọn tất cả",
+    "closeConv": "Đóng hội thoại",
+    "readStatus": "Đã xem",
+    "sentStatus": "Đã gửi",
+    "recalled": "Tin nhắn đã được thu hồi",
+    "viewProfile": "Xem hồ sơ người dùng",
+    "notifications": "Thông báo",
+    "noNotifications": "Chưa có thông báo",
+    "readAllNotif": "Đọc tất cả",
+    "confirmDeleteConv": "Xóa cuộc trò chuyện này?",
+    "confirmBulkDelete": "Xóa {{count}} cuộc trò chuyện?"
+  }
+}

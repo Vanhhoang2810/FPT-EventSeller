@@ -1,0 +1,19 @@
+{
+  "title": "Phòng chờ",
+  "titleVirtual": "Phòng chờ ảo",
+  "position": "Vị trí của bạn",
+  "estimated": "Thời gian chờ ước tính",
+  "estimatedMinutes": "Dự kiến: ~{{min}} phút",
+  "doNotRefresh": "Vui lòng không tải lại trang",
+  "positionPersists": "Vị trí của bạn được lưu — refresh vẫn giữ vị trí",
+  "keepPage": "Giữ nguyên trang này. Hệ thống sẽ tự động thông báo khi đến lượt bạn.",
+  "refreshSafe": "Nếu tải lại trang, vị trí của bạn sẽ được giữ nguyên.",
+  "joining": "Đang vào hàng đợi...",
+  "yourTurn": "Đến lượt bạn!",
+  "yourTurnDesc": "Bạn có 5 phút để chọn ghế trước khi token hết hạn.",
+  "eventLabel": "Sự kiện: {{title}}",
+  "enterNow": "Vào chọn ghế ngay",
+  "redirecting": "Đang chuyển đến trang chọn ghế...",
+  "waiting": "Đang chờ...",
+  "ahead": "người đứng trước bạn"
+}

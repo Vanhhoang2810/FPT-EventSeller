@@ -1,0 +1,540 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "events": "Events",
+    "users": "Users",
+    "bookings": "Bookings",
+    "promo": "Promo Codes",
+    "venues": "Venues",
+    "reports": "Reports",
+    "audit": "Audit Logs",
+    "chat": "Live Chat"
+  },
+  "sections": {
+    "overview": "Overview",
+    "management": "Management",
+    "analytics": "Analytics"
+  },
+  "search": {
+    "placeholder": "Find page...",
+    "noResults": "No pages found",
+    "select": "Select",
+    "move": "Move",
+    "close": "Close"
+  },
+  "sidebar": {
+    "today": "Today",
+    "confirmedOrders": "Confirmed orders",
+    "liveStats": "Live Stats"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "System activity overview",
+    "todayRevenue": "Today's Revenue",
+    "totalRevenue": "Total Revenue",
+    "users": "Users",
+    "bookings": "Confirmed Orders",
+    "activeEvents": "Active Events: {{count}}",
+    "refresh": "Refresh",
+    "revenue": {
+      "title": "Revenue",
+      "unit": "Million VND",
+      "period": {
+        "hour": "Hour",
+        "day": "Day",
+        "month": "Month",
+        "year": "Year"
+      },
+      "periodDesc": {
+        "hour": "Last 24 hours",
+        "day": "Last 30 days",
+        "month": "Last 12 months",
+        "year": "All years"
+      },
+      "tooltipLabel": {
+        "hour": "At {{val}}",
+        "day": "Day {{val}}",
+        "month": "Month {{val}}",
+        "year": "Year {{val}}"
+      },
+      "tooltipName": "Revenue"
+    },
+    "seatFill": {
+      "title": "Seat Fill Rate",
+      "subtitle": "Top active events",
+      "noData": "No data yet"
+    },
+    "demographics": {
+      "title": "Audience Demographics",
+      "subtitle": "Gender & age distribution of attendees",
+      "noData": "No data yet",
+      "tooltipCount": "Attendees",
+      "genderLabel": "Gender",
+      "ageLabel": "Age Group",
+      "genderNames": {
+        "male": "Male",
+        "female": "Female",
+        "other": "Other"
+      },
+      "ageNames": {
+        "under18": "Under 18",
+        "18_24": "18 – 24",
+        "25_34": "25 – 34",
+        "35_44": "35 – 44",
+        "45plus": "45+",
+        "unknown": "Unknown"
+      }
+    },
+    "peakHours": {
+      "title": "Peak Booking Hours",
+      "subtitle": "Confirmed orders by hour of day",
+      "tooltipName": "Orders"
+    },
+    "funnel": {
+      "title": "Conversion Funnel",
+      "subtitle": "Conversion rate from seat selection → payment",
+      "stages": [
+        "Seat Selection",
+        "Payment",
+        "Confirmation",
+        "Revenue"
+      ]
+    },
+    "liveActivity": {
+      "title": "Live Activity Feed",
+      "live": "Live",
+      "waiting": "Waiting for new activity..."
+    },
+    "categoryLabels": {
+      "music": "Music",
+      "sports": "Sports",
+      "theater": "Theater",
+      "comedy": "Comedy",
+      "festival": "Festival",
+      "conference": "Conference",
+      "other": "Other"
+    }
+  },
+  "events": {
+    "title": "Events",
+    "subtitle": "{{total}} events · page {{page}}/{{totalPages}}",
+    "create": "Create Event",
+    "searchPlaceholder": "Search by event name...",
+    "filterAll": "All",
+    "columns": {
+      "event": "Event",
+      "time": "Date & Time",
+      "venue": "Venue",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "draft": "Draft",
+      "published": "Published",
+      "on_sale": "On Sale",
+      "sold_out": "Sold Out",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "actions": {
+      "view": "View event page",
+      "edit": "Edit",
+      "publish": "Publish",
+      "openSale": "Open Sale",
+      "delete": "Delete event",
+      "confirmDelete": "Delete"
+    },
+    "empty": {
+      "title": "No events found",
+      "filtered": "Try changing the filters",
+      "noEvents": "Get started by creating your first event",
+      "createLink": "+ Create event →"
+    },
+    "toast": {
+      "deleteSuccess": "Event deleted",
+      "deleteError": "Cannot delete",
+      "error": "An error occurred"
+    }
+  },
+  "users": {
+    "title": "Users",
+    "subtitle": "{{total}} accounts",
+    "searchPlaceholder": "Search by email, name...",
+    "columns": {
+      "user": "User",
+      "createdAt": "Created",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "banned": "Banned"
+    },
+    "role": {
+      "admin": "Admin",
+      "customer": "Customer"
+    },
+    "actions": {
+      "viewDetail": "View detail",
+      "ban": "Ban user",
+      "unban": "Unban"
+    },
+    "toast": {
+      "banSuccess": "User banned",
+      "unbanSuccess": "User unbanned",
+      "error": "An error occurred"
+    },
+    "empty": "No users found",
+    "drawer": {
+      "title": "User Detail",
+      "statusActive": "● Active",
+      "statusBanned": "● Banned",
+      "emailVerified": "✓ Verified",
+      "stats": {
+        "totalBookings": "Total Orders",
+        "confirmed": "Confirmed",
+        "spent": "Spent"
+      },
+      "info": {
+        "title": "Info",
+        "createdAt": "Created",
+        "role": "Role"
+      },
+      "recentBookings": {
+        "title": "Recent Bookings",
+        "empty": "No bookings yet",
+        "status": {
+          "confirmed": "Confirmed",
+          "expired": "Expired"
+        }
+      }
+    }
+  },
+  "bookings": {
+    "title": "Bookings",
+    "subtitle": "{{total}} orders",
+    "searchPlaceholder": "Email or customer name...",
+    "filterAll": "All",
+    "clearFilters": "Clear filters",
+    "columns": {
+      "orderId": "Order ID",
+      "customer": "Customer",
+      "event": "Event",
+      "amount": "Amount",
+      "status": "Status",
+      "bookedAt": "Booked At",
+      "actions": "Actions"
+    },
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "expired": "Expired"
+    },
+    "method": {
+      "simulated": "Simulated",
+      "vnpay": "VNPay",
+      "momo": "MoMo"
+    },
+    "seatCount": "{{count}} seats",
+    "refund": {
+      "label": "Refund this order",
+      "confirm": "Refund",
+      "button": "Refund",
+      "success": "Refund successful",
+      "error": "Cannot refund"
+    },
+    "empty": "No bookings found"
+  },
+  "reports": {
+    "title": "Reports",
+    "subtitle": "Revenue analytics and data export",
+    "chart": {
+      "title": "Revenue — Last 30 days",
+      "revenue": "Revenue",
+      "day": "Date"
+    },
+    "kpi": {
+      "revenue30d": "Revenue (30 days)",
+      "bookings30d": "Confirmed Orders (30 days)",
+      "avgPerOrder": "Average per order"
+    },
+    "export": {
+      "title": "Export CSV Report",
+      "description": "Download a CSV file of all confirmed orders within the date range. Can be opened in Excel or Google Sheets.",
+      "fromDate": "From date",
+      "toDate": "To date",
+      "download": "Download CSV",
+      "downloading": "Exporting...",
+      "error": "Cannot export report. Please try again."
+    },
+    "demographics": {
+      "title": "Gender Distribution",
+      "genderSubtitle": "Breakdown by audience gender",
+      "ageTitle": "Age Distribution",
+      "ageSubtitle": "Breakdown by audience age group",
+      "columns": {
+        "gender": "Gender",
+        "ageGroup": "Age Group",
+        "count": "Count",
+        "percent": "% of total"
+      },
+      "genderNames": {
+        "male": "Male",
+        "female": "Female",
+        "other": "Other"
+      },
+      "ageNames": {
+        "under18": "Under 18",
+        "18_24": "18 – 24",
+        "25_34": "25 – 34",
+        "35_44": "35 – 44",
+        "45plus": "45+",
+        "unknown": "Unknown"
+      },
+      "noData": "No data yet"
+    },
+    "funnel": {
+      "title": "Conversion Funnel",
+      "stages": [
+        "Seat Selection",
+        "Payment",
+        "Confirmation",
+        "Revenue"
+      ]
+    },
+    "categoryLabels": {
+      "music": "Music",
+      "sports": "Sports",
+      "theater": "Theater",
+      "comedy": "Comedy",
+      "festival": "Festival",
+      "conference": "Conference",
+      "other": "Other"
+    }
+  },
+  "auditLogs": {
+    "title": "Audit Logs",
+    "subtitle": "Full admin action history — read only",
+    "columns": {
+      "admin": "Admin",
+      "action": "Action",
+      "entity": "Entity",
+      "details": "Details",
+      "time": "Time"
+    },
+    "actions": {
+      "create_event": "Create event",
+      "update_event": "Update event",
+      "delete_event": "Delete event",
+      "update_event_status": "Change status",
+      "setup_zones": "Setup seats",
+      "refund_booking": "Refund",
+      "ban_user": "Ban user",
+      "unban_user": "Unban",
+      "create_venue": "Create venue",
+      "update_venue": "Update venue",
+      "delete_venue": "Delete venue"
+    },
+    "paginationLabel": "Logs — Page",
+    "empty": "No logs yet",
+    "noResults": "No results found",
+    "clearFilters": "Clear filters",
+    "records": "records",
+    "searchPlaceholder": "Search by admin, action...",
+    "groups": {
+      "all": "All",
+      "event": "Events",
+      "user": "Users",
+      "booking": "Bookings",
+      "venue": "Venues",
+      "zone": "Seat zones"
+    }
+  },
+  "venues": {
+    "title": "Venues",
+    "subtitle": "{{count}} venues",
+    "addButton": "Add venue",
+    "empty": {
+      "title": "No venues yet",
+      "addFirst": "+ Add first venue"
+    },
+    "form": {
+      "addTitle": "Add new venue",
+      "editTitle": "Edit venue",
+      "fields": {
+        "name": "Venue name *",
+        "city": "City",
+        "capacity": "Capacity *",
+        "address": "Address *"
+      },
+      "placeholders": {
+        "name": "e.g. Peace Theater",
+        "city": "e.g. Ho Chi Minh City",
+        "capacity": "500",
+        "address": "e.g. 240 3 Thang 2, District 10"
+      },
+      "cancel": "Cancel",
+      "create": "Create venue",
+      "update": "Update"
+    },
+    "seating": "{{count}} seats",
+    "confirmDelete": "Delete venue",
+    "confirmDeleteLabel": "Delete",
+    "toast": {
+      "createSuccess": "Venue created",
+      "updateSuccess": "Venue updated",
+      "deleteSuccess": "Venue deleted",
+      "deleteError": "Cannot delete",
+      "error": "An error occurred"
+    }
+  },
+  "promo": {
+    "title": "Promo Codes",
+    "subtitle": "{{active}} active · {{total}} total",
+    "createButton": "Create code",
+    "cancelButton": "Cancel",
+    "empty": {
+      "title": "No promo codes yet",
+      "createFirst": "+ Create first code"
+    },
+    "sections": {
+      "active": "Active ({{count}})",
+      "inactive": "Disabled / Expired ({{count}})"
+    },
+    "columns": {
+      "code": "Code",
+      "discount": "Discount",
+      "used": "Used",
+      "expires": "Expires",
+      "toggle": "Toggle",
+      "enable": "Enable"
+    },
+    "form": {
+      "title": "Create new promo code",
+      "fields": {
+        "code": "Promo code *",
+        "discountType": "Discount type",
+        "discountValue": "Discount value *",
+        "minAmount": "Minimum order (₫)",
+        "usageLimit": "Total uses (empty = unlimited)",
+        "perUserLimit": "Uses per user",
+        "startsAt": "Starts at",
+        "expiresAt": "Expires at"
+      },
+      "placeholders": {
+        "code": "e.g. SUMMER2026",
+        "usageLimit": "Unlimited"
+      },
+      "discountTypes": {
+        "fixed": "Fixed amount (₫)",
+        "percentage": "Percentage (%)"
+      },
+      "cancel": "Cancel",
+      "create": "Create code",
+      "creating": "Creating..."
+    },
+    "minAmount": "Min {{amount}}",
+    "toggleOff": "Disable code",
+    "toggleOn": "Enable code",
+    "toast": {
+      "codeRequired": "Enter promo code",
+      "createSuccess": "Code created",
+      "toggleError": "Error",
+      "error": "An error occurred"
+    }
+  },
+  "pagination": {
+    "page": "Page",
+    "items": "items",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "wizard": {
+    "steps": {
+      "info": "Basic Info",
+      "venue": "Venue & Time",
+      "seats": "Seat Map",
+      "sale": "Ticket Sale",
+      "preview": "Preview & Publish"
+    },
+    "actions": {
+      "next": "Next",
+      "back": "Back",
+      "saveDraft": "Save Draft",
+      "publish": "Publish Event",
+      "publishing": "Publishing..."
+    }
+  },
+  "wizardForm": {
+    "fields": {
+      "title": "Event name *",
+      "category": "Category *",
+      "shortDesc": "Short description",
+      "description": "Full description",
+      "thumbnail": "Thumbnail URL",
+      "banner": "Banner URL",
+      "venue": "Venue *",
+      "startTime": "Start date *",
+      "endTime": "End date",
+      "saleStart": "Sale start time *",
+      "saleEnd": "Sale end time",
+      "maxTickets": "Max tickets per person",
+      "queueEnabled": "Enable virtual queue",
+      "queueEnabled_desc": "When the event is busy, users will queue before entering the booking page"
+    },
+    "placeholders": {
+      "title": "e.g. Trinh Cong Son Concert Night",
+      "shortDesc": "Summarize the event in 1-2 sentences",
+      "thumbnail": "https://example.com/thumbnail.jpg",
+      "banner": "https://example.com/banner.jpg"
+    },
+    "validation": {
+      "titleRequired": "Event name is required",
+      "venueRequired": "Please select a venue",
+      "startTimeRequired": "Start date is required",
+      "endTimeRequired": "End date is required",
+      "saleStartRequired": "Sale start time is required"
+    },
+    "preview": {
+      "draft": "Save Draft",
+      "publish": "Publish Event",
+      "publishing": "Publishing...",
+      "confirmPublish": "Confirm publishing this event?"
+    }
+  },
+  "chat": {
+    "title": "Live Chat",
+    "searchPlaceholder": "Search customers...",
+    "noConversations": "No conversations yet",
+    "selectConversation": "Select a conversation to start",
+    "replyPlaceholder": "Type a reply...",
+    "close": "Close",
+    "reopen": "Reopen",
+    "typing": "Typing...",
+    "conversationClosed": "Conversation closed",
+    "delete": "Delete conversation",
+    "status": {
+      "open": "New",
+      "in_progress": "In progress",
+      "closed": "Closed"
+    },
+    "markRead": "Mark as read",
+    "markUnread": "Mark as unread",
+    "readAll": "Read all",
+    "deleteSelected": "Delete selected",
+    "selected": "{{count}} selected",
+    "selectAll": "Select all",
+    "deselectAll": "Deselect all",
+    "closeConv": "Close conversation",
+    "readStatus": "Seen",
+    "sentStatus": "Sent",
+    "recalled": "Message was recalled",
+    "viewProfile": "View user profile",
+    "notifications": "Notifications",
+    "noNotifications": "No notifications yet",
+    "readAllNotif": "Read all",
+    "confirmDeleteConv": "Delete this conversation?",
+    "confirmBulkDelete": "Delete {{count}} conversation(s)?"
+  }
+}

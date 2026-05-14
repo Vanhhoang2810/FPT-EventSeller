@@ -1,0 +1,482 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "events": "Sự kiện",
+    "myTickets": "Vé của tôi",
+    "favorites": "Yêu thích",
+    "profile": "Hồ sơ",
+    "admin": "Quản trị",
+    "logout": "Đăng xuất",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "about": "Về chúng tôi",
+    "faq": "Hỏi đáp"
+  },
+  "notifications": {
+    "title": "Thông báo",
+    "markAllRead": "Đọc tất cả",
+    "empty": "Không có thông báo mới"
+  },
+  "footer": {
+    "tagline": "Trải nghiệm âm nhạc không giới hạn. Đặt vé nhanh, chọn ghế trực quan.",
+    "copyright": "© {{year}} Ticket Rush. Mọi quyền được bảo lưu.",
+    "support": "Hỗ trợ",
+    "about": "Về chúng tôi",
+    "events": "Sự kiện",
+    "allEvents": "Tất cả sự kiện",
+    "onSale": "Đang bán",
+    "trending": "Xu hướng",
+    "comingSoon": "Sắp mở bán",
+    "faq": "FAQ",
+    "contact": "Liên hệ",
+    "terms": "Điều khoản",
+    "privacy": "Bảo mật"
+  },
+  "offline": {
+    "message": "Mất kết nối mạng — một số tính năng có thể không hoạt động"
+  },
+  "actions": {
+    "confirm": "Xác nhận",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "loadMore": "Tải thêm",
+    "back": "Quay lại",
+    "close": "Đóng",
+    "apply": "Áp dụng",
+    "refresh": "Làm mới"
+  },
+  "status": {
+    "loading": "Đang tải...",
+    "noResult": "Không tìm thấy kết quả",
+    "error": "Đã xảy ra lỗi",
+    "success": "Thành công"
+  },
+  "language": {
+    "vi": "Tiếng Việt",
+    "en": "English"
+  },
+  "profile": {
+    "title": "Hồ sơ cá nhân",
+    "emailVerified": "Đã xác thực email",
+    "changeAvatar": "Đổi ảnh đại diện",
+    "tabs": {
+      "profile": "Hồ sơ",
+      "history": "Lịch sử đặt vé",
+      "notifications": "Thông báo"
+    },
+    "personalInfo": "Thông tin cá nhân",
+    "email": "Email",
+    "fullName": "Họ và tên *",
+    "fullNamePlaceholder": "Nguyễn Văn A",
+    "phone": "Số điện thoại",
+    "phonePlaceholder": "0912 345 678",
+    "gender": "Giới tính",
+    "genderPlaceholder": "Chọn giới tính",
+    "genderMale": "Nam",
+    "genderFemale": "Nữ",
+    "genderOther": "Khác",
+    "dateOfBirth": "Ngày sinh",
+    "saving": "Đang lưu...",
+    "saveChanges": "Lưu thay đổi",
+    "changePassword": "Đổi mật khẩu",
+    "currentPassword": "Mật khẩu hiện tại",
+    "newPassword": "Mật khẩu mới (tối thiểu 8 ký tự)",
+    "confirmPassword": "Xác nhận mật khẩu mới",
+    "processing": "Đang xử lý...",
+    "changePasswordBtn": "Đổi mật khẩu",
+    "saveSettings": "Lưu cài đặt",
+    "historyEmpty": "Chưa có đơn đặt vé nào",
+    "historyEvent": "Sự kiện",
+    "historyAmount": "Số tiền",
+    "historyStatus": "Trạng thái",
+    "historyOrderFallback": "Đơn #{{id}}",
+    "historySeatCount": "{{count}} ghế",
+    "notificationSettings": "Cài đặt thông báo email",
+    "notif": {
+      "booking": "Xác nhận đặt vé",
+      "bookingDesc": "Email khi đặt vé thành công hoặc hủy",
+      "reminder": "Nhắc sự kiện",
+      "reminderDesc": "Nhắc nhở 24 giờ trước khi sự kiện diễn ra",
+      "news": "Tin tức & khuyến mãi",
+      "newsDesc": "Sự kiện mới, ưu đãi từ Ticket Rush"
+    },
+    "toast": {
+      "fullNameRequired": "Họ tên không được để trống",
+      "profileSaved": "Cập nhật hồ sơ thành công",
+      "profileFailed": "Cập nhật thất bại",
+      "passwordTooShort": "Mật khẩu mới tối thiểu 8 ký tự",
+      "passwordMismatch": "Mật khẩu xác nhận không khớp",
+      "passwordChanged": "Đổi mật khẩu thành công",
+      "passwordFailed": "Đổi mật khẩu thất bại",
+      "notifSaved": "Đã lưu cài đặt thông báo",
+      "notifFailed": "Không thể lưu cài đặt",
+      "genericError": "Đã xảy ra lỗi"
+    },
+    "bookingStatus": {
+      "confirmed": "Đã xác nhận",
+      "pending": "Chờ thanh toán",
+      "expired": "Hết hạn",
+      "cancelled": "Đã hủy"
+    }
+  },
+  "pages": {
+    "about": {
+      "title": "Về Ticket Rush",
+      "subtitle": "Nền tảng đặt vé sự kiện trực tuyến hàng đầu Việt Nam — nhanh, bảo mật và đáng tin cậy.",
+      "stats": {
+        "events": "Sự kiện đã tổ chức",
+        "tickets": "Vé đã bán",
+        "users": "Người dùng tin tưởng",
+        "uptime": "Uptime đảm bảo"
+      },
+      "mission": {
+        "title": "Sứ mệnh",
+        "desc": "Ticket Rush ra đời với mục tiêu đơn giản hóa việc đặt vé sự kiện tại Việt Nam. Thay vì xếp hàng hàng giờ hay lo lắng về vé giả, bạn có thể đặt vé ngay lập tức từ bất kỳ đâu, nhận mã QR bảo mật và vào cổng chỉ trong vài giây."
+      },
+      "values": {
+        "title": "Giá trị cốt lõi",
+        "fast": {
+          "title": "Nhanh chóng",
+          "desc": "Đặt vé trong vài giây, sơ đồ ghế tương tác real-time, không cần xếp hàng."
+        },
+        "secure": {
+          "title": "Bảo mật tuyệt đối",
+          "desc": "Mã QR signed JWT, thanh toán qua VNPay/MoMo, không lưu thông tin thẻ."
+        },
+        "experience": {
+          "title": "Trải nghiệm tốt",
+          "desc": "Giao diện đẹp, responsive trên mọi thiết bị, hỗ trợ 24/7."
+        },
+        "community": {
+          "title": "Cộng đồng sôi động",
+          "desc": "Kết nối hàng triệu người yêu thích âm nhạc, thể thao, nghệ thuật."
+        }
+      },
+      "titlePrefix": "Về"
+    },
+    "faq": {
+      "title": "Câu hỏi thường gặp",
+      "subtitle": "Tìm câu trả lời cho những thắc mắc phổ biến nhất về Ticket Rush",
+      "notFound": "Không tìm thấy câu trả lời?",
+      "contactSupport": "Liên hệ hỗ trợ →",
+      "categories": {
+        "booking": "Đặt vé",
+        "payment": "Thanh toán",
+        "ticketCheckin": "Vé & Check-in"
+      },
+      "items": {
+        "booking": [
+          {
+            "q": "Làm thế nào để đặt vé?",
+            "a": "Tìm sự kiện → Bấm \"Đặt vé\" → Chọn ghế trên sơ đồ tương tác → Thanh toán → Nhận QR. Toàn bộ quá trình chỉ mất 2-3 phút."
+          },
+          {
+            "q": "Tôi có thể chọn ghế cụ thể không?",
+            "a": "Có! Ticket Rush cung cấp sơ đồ ghế tương tác cho phép bạn xem và chọn từng ghế cụ thể. Ghế sẽ được giữ cho bạn trong 10 phút để hoàn tất thanh toán."
+          },
+          {
+            "q": "Có giới hạn số vé mỗi người không?",
+            "a": "Có, mỗi sự kiện có thể đặt tối đa 2-6 vé tùy theo quy định của ban tổ chức. Giới hạn được hiển thị rõ trên trang sự kiện."
+          },
+          {
+            "q": "Virtual Queue là gì?",
+            "a": "Khi sự kiện có lượng truy cập cao, hệ thống tự động kích hoạt hàng đợi ảo để đảm bảo công bằng. Bạn sẽ nhận được vị trí hàng đợi và thông báo khi đến lượt."
+          }
+        ],
+        "payment": [
+          {
+            "q": "Các phương thức thanh toán được hỗ trợ?",
+            "a": "Ticket Rush hỗ trợ VNPay (ATM/Internet Banking), MoMo và thanh toán giả lập (demo). Tất cả giao dịch được mã hóa SSL."
+          },
+          {
+            "q": "Tôi có thể hủy và hoàn tiền không?",
+            "a": "Bạn có thể hủy đơn trong vòng 10 phút khi đang chờ thanh toán. Sau khi xác nhận, chính sách hoàn tiền phụ thuộc vào từng sự kiện cụ thể."
+          },
+          {
+            "q": "Mã giảm giá áp dụng như thế nào?",
+            "a": "Nhập mã tại bước thanh toán. Mã sẽ tự động tính giảm giá. Mỗi mã có thể có giới hạn lượt dùng và thời gian hiệu lực."
+          }
+        ],
+        "ticketCheckin": [
+          {
+            "q": "Làm sao để nhận vé?",
+            "a": "Sau khi thanh toán thành công, mã QR sẽ xuất hiện ngay trong mục \"Vé của tôi\". Bạn cũng có thể tải PDF để in ra."
+          },
+          {
+            "q": "Vé QR có bảo mật không?",
+            "a": "Mã QR được ký bằng JWT với secret key, có thể xác minh tính xác thực. Vé chỉ có thể sử dụng 1 lần — quét xong là không dùng lại được."
+          },
+          {
+            "q": "Nếu mất điện thoại thì sao?",
+            "a": "Đăng nhập lại tài khoản trên bất kỳ thiết bị nào, vào \"Vé của tôi\" là có thể xem lại QR. Bạn cũng nên tải PDF về máy tính để dự phòng."
+          }
+        ]
+      }
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "subtitle": "Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7",
+      "infoTitle": "Thông tin liên hệ",
+      "formTitle": "Gửi tin nhắn",
+      "labels": {
+        "name": "Họ tên *",
+        "email": "Email *",
+        "subject": "Chủ đề",
+        "message": "Nội dung *"
+      },
+      "placeholders": {
+        "name": "Nguyễn Văn A",
+        "subject": "Vấn đề cần hỗ trợ...",
+        "message": "Mô tả chi tiết vấn đề của bạn..."
+      },
+      "send": "Gửi tin nhắn",
+      "sending": "Đang gửi...",
+      "contacts": {
+        "email": {
+          "label": "Email hỗ trợ"
+        },
+        "phone": {
+          "label": "Hotline"
+        },
+        "hours": {
+          "label": "Giờ hỗ trợ",
+          "value": "8:00 – 22:00 mỗi ngày"
+        },
+        "chat": {
+          "label": "Live chat",
+          "value": "Góc phải màn hình"
+        }
+      },
+      "toast": {
+        "required": "Vui lòng điền đầy đủ thông tin",
+        "success": "Đã gửi tin nhắn! Chúng tôi sẽ phản hồi trong vòng 24 giờ."
+      }
+    },
+    "terms": {
+      "title": "Điều khoản sử dụng",
+      "lastUpdated": "Cập nhật lần cuối: tháng 5/2026",
+      "contactNote": "Nếu có thắc mắc về điều khoản, vui lòng liên hệ",
+      "sections": [
+        {
+          "title": "1. Chấp nhận điều khoản",
+          "content": "Khi sử dụng Ticket Rush, bạn đồng ý tuân thủ toàn bộ các điều khoản này. Nếu không đồng ý, vui lòng không sử dụng dịch vụ."
+        },
+        {
+          "title": "2. Tài khoản người dùng",
+          "content": "Bạn chịu trách nhiệm bảo mật thông tin tài khoản. Không được phép chia sẻ tài khoản hoặc thực hiện gian lận trong việc đặt vé. Mỗi tài khoản có giới hạn số vé tối đa theo quy định từng sự kiện."
+        },
+        {
+          "title": "3. Đặt vé và thanh toán",
+          "content": "Ghế được giữ trong 10 phút sau khi chọn. Nếu không thanh toán trong thời gian này, ghế sẽ được giải phóng. Tất cả giao dịch thanh toán qua VNPay/MoMo được bảo mật bởi SSL/TLS."
+        },
+        {
+          "title": "4. Chính sách hoàn tiền",
+          "content": "Hoàn tiền chỉ được thực hiện khi sự kiện bị hủy bởi ban tổ chức, hoặc theo chính sách riêng của từng sự kiện được công bố trước. Ticket Rush không chịu trách nhiệm về quyết định hủy sự kiện của ban tổ chức."
+        },
+        {
+          "title": "5. Sử dụng vé",
+          "content": "Mã QR chỉ có giá trị 1 lần và không được chuyển nhượng trừ khi được phép. Vé giả hoặc bị sửa đổi sẽ không được chấp nhận. Ticket Rush không chịu trách nhiệm về vé mua từ bên thứ ba."
+        },
+        {
+          "title": "6. Quyền sở hữu trí tuệ",
+          "content": "Toàn bộ nội dung, thiết kế và tính năng của Ticket Rush thuộc quyền sở hữu của chúng tôi. Không được sao chép, phân phối hoặc sử dụng thương mại mà không có sự cho phép bằng văn bản."
+        },
+        {
+          "title": "7. Giới hạn trách nhiệm",
+          "content": "Ticket Rush cung cấp nền tảng kỹ thuật để kết nối người dùng với ban tổ chức sự kiện. Chúng tôi không chịu trách nhiệm về chất lượng, nội dung hay bất kỳ vấn đề nào phát sinh từ chính sự kiện."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Chính sách bảo mật",
+      "lastUpdated": "Cập nhật lần cuối: tháng 5/2026",
+      "intro": "Ticket Rush cam kết bảo vệ thông tin cá nhân của bạn. Chính sách này mô tả cách chúng tôi thu thập, sử dụng và bảo vệ dữ liệu của bạn khi sử dụng dịch vụ.",
+      "contactNote": "Câu hỏi về quyền riêng tư:",
+      "sections": [
+        {
+          "title": "Thông tin chúng tôi thu thập",
+          "content": "Chúng tôi thu thập: (1) Thông tin đăng ký — tên, email, số điện thoại; (2) Thông tin đặt vé — lịch sử giao dịch, ghế đã chọn; (3) Thông tin kỹ thuật — địa chỉ IP, loại trình duyệt, thời gian truy cập để cải thiện dịch vụ."
+        },
+        {
+          "title": "Cách chúng tôi sử dụng thông tin",
+          "content": "Thông tin của bạn được sử dụng để: xử lý đặt vé và thanh toán, gửi email xác nhận và nhắc sự kiện, cải thiện trải nghiệm người dùng, phát hiện gian lận và bảo vệ tài khoản."
+        },
+        {
+          "title": "Bảo mật dữ liệu",
+          "content": "Mật khẩu được mã hóa bằng Argon2id — thuật toán bảo mật cao nhất hiện nay. Dữ liệu truyền qua HTTPS/TLS. Không lưu thông tin thẻ tín dụng — thanh toán được xử lý trực tiếp qua VNPay/MoMo."
+        },
+        {
+          "title": "Chia sẻ thông tin",
+          "content": "Chúng tôi KHÔNG bán thông tin cá nhân của bạn. Thông tin chỉ được chia sẻ với: ban tổ chức sự kiện (để xác nhận vé), đối tác thanh toán (VNPay, MoMo), và cơ quan pháp luật khi có yêu cầu hợp lệ."
+        },
+        {
+          "title": "Cookie",
+          "content": "Chúng tôi sử dụng cookie để duy trì phiên đăng nhập, ghi nhớ tùy chọn ngôn ngữ và cải thiện hiệu suất. Bạn có thể tắt cookie trong cài đặt trình duyệt, tuy nhiên một số tính năng có thể không hoạt động."
+        },
+        {
+          "title": "Quyền của bạn",
+          "content": "Bạn có quyền: truy cập và xuất dữ liệu cá nhân, chỉnh sửa thông tin không chính xác, yêu cầu xóa tài khoản và dữ liệu liên quan, hủy đăng ký nhận email marketing bất kỳ lúc nào."
+        }
+      ]
+    },
+    "notFound": {
+      "title": "Trang không tồn tại",
+      "subtitle": "Trang bạn đang tìm kiếm đã bị di chuyển, xóa hoặc chưa từng tồn tại.",
+      "goBack": "Quay lại",
+      "goHome": "Về trang chủ",
+      "browseEvents": "Xem sự kiện"
+    }
+  },
+  "theme": {
+    "toggleLight": "Chuyển sang sáng",
+    "toggleDark": "Chuyển sang tối",
+    "toggle": "Đổi giao diện"
+  },
+  "aria": {
+    "openMenu": "Mở menu",
+    "searchEvents": "Tìm kiếm sự kiện",
+    "searchAllResults": "Tìm tất cả kết quả cho \"{{query}}\"",
+    "notifications": "Thông báo"
+  },
+  "chatWidget": {
+    "agentName": "Ticket Rush Support",
+    "online": "Trực tuyến",
+    "responseTime": "Phản hồi nhanh",
+    "tooltip": "💬 Cần hỗ trợ?",
+    "preChatTitle": "Xin chào! 👋",
+    "preChatSubtitle": "Nhập tên để chúng tôi hỗ trợ bạn tốt hơn",
+    "namePlaceholder": "Họ và tên *",
+    "emailPlaceholder": "Email (tùy chọn)",
+    "emailError": "Email không đúng định dạng",
+    "connecting": "Đang kết nối...",
+    "startChat": "Bắt đầu trò chuyện",
+    "welcomeMsg": "Xin chào {{name}}! 👋",
+    "welcomeSub": "Chúng tôi có thể giúp gì cho bạn về vé sự kiện hôm nay?",
+    "inputPlaceholder": "Nhập tin nhắn...",
+    "guest": "Bạn",
+    "readStatus": "Đã xem",
+    "sentStatus": "Đã gửi",
+    "sendingStatus": "Đang gửi...",
+    "typing": "Đang soạn tin nhắn...",
+    "recalled": "Tin nhắn đã được thu hồi",
+    "recall": "Thu hồi",
+    "deleteConv": "Xóa cuộc trò chuyện",
+    "deleteConfirm": "Xóa toàn bộ cuộc trò chuyện này?",
+    "convClosed": "Cuộc trò chuyện đã đóng. Gửi tin nhắn để mở lại.",
+    "sendError": "Gửi thất bại, vui lòng thử lại."
+  },
+  "pages": {
+    "about": {
+      "title": "Về chúng tôi",
+      "titlePrefix": "Về",
+      "subtitle": "Ticket Rush là nền tảng đặt vé sự kiện trực tuyến nhanh nhất Việt Nam. Chúng tôi kết nối người yêu thích sự kiện với những trải nghiệm đáng nhớ.",
+      "stats": {
+        "events": "Sự kiện",
+        "tickets": "Vé đã bán",
+        "users": "Người dùng",
+        "uptime": "Uptime"
+      },
+      "mission": {
+        "title": "Sứ mệnh của chúng tôi",
+        "desc": "Chúng tôi tin rằng mọi người đều xứng đáng được trải nghiệm những khoảnh khắc đáng nhớ. Ticket Rush ra đời với sứ mệnh làm cho việc đặt vé trở nên đơn giản, nhanh chóng và an toàn nhất có thể."
+      },
+      "values": {
+        "title": "Giá trị cốt lõi",
+        "fast": { "title": "Nhanh chóng", "desc": "Đặt vé trong vài giây với giao diện tối ưu và thanh toán tức thì." },
+        "secure": { "title": "Bảo mật", "desc": "Thông tin và thanh toán của bạn được bảo vệ với tiêu chuẩn bảo mật cao nhất." },
+        "experience": { "title": "Trải nghiệm", "desc": "Chọn ghế trực quan, nhận QR code ngay lập tức, vào cửa dễ dàng." },
+        "community": { "title": "Cộng đồng", "desc": "Kết nối hàng triệu người yêu thích sự kiện trên khắp Việt Nam." }
+      }
+    },
+    "faq": {
+      "title": "Câu hỏi thường gặp",
+      "subtitle": "Tìm câu trả lời cho những thắc mắc phổ biến về Ticket Rush",
+      "notFound": "Không tìm thấy câu trả lời bạn cần?",
+      "contactSupport": "Liên hệ hỗ trợ",
+      "categories": {
+        "booking": "Đặt vé",
+        "payment": "Thanh toán",
+        "ticketCheckin": "Vé & Check-in"
+      },
+      "items": {
+        "booking": [
+          { "q": "Làm sao để đặt vé?", "a": "Chọn sự kiện → chọn ghế trên sơ đồ → thanh toán. Vé QR sẽ được gửi ngay lập tức." },
+          { "q": "Tôi có thể đặt tối đa bao nhiêu vé?", "a": "Mỗi sự kiện có giới hạn riêng (thường 4-6 vé/người), hiển thị trên trang sự kiện." },
+          { "q": "Có thể hủy vé sau khi đặt không?", "a": "Bạn có thể yêu cầu hủy vé trong mục Lịch sử đặt vé. Admin sẽ xử lý hoàn tiền trong 3-5 ngày." }
+        ],
+        "payment": [
+          { "q": "Hỗ trợ những phương thức thanh toán nào?", "a": "Hiện tại hỗ trợ VNPay, MoMo và thanh toán mô phỏng (demo)." },
+          { "q": "Thanh toán có an toàn không?", "a": "Mọi giao dịch được mã hóa và xử lý qua cổng thanh toán chính thức của VNPay/MoMo." },
+          { "q": "Tôi bị trừ tiền nhưng chưa nhận vé?", "a": "Vui lòng đợi 5-10 phút. Nếu vẫn chưa nhận, liên hệ hỗ trợ kèm mã giao dịch." }
+        ],
+        "ticketCheckin": [
+          { "q": "Làm sao để sử dụng vé QR?", "a": "Mở mục Vé của tôi, chọn vé cần dùng, xuất trình mã QR cho nhân viên quét tại cửa." },
+          { "q": "Vé QR có thời hạn không?", "a": "Vé có hiệu lực đến ngày diễn ra sự kiện. Sau sự kiện, vé sẽ tự động hết hạn." },
+          { "q": "Tôi có thể tải vé về PDF không?", "a": "Có, nhấn nút Tải PDF trong chi tiết vé để lưu offline." }
+        ]
+      }
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "subtitle": "Chúng tôi luôn sẵn sàng hỗ trợ bạn",
+      "infoTitle": "Thông tin liên hệ",
+      "contacts": {
+        "email": { "label": "Email hỗ trợ" },
+        "phone": { "label": "Hotline" },
+        "hours": { "label": "Giờ làm việc", "value": "Thứ 2 – Thứ 6, 8:00 – 17:30" },
+        "chat": { "label": "Live Chat", "value": "Nhấn nút chat ở góc phải để trò chuyện trực tiếp" }
+      },
+      "formTitle": "Gửi tin nhắn",
+      "labels": {
+        "name": "Họ tên",
+        "email": "Email",
+        "subject": "Tiêu đề",
+        "message": "Nội dung"
+      },
+      "placeholders": {
+        "name": "Nhập họ tên của bạn",
+        "subject": "Nhập tiêu đề tin nhắn",
+        "message": "Mô tả chi tiết vấn đề bạn gặp phải..."
+      },
+      "send": "Gửi tin nhắn",
+      "toast": {
+        "required": "Vui lòng điền đầy đủ thông tin",
+        "success": "Gửi tin nhắn thành công! Chúng tôi sẽ phản hồi sớm nhất."
+      }
+    },
+    "notFound": {
+      "title": "404",
+      "subtitle": "Trang bạn tìm kiếm không tồn tại hoặc đã bị xóa",
+      "goHome": "Về trang chủ",
+      "goBack": "Quay lại",
+      "browseEvents": "Xem sự kiện"
+    },
+    "privacy": {
+      "title": "Chính sách bảo mật",
+      "lastUpdated": "Cập nhật lần cuối: 01/01/2026",
+      "intro": "Ticket Rush cam kết bảo vệ thông tin cá nhân của bạn. Chính sách này mô tả cách chúng tôi thu thập, sử dụng và bảo vệ dữ liệu.",
+      "contactNote": "Nếu có câu hỏi về chính sách bảo mật, vui lòng liên hệ admin@ticketrush.vn",
+      "sections": [
+        { "title": "Thu thập thông tin", "content": "Chúng tôi thu thập email, tên, số điện thoại khi bạn đăng ký tài khoản. Thông tin thanh toán được xử lý qua cổng VNPay/MoMo, không lưu trên hệ thống." },
+        { "title": "Sử dụng thông tin", "content": "Thông tin được sử dụng để xử lý đơn đặt vé, gửi thông báo sự kiện và cải thiện trải nghiệm người dùng." },
+        { "title": "Bảo mật dữ liệu", "content": "Dữ liệu được mã hóa trong quá trình truyền tải (TLS 1.2+). Mật khẩu được hash bằng Argon2id." },
+        { "title": "Quyền của bạn", "content": "Bạn có quyền truy cập, chỉnh sửa hoặc xóa dữ liệu cá nhân bất kỳ lúc nào thông qua trang Hồ sơ." }
+      ]
+    },
+    "terms": {
+      "title": "Điều khoản sử dụng",
+      "lastUpdated": "Cập nhật lần cuối: 01/01/2026",
+      "contactNote": "Nếu có câu hỏi về điều khoản, vui lòng liên hệ admin@ticketrush.vn",
+      "sections": [
+        { "title": "Chấp nhận điều khoản", "content": "Khi sử dụng Ticket Rush, bạn đồng ý tuân thủ các điều khoản dưới đây." },
+        { "title": "Tài khoản", "content": "Bạn chịu trách nhiệm bảo mật tài khoản và mật khẩu. Mỗi người chỉ được tạo một tài khoản." },
+        { "title": "Đặt vé & Thanh toán", "content": "Vé đã thanh toán không hoàn lại trừ trường hợp sự kiện bị hủy. Yêu cầu hủy vé phải được gửi trước ngày diễn ra sự kiện." },
+        { "title": "Hành vi bị cấm", "content": "Không sử dụng bot, script tự động hoặc bất kỳ phương tiện nào để can thiệp vào hệ thống đặt vé." }
+      ]
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Frontend Pages
 
-> **TicketRush Docs** | [Tổng quan](plan.md) | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | **Pages** | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
+> **Ticket Rush Docs** | [Tổng quan](plan.md) | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | **Pages** | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
 
 ---
 
@@ -177,7 +177,7 @@
 
 ### 6.17 Static Pages
 
-- **About** (`/about`): Giới thiệu TicketRush, đội ngũ (mock), mission
+- **About** (`/about`): Giới thiệu Ticket Rush, đội ngũ (mock), mission
 - **FAQ** (`/faq`): Accordion list câu hỏi thường gặp
 - **Terms** (`/terms`): Điều khoản sử dụng
 - **Privacy** (`/privacy`): Chính sách bảo mật

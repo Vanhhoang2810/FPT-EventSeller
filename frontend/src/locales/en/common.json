@@ -1,0 +1,482 @@
+{
+  "nav": {
+    "home": "Home",
+    "events": "Events",
+    "myTickets": "My Tickets",
+    "favorites": "Favorites",
+    "profile": "Profile",
+    "admin": "Admin",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "about": "About",
+    "faq": "FAQ"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all read",
+    "empty": "No new notifications"
+  },
+  "footer": {
+    "tagline": "Unlimited music experience. Book tickets fast, choose seats visually.",
+    "copyright": "© {{year}} Ticket Rush. All rights reserved.",
+    "support": "Support",
+    "about": "About",
+    "events": "Events",
+    "allEvents": "All events",
+    "onSale": "On sale",
+    "trending": "Trending",
+    "comingSoon": "Coming soon",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "terms": "Terms",
+    "privacy": "Privacy"
+  },
+  "offline": {
+    "message": "No internet connection — some features may not work"
+  },
+  "actions": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "loadMore": "Load more",
+    "back": "Back",
+    "close": "Close",
+    "apply": "Apply",
+    "refresh": "Refresh"
+  },
+  "status": {
+    "loading": "Loading...",
+    "noResult": "No results found",
+    "error": "An error occurred",
+    "success": "Success"
+  },
+  "language": {
+    "vi": "Tiếng Việt",
+    "en": "English"
+  },
+  "profile": {
+    "title": "My Profile",
+    "emailVerified": "Email verified",
+    "changeAvatar": "Change avatar",
+    "tabs": {
+      "profile": "Profile",
+      "history": "Booking History",
+      "notifications": "Notifications"
+    },
+    "personalInfo": "Personal Information",
+    "email": "Email",
+    "fullName": "Full Name *",
+    "fullNamePlaceholder": "John Doe",
+    "phone": "Phone Number",
+    "phonePlaceholder": "0912 345 678",
+    "gender": "Gender",
+    "genderPlaceholder": "Select gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "genderOther": "Other",
+    "dateOfBirth": "Date of Birth",
+    "saving": "Saving...",
+    "saveChanges": "Save Changes",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password (min. 8 characters)",
+    "confirmPassword": "Confirm New Password",
+    "processing": "Processing...",
+    "changePasswordBtn": "Change Password",
+    "saveSettings": "Save Settings",
+    "historyEmpty": "No bookings yet",
+    "historyEvent": "Event",
+    "historyAmount": "Amount",
+    "historyStatus": "Status",
+    "historyOrderFallback": "Order #{{id}}",
+    "historySeatCount": "{{count}} seats",
+    "notificationSettings": "Email Notification Settings",
+    "notif": {
+      "booking": "Booking Confirmation",
+      "bookingDesc": "Email when booking is confirmed or cancelled",
+      "reminder": "Event Reminder",
+      "reminderDesc": "Reminder 24 hours before the event",
+      "news": "News & Promotions",
+      "newsDesc": "New events and offers from Ticket Rush"
+    },
+    "toast": {
+      "fullNameRequired": "Full name is required",
+      "profileSaved": "Profile updated successfully",
+      "profileFailed": "Update failed",
+      "passwordTooShort": "New password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "passwordChanged": "Password changed successfully",
+      "passwordFailed": "Password change failed",
+      "notifSaved": "Notification settings saved",
+      "notifFailed": "Unable to save settings",
+      "genericError": "An error occurred"
+    },
+    "bookingStatus": {
+      "confirmed": "Confirmed",
+      "pending": "Pending Payment",
+      "expired": "Expired",
+      "cancelled": "Cancelled"
+    }
+  },
+  "pages": {
+    "about": {
+      "title": "About Ticket Rush",
+      "subtitle": "Vietnam's leading online event ticketing platform — fast, secure, and reliable.",
+      "stats": {
+        "events": "Events organized",
+        "tickets": "Tickets sold",
+        "users": "Users trust us",
+        "uptime": "Uptime guaranteed"
+      },
+      "mission": {
+        "title": "Mission",
+        "desc": "Ticket Rush was created to simplify event ticketing in Vietnam. Instead of queuing for hours or worrying about fake tickets, you can book instantly from anywhere, receive a secure QR code, and enter in seconds."
+      },
+      "values": {
+        "title": "Core Values",
+        "fast": {
+          "title": "Fast",
+          "desc": "Book tickets in seconds, real-time interactive seat map, no queuing."
+        },
+        "secure": {
+          "title": "Fully Secure",
+          "desc": "Signed JWT QR codes, payments via VNPay/MoMo, no card data stored."
+        },
+        "experience": {
+          "title": "Great Experience",
+          "desc": "Beautiful interface, responsive on all devices, 24/7 support."
+        },
+        "community": {
+          "title": "Vibrant Community",
+          "desc": "Connect millions of music, sports, and arts enthusiasts."
+        }
+      },
+      "titlePrefix": "About"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to the most common questions about Ticket Rush",
+      "notFound": "Can't find an answer?",
+      "contactSupport": "Contact support →",
+      "categories": {
+        "booking": "Booking",
+        "payment": "Payment",
+        "ticketCheckin": "Tickets & Check-in"
+      },
+      "items": {
+        "booking": [
+          {
+            "q": "How do I book a ticket?",
+            "a": "Find an event → Click \"Book\" → Choose your seat on the interactive map → Pay → Get your QR code. The whole process takes just 2-3 minutes."
+          },
+          {
+            "q": "Can I choose a specific seat?",
+            "a": "Yes! Ticket Rush provides an interactive seat map so you can view and pick individual seats. Your seat is held for 10 minutes to complete payment."
+          },
+          {
+            "q": "Is there a ticket limit per person?",
+            "a": "Yes, each event allows a maximum of 2-6 tickets depending on the organizer's rules. The limit is clearly shown on the event page."
+          },
+          {
+            "q": "What is Virtual Queue?",
+            "a": "When an event has high traffic, the system automatically activates a virtual queue to ensure fairness. You will receive a queue position and a notification when it's your turn."
+          }
+        ],
+        "payment": [
+          {
+            "q": "What payment methods are supported?",
+            "a": "Ticket Rush supports VNPay (ATM/Internet Banking), MoMo, and simulated payment (demo). All transactions are SSL-encrypted."
+          },
+          {
+            "q": "Can I cancel and get a refund?",
+            "a": "You can cancel within 10 minutes while the order is awaiting payment. After confirmation, refund policy depends on each specific event."
+          },
+          {
+            "q": "How do promo codes work?",
+            "a": "Enter the code at checkout. The discount is applied automatically. Each code may have usage limits and an expiry date."
+          }
+        ],
+        "ticketCheckin": [
+          {
+            "q": "How do I receive my ticket?",
+            "a": "After successful payment, the QR code appears immediately under \"My Tickets\". You can also download a PDF to print."
+          },
+          {
+            "q": "Is the QR ticket secure?",
+            "a": "QR codes are signed with JWT and a secret key, verifiable for authenticity. Each ticket is single-use — once scanned it cannot be used again."
+          },
+          {
+            "q": "What if I lose my phone?",
+            "a": "Sign back in on any device, go to \"My Tickets\" to view your QR again. It's also a good idea to download the PDF as a backup."
+          }
+        ]
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "We are always here to support you 24/7",
+      "infoTitle": "Contact Information",
+      "formTitle": "Send a Message",
+      "labels": {
+        "name": "Full name *",
+        "email": "Email *",
+        "subject": "Subject",
+        "message": "Message *"
+      },
+      "placeholders": {
+        "name": "John Doe",
+        "subject": "Issue you need help with...",
+        "message": "Describe your issue in detail..."
+      },
+      "send": "Send message",
+      "sending": "Sending...",
+      "contacts": {
+        "email": {
+          "label": "Support email"
+        },
+        "phone": {
+          "label": "Hotline"
+        },
+        "hours": {
+          "label": "Support hours",
+          "value": "8:00 AM – 10:00 PM daily"
+        },
+        "chat": {
+          "label": "Live chat",
+          "value": "Bottom right corner"
+        }
+      },
+      "toast": {
+        "required": "Please fill in all required fields",
+        "success": "Message sent! We will reply within 24 hours."
+      }
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated: May 2026",
+      "contactNote": "If you have questions about these terms, please contact",
+      "sections": [
+        {
+          "title": "1. Acceptance of Terms",
+          "content": "By using Ticket Rush, you agree to comply with all of these terms. If you disagree, please do not use the service."
+        },
+        {
+          "title": "2. User Accounts",
+          "content": "You are responsible for securing your account information. Account sharing or ticket fraud is not permitted. Each account has a maximum ticket limit per event as set by the organizer."
+        },
+        {
+          "title": "3. Booking and Payment",
+          "content": "Seats are held for 10 minutes after selection. If payment is not completed within this time, the seat will be released. All payments via VNPay/MoMo are secured by SSL/TLS."
+        },
+        {
+          "title": "4. Refund Policy",
+          "content": "Refunds are only issued when an event is cancelled by the organizer, or according to the event-specific policy announced in advance. Ticket Rush is not responsible for organizer cancellation decisions."
+        },
+        {
+          "title": "5. Ticket Use",
+          "content": "QR codes are single-use and non-transferable unless permitted. Fake or altered tickets will not be accepted. Ticket Rush is not responsible for tickets purchased from third parties."
+        },
+        {
+          "title": "6. Intellectual Property",
+          "content": "All content, design, and features of Ticket Rush are our property. Copying, distributing, or commercial use without written permission is prohibited."
+        },
+        {
+          "title": "7. Limitation of Liability",
+          "content": "Ticket Rush provides a technical platform connecting users with event organizers. We are not responsible for the quality, content, or any issues arising from the event itself."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: May 2026",
+      "intro": "Ticket Rush is committed to protecting your personal information. This policy describes how we collect, use, and protect your data when using our service.",
+      "contactNote": "Privacy questions:",
+      "sections": [
+        {
+          "title": "Information We Collect",
+          "content": "We collect: (1) Registration info — name, email, phone number; (2) Booking info — transaction history, selected seats; (3) Technical info — IP address, browser type, access time to improve the service."
+        },
+        {
+          "title": "How We Use Your Information",
+          "content": "Your information is used to: process bookings and payments, send confirmation emails and event reminders, improve user experience, detect fraud and protect accounts."
+        },
+        {
+          "title": "Data Security",
+          "content": "Passwords are hashed with Argon2id — the most secure algorithm available. Data is transmitted over HTTPS/TLS. No credit card information is stored — payments are processed directly via VNPay/MoMo."
+        },
+        {
+          "title": "Information Sharing",
+          "content": "We do NOT sell your personal information. Information is only shared with: event organizers (to confirm tickets), payment partners (VNPay, MoMo), and law enforcement when legally required."
+        },
+        {
+          "title": "Cookies",
+          "content": "We use cookies to maintain login sessions, remember language preferences, and improve performance. You can disable cookies in browser settings, but some features may not work."
+        },
+        {
+          "title": "Your Rights",
+          "content": "You have the right to: access and export personal data, correct inaccurate information, request account and data deletion, unsubscribe from marketing emails at any time."
+        }
+      ]
+    },
+    "notFound": {
+      "title": "Page not found",
+      "subtitle": "The page you're looking for has been moved, deleted, or never existed.",
+      "goBack": "Go back",
+      "goHome": "Go home",
+      "browseEvents": "Browse events"
+    }
+  },
+  "theme": {
+    "toggleLight": "Switch to light",
+    "toggleDark": "Switch to dark",
+    "toggle": "Toggle theme"
+  },
+  "aria": {
+    "openMenu": "Open menu",
+    "searchEvents": "Search events",
+    "searchAllResults": "See all results for \"{{query}}\"",
+    "notifications": "Notifications"
+  },
+  "chatWidget": {
+    "agentName": "Ticket Rush Support",
+    "online": "Online",
+    "responseTime": "Quick response",
+    "tooltip": "💬 Need help?",
+    "preChatTitle": "Hello! 👋",
+    "preChatSubtitle": "Tell us your name so we can assist you better",
+    "namePlaceholder": "Full name *",
+    "emailPlaceholder": "Email (optional)",
+    "emailError": "Invalid email format",
+    "connecting": "Connecting...",
+    "startChat": "Start conversation",
+    "welcomeMsg": "Hello {{name}}! 👋",
+    "welcomeSub": "How can we help you with event tickets today?",
+    "inputPlaceholder": "Type a message...",
+    "guest": "You",
+    "readStatus": "Seen",
+    "sentStatus": "Sent",
+    "sendingStatus": "Sending...",
+    "typing": "Typing...",
+    "recalled": "Message was recalled",
+    "recall": "Recall",
+    "deleteConv": "Delete conversation",
+    "deleteConfirm": "Delete this entire conversation?",
+    "convClosed": "Conversation closed. Send a message to reopen.",
+    "sendError": "Failed to send, please try again."
+  },
+  "pages": {
+    "about": {
+      "title": "About Us",
+      "titlePrefix": "About",
+      "subtitle": "Ticket Rush is Vietnam's fastest online event ticketing platform. We connect event lovers with unforgettable experiences.",
+      "stats": {
+        "events": "Events",
+        "tickets": "Tickets Sold",
+        "users": "Users",
+        "uptime": "Uptime"
+      },
+      "mission": {
+        "title": "Our Mission",
+        "desc": "We believe everyone deserves memorable experiences. Ticket Rush was built to make booking tickets as simple, fast, and secure as possible."
+      },
+      "values": {
+        "title": "Core Values",
+        "fast": { "title": "Fast", "desc": "Book tickets in seconds with an optimized UI and instant payment." },
+        "secure": { "title": "Secure", "desc": "Your data and payments are protected with the highest security standards." },
+        "experience": { "title": "Experience", "desc": "Visual seat selection, instant QR code, effortless entry." },
+        "community": { "title": "Community", "desc": "Connecting millions of event lovers across Vietnam." }
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to common questions about Ticket Rush",
+      "notFound": "Can't find what you're looking for?",
+      "contactSupport": "Contact support",
+      "categories": {
+        "booking": "Booking",
+        "payment": "Payment",
+        "ticketCheckin": "Tickets & Check-in"
+      },
+      "items": {
+        "booking": [
+          { "q": "How do I book tickets?", "a": "Choose an event → select seats on the map → pay. Your QR ticket is sent instantly." },
+          { "q": "How many tickets can I book?", "a": "Each event has its own limit (usually 4-6 per person), shown on the event page." },
+          { "q": "Can I cancel my booking?", "a": "You can request cancellation in My Tickets. Admin will process the refund within 3-5 days." }
+        ],
+        "payment": [
+          { "q": "What payment methods are supported?", "a": "Currently VNPay, MoMo, and simulated payment (demo)." },
+          { "q": "Is payment secure?", "a": "All transactions are encrypted and processed through official VNPay/MoMo gateways." },
+          { "q": "I was charged but didn't receive my ticket?", "a": "Please wait 5-10 minutes. If still missing, contact support with your transaction ID." }
+        ],
+        "ticketCheckin": [
+          { "q": "How do I use my QR ticket?", "a": "Open My Tickets, select the ticket, and show the QR code to staff at the venue entrance." },
+          { "q": "Do QR tickets expire?", "a": "Tickets are valid until the event date. After the event, they automatically expire." },
+          { "q": "Can I download tickets as PDF?", "a": "Yes, click the Download PDF button in the ticket details to save offline." }
+        ]
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "We're here to help",
+      "infoTitle": "Contact Information",
+      "contacts": {
+        "email": { "label": "Support Email" },
+        "phone": { "label": "Hotline" },
+        "hours": { "label": "Working Hours", "value": "Mon – Fri, 8:00 AM – 5:30 PM" },
+        "chat": { "label": "Live Chat", "value": "Click the chat button at the bottom right to talk to us" }
+      },
+      "formTitle": "Send a Message",
+      "labels": {
+        "name": "Full Name",
+        "email": "Email",
+        "subject": "Subject",
+        "message": "Message"
+      },
+      "placeholders": {
+        "name": "Enter your full name",
+        "subject": "Enter the subject",
+        "message": "Describe your issue in detail..."
+      },
+      "send": "Send Message",
+      "toast": {
+        "required": "Please fill in all required fields",
+        "success": "Message sent successfully! We'll get back to you soon."
+      }
+    },
+    "notFound": {
+      "title": "404",
+      "subtitle": "The page you're looking for doesn't exist or has been removed",
+      "goHome": "Go Home",
+      "goBack": "Go Back",
+      "browseEvents": "Browse Events"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: Jan 1, 2026",
+      "intro": "Ticket Rush is committed to protecting your personal information. This policy describes how we collect, use, and protect your data.",
+      "contactNote": "For questions about our privacy policy, contact admin@ticketrush.vn",
+      "sections": [
+        { "title": "Information Collection", "content": "We collect email, name, and phone number when you register. Payment info is processed through VNPay/MoMo gateways and not stored on our servers." },
+        { "title": "Use of Information", "content": "Information is used to process bookings, send event notifications, and improve user experience." },
+        { "title": "Data Security", "content": "Data is encrypted in transit (TLS 1.2+). Passwords are hashed with Argon2id." },
+        { "title": "Your Rights", "content": "You can access, edit, or delete your personal data at any time through the Profile page." }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated: Jan 1, 2026",
+      "contactNote": "For questions about these terms, contact admin@ticketrush.vn",
+      "sections": [
+        { "title": "Acceptance of Terms", "content": "By using Ticket Rush, you agree to comply with the following terms." },
+        { "title": "Accounts", "content": "You are responsible for keeping your account and password secure. Each person may only create one account." },
+        { "title": "Booking & Payment", "content": "Paid tickets are non-refundable unless the event is cancelled. Cancellation requests must be submitted before the event date." },
+        { "title": "Prohibited Behavior", "content": "Do not use bots, automated scripts, or any other means to interfere with the booking system." }
+      ]
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "title": "Sự kiện",
+  "search": {
+    "placeholder": "Tìm kiếm sự kiện, ban nhạc, địa điểm...",
+    "noResult": "Không tìm thấy sự kiện",
+    "tryOther": "Thử từ khoá khác hoặc thay đổi bộ lọc",
+    "resultCount": "{{count}} sự kiện",
+    "resultCountFor": "{{count}} sự kiện cho \"{{query}}\"",
+    "searching": "Đang tìm..."
+  },
+  "categories": {
+    "all": "Tất cả",
+    "music": "Âm nhạc",
+    "sports": "Thể thao",
+    "theater": "Sân khấu",
+    "comedy": "Hài kịch",
+    "festival": "Festival",
+    "conference": "Hội thảo",
+    "other": "Khác"
+  },
+  "sort": {
+    "soonest": "Sắp diễn ra",
+    "newest": "Mới nhất",
+    "trending": "Xu hướng"
+  },
+  "status": {
+    "draft": "Nháp",
+    "published": "Đã đăng",
+    "on_sale": "Đang bán",
+    "sold_out": "Hết vé",
+    "completed": "Đã kết thúc",
+    "cancelled": "Đã hủy",
+    "coming_soon": "Sắp mở bán"
+  },
+  "detail": {
+    "venue": "Địa điểm tổ chức",
+    "pricing": "Bảng giá vé",
+    "remaining": "{{count}}/{{total}} còn trống",
+    "selectSeat": "Chọn ghế ngay",
+    "maxPerPerson": "Tối đa {{max}} vé/người",
+    "saleOpens": "Mở bán {{date}}",
+    "featured": "Sự kiện nổi bật",
+    "startingFrom": "Từ {{price}}",
+    "notFound": "Không tìm thấy sự kiện",
+    "backToList": "← Quay lại danh sách",
+    "startTime": "Bắt đầu {{time}}",
+    "maxTickets": "Tối đa {{max}} vé/người",
+    "shareSuccess": "Đã sao chép link",
+    "favoriteAdded": "Đã thêm vào yêu thích",
+    "favoriteRemoved": "Đã bỏ yêu thích",
+    "favoriteLoginRequired": "Vui lòng đăng nhập để yêu thích",
+    "shareAriaLabel": "Chia sẻ sự kiện",
+    "bookingDetails": "Chi tiết đặt chỗ"
+  },
+  "landing": {
+    "trending": "Đang trending",
+    "upcomingSales": "Sắp mở bán",
+    "seeAll": "Xem tất cả",
+    "remindMe": "Nhắc tôi",
+    "today": "Hôm nay",
+    "thisWeek": "Tuần này",
+    "hero": {
+      "heading1": "Trải nghiệm âm nhạc",
+      "heading2": "không giới hạn",
+      "subheading": "Đặt vé nhanh nhất, chọn ghế trực quan, nhận QR ngay lập tức",
+      "searchPlaceholder": "Tìm kiếm sự kiện, ban nhạc, địa điểm...",
+      "searchButton": "Tìm",
+      "featured": "Sự kiện nổi bật",
+      "fromPrice": "Từ",
+      "bookNow": "Đặt vé ngay",
+      "viewDetails": "Xem chi tiết",
+      "eyebrow": "Nền tảng đặt vé nhanh nhất Việt Nam"
+    },
+    "noTrending": "Chưa có sự kiện nổi bật",
+    "howItWorks": {
+      "title": "Đặt vé chỉ trong 3 bước",
+      "step1": {
+        "title": "Chọn sự kiện",
+        "desc": "Tìm kiếm và lọc sự kiện yêu thích theo danh mục, ngày, địa điểm"
+      },
+      "step2": {
+        "title": "Chọn ghế",
+        "desc": "Chọn ghế trực quan trên sơ đồ, thanh toán nhanh chóng"
+      },
+      "step3": {
+        "title": "Nhận QR",
+        "desc": "Vé QR được giao ngay, xuất trình khi vào cổng"
+      }
+    },
+    "upcoming": {
+      "remindSuccess": "Đã đăng ký nhắc nhở!",
+      "remindLoginRequired": "Vui lòng đăng nhập để nhận nhắc nhở",
+      "remindError": "Đã xảy ra lỗi",
+      "reminded": "Đã nhắc",
+      "saleEnds": "Kết thúc {{date}}",
+      "notAvailable": "Chưa có sự kiện sắp mở bán"
+    }
+  },
+  "favorite": {
+    "add": "Thêm vào yêu thích",
+    "remove": "Bỏ yêu thích",
+    "loginRequired": "Vui lòng đăng nhập để lưu yêu thích",
+    "pageTitle": "Sự kiện yêu thích",
+    "empty": "Chưa có sự kiện yêu thích",
+    "emptyHint": "Bấm vào biểu tượng tim trên sự kiện để lưu vào đây",
+    "explore": "Khám phá sự kiện →"
+  },
+  "card": {
+    "free": "Miễn phí",
+    "seePrice": "Xem giá"
+  },
+  "page": {
+    "metaDescription": "Khám phá và đặt vé các sự kiện âm nhạc, thể thao, sân khấu hấp dẫn tại Ticket Rush.",
+    "resultSummary": "{{count}} sự kiện",
+    "resultSummaryFor": "{{count}} sự kiện cho \"{{query}}\""
+  }
+}

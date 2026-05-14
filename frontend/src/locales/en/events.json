@@ -1,0 +1,117 @@
+{
+  "title": "Events",
+  "search": {
+    "placeholder": "Search events, artists, venues...",
+    "noResult": "No events found",
+    "tryOther": "Try different keywords or change filters",
+    "resultCount": "{{count}} events",
+    "resultCountFor": "{{count}} events for \"{{query}}\"",
+    "searching": "Searching..."
+  },
+  "categories": {
+    "all": "All",
+    "music": "Music",
+    "sports": "Sports",
+    "theater": "Theater",
+    "comedy": "Comedy",
+    "festival": "Festival",
+    "conference": "Conference",
+    "other": "Other"
+  },
+  "sort": {
+    "soonest": "Soonest",
+    "newest": "Newest",
+    "trending": "Trending"
+  },
+  "status": {
+    "draft": "Draft",
+    "published": "Published",
+    "on_sale": "On Sale",
+    "sold_out": "Sold Out",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "coming_soon": "Coming Soon"
+  },
+  "detail": {
+    "venue": "Venue",
+    "pricing": "Ticket Pricing",
+    "remaining": "{{count}}/{{total}} available",
+    "selectSeat": "Select Seats",
+    "maxPerPerson": "Max {{max}} tickets per person",
+    "saleOpens": "Sale opens {{date}}",
+    "featured": "Featured Event",
+    "startingFrom": "From {{price}}",
+    "notFound": "Event not found",
+    "backToList": "← Back to list",
+    "startTime": "Starts {{time}}",
+    "maxTickets": "Max {{max}} tickets per person",
+    "shareSuccess": "Link copied",
+    "favoriteAdded": "Added to favorites",
+    "favoriteRemoved": "Removed from favorites",
+    "favoriteLoginRequired": "Please sign in to add favorites",
+    "shareAriaLabel": "Share event",
+    "bookingDetails": "Booking details"
+  },
+  "landing": {
+    "trending": "Trending Now",
+    "upcomingSales": "Coming Soon",
+    "seeAll": "See all",
+    "remindMe": "Remind me",
+    "today": "Today",
+    "thisWeek": "This week",
+    "hero": {
+      "heading1": "Experience live music",
+      "heading2": "without limits",
+      "subheading": "Book tickets instantly, choose seats visually, get your QR right away",
+      "searchPlaceholder": "Search events, artists, venues...",
+      "searchButton": "Search",
+      "featured": "Featured Event",
+      "fromPrice": "From",
+      "bookNow": "Book now",
+      "viewDetails": "View details",
+      "eyebrow": "Vietnam's fastest ticketing platform"
+    },
+    "noTrending": "No trending events yet",
+    "howItWorks": {
+      "title": "Book in 3 simple steps",
+      "step1": {
+        "title": "Choose event",
+        "desc": "Search and filter your favorite events by category, date, and venue"
+      },
+      "step2": {
+        "title": "Select seats",
+        "desc": "Pick seats on the interactive map and pay quickly"
+      },
+      "step3": {
+        "title": "Get QR ticket",
+        "desc": "Your QR ticket is sent instantly, just show it at the gate"
+      }
+    },
+    "upcoming": {
+      "remindSuccess": "Reminder set!",
+      "remindLoginRequired": "Please sign in to set a reminder",
+      "remindError": "An error occurred",
+      "reminded": "Reminded",
+      "saleEnds": "Sale ends {{date}}",
+      "notAvailable": "No upcoming sale events"
+    }
+  },
+  "favorite": {
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "loginRequired": "Please sign in to save favorites",
+    "pageTitle": "Favorite Events",
+    "empty": "No favorite events yet",
+    "emptyHint": "Click the heart icon on an event to save it here",
+    "explore": "Explore events →"
+  },
+  "card": {
+    "free": "Free",
+    "seePrice": "See price"
+  },
+  "page": {
+    "metaDescription": "Discover and book tickets for music, sports, and theater events at Ticket Rush.",
+    "resultSummary": "{{count}} events",
+    "resultSummaryFor": "{{count}} events for \"{{query}}\""
+  }
+}

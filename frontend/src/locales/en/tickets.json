@@ -1,0 +1,39 @@
+{
+  "title": "My Tickets",
+  "tabs": {
+    "all": "All",
+    "active": "Upcoming",
+    "used": "Used",
+    "cancelled": "Cancelled"
+  },
+  "status": {
+    "active": "Active",
+    "used": "Used",
+    "cancelled": "Cancelled"
+  },
+  "card": {
+    "seat": "Seat",
+    "showQr": "Show QR",
+    "downloadPdf": "Download PDF",
+    "downloadError": "Unable to download PDF",
+    "requestCancel": "Request cancellation",
+    "cancelRequestSent": "Cancellation request sent, admin will contact you soon",
+    "cancelRequestError": "Failed to send cancellation request",
+    "cancelModalDesc": "Your request will be reviewed by admin and refunded within 3-5 business days.",
+    "cancelReasonPlaceholder": "Reason for cancellation (optional)...",
+    "cancelModalClose": "Close",
+    "cancelModalConfirm": "Send request"
+  },
+  "qr": {
+    "title": "Your Ticket",
+    "instruction": "Present this QR code at the entrance"
+  },
+  "empty": {
+    "title": "You have no tickets yet",
+    "explore": "Explore events →"
+  },
+  "error": {
+    "loadFailed": "Unable to load tickets",
+    "tryAgain": "Please try again later."
+  }
+}

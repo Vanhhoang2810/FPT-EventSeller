@@ -1,9 +1,30 @@
 node_modules/
 dist/
+build/
+
+# Env files (giữ .env.example)
 .env
 .env.local
+.env.development
+.env.production
+!.env.example
+
+# Logs
 *.log
+npm-debug.log*
+
+# OS
 .DS_Store
 Thumbs.db
+
+# IDE
 .vscode/
 .idea/
+
+# Uploads (user content)
+backend/uploads/avatars/*
+!backend/uploads/avatars/.gitkeep
+
+# Misc
+HANDOFF.md
+*.tgz

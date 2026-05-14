@@ -1,0 +1,24 @@
+{
+  "generic": "An error occurred, please try again",
+  "field": {
+    "invalidEmail": "Invalid email",
+    "requiredPassword": "Please enter your password",
+    "passwordMin": "Password must be at least 8 characters",
+    "passwordUppercase": "Need at least 1 uppercase letter",
+    "passwordNumber": "Need at least 1 number",
+    "passwordMismatch": "Passwords do not match",
+    "fullNameMin": "Full name must be at least 2 characters"
+  },
+  "network": "Connection lost. Check your internet.",
+  "unauthorized": "Please sign in to continue",
+  "forbidden": "You don't have permission to do this",
+  "notFound": "This page does not exist",
+  "serverError": "Server error. Please try again later.",
+  "validation": "Invalid data",
+  "seatTaken": "One or more seats have been taken by someone else",
+  "bookingExpired": "Seat reservation expired (10 min). Please select seats again",
+  "eventNotOnSale": "This event is not on sale yet",
+  "maxTicketsReached": "Maximum {{max}} tickets per person reached",
+  "promoInvalid": "Promo code is invalid or expired",
+  "promoMinAmount": "Minimum order {{amount}} required for this promo"
+}

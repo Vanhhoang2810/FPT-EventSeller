@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="200" height="48">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D2E1E"/>
+      <stop offset="100%" stop-color="#09090B"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="orangeGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Icon area: 48x48 on the left -->
+  <!-- Dark rounded background for icon -->
+  <rect x="0" y="0" width="48" height="48" rx="11" ry="11" fill="url(#bgGrad)"/>
+
+  <!-- Ticket frame with emerald glow -->
+  <g filter="url(#glow)">
+    <!-- Left stub area (filled emerald, semi-transparent) -->
+    <rect x="4" y="15" width="12" height="18" rx="4" fill="#10B981" fill-opacity="0.18"/>
+    <!-- Main ticket frame -->
+    <rect x="4" y="15" width="40" height="18" rx="4" fill="none" stroke="#10B981" stroke-width="2"/>
+  </g>
+
+  <!-- Left notch cutout -->
+  <circle cx="4" cy="24" r="5" fill="#09090B"/>
+  <!-- Right notch cutout -->
+  <circle cx="44" cy="24" r="5" fill="#09090B"/>
+
+  <!-- Perforation line -->
+  <line x1="16" y1="15" x2="16" y2="33" stroke="#10B981" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.7"/>
+
+  <!-- Lightning bolt — centered in ticket -->
+  <g filter="url(#orangeGlow)">
+    <path d="M 27,17 L 21,25.5 L 25.5,25.5 L 23,33 L 33,22.5 L 28,22.5 Z"
+          fill="#F97316"/>
+  </g>
+
+  <!-- Wordmark — right side, vertically centered -->
+  <text
+    x="56" y="31"
+    font-family="system-ui,-apple-system,'Segoe UI',sans-serif"
+    font-size="22"
+    font-weight="800"
+    letter-spacing="-0.3">
+    <tspan fill="#10B981">Ticket</tspan><tspan fill="#F97316"> Rush</tspan>
+  </text>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "title": "Waiting Room",
+  "titleVirtual": "Virtual Waiting Room",
+  "position": "Your Position",
+  "estimated": "Estimated Wait Time",
+  "estimatedMinutes": "Estimated: ~{{min}} min",
+  "doNotRefresh": "Please do not refresh the page",
+  "positionPersists": "Your position is saved — refreshing won't lose your spot",
+  "keepPage": "Stay on this page. You'll be notified automatically when it's your turn.",
+  "refreshSafe": "If you refresh the page, your position will be preserved.",
+  "joining": "Joining the queue...",
+  "yourTurn": "It's your turn!",
+  "yourTurnDesc": "You have 5 minutes to select seats before the token expires.",
+  "eventLabel": "Event: {{title}}",
+  "enterNow": "Enter seat selection now",
+  "redirecting": "Redirecting to seat selection...",
+  "waiting": "Waiting...",
+  "ahead": "people ahead of you"
+}

@@ -1,6 +1,6 @@
 # Tech Stack & Lý do chọn
 
-> **TicketRush Docs** | [Tổng quan](plan.md) | **Tech Stack** | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | [Pages](pages.md) | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
+> **Ticket Rush Docs** | [Tổng quan](plan.md) | **Tech Stack** | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | [Pages](pages.md) | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
 
 ---
 

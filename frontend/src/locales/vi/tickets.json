@@ -1,0 +1,39 @@
+{
+  "title": "Vé của tôi",
+  "tabs": {
+    "all": "Tất cả",
+    "active": "Sắp tới",
+    "used": "Đã dùng",
+    "cancelled": "Đã hủy"
+  },
+  "status": {
+    "active": "Còn hạn",
+    "used": "Đã dùng",
+    "cancelled": "Đã hủy"
+  },
+  "card": {
+    "seat": "Ghế",
+    "showQr": "Hiển thị QR",
+    "downloadPdf": "Tải PDF",
+    "downloadError": "Không thể tải PDF",
+    "requestCancel": "Yêu cầu hủy vé",
+    "cancelRequestSent": "Đã gửi yêu cầu hủy vé, admin sẽ liên hệ bạn sớm",
+    "cancelRequestError": "Không thể gửi yêu cầu hủy",
+    "cancelModalDesc": "Yêu cầu của bạn sẽ được admin xem xét và hoàn tiền trong 3-5 ngày làm việc.",
+    "cancelReasonPlaceholder": "Lý do hủy vé (tùy chọn)...",
+    "cancelModalClose": "Đóng",
+    "cancelModalConfirm": "Gửi yêu cầu"
+  },
+  "qr": {
+    "title": "Vé của bạn",
+    "instruction": "Xuất trình QR này khi vào cổng"
+  },
+  "empty": {
+    "title": "Bạn chưa có vé nào",
+    "explore": "Khám phá sự kiện →"
+  },
+  "error": {
+    "loadFailed": "Không thể tải danh sách vé",
+    "tryAgain": "Vui lòng thử lại sau."
+  }
+}

@@ -1,6 +1,6 @@
 # Giải pháp kỹ thuật
 
-> **TicketRush Docs** | [Tổng quan](plan.md) | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | **Technical** | [Pages](pages.md) | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
+> **Ticket Rush Docs** | [Tổng quan](plan.md) | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | **Technical** | [Pages](pages.md) | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
 
 ---
 
@@ -327,7 +327,7 @@ jobs:
         image: mysql:8
         env:
           MYSQL_ROOT_PASSWORD: test
-          MYSQL_DATABASE: ticketrush_test
+          MYSQL_DATABASE: Ticket Rush_test
       redis:
         image: redis:7
     steps:
@@ -340,7 +340,7 @@ jobs:
         run: cd backend && npm ci && npm run lint && npm run test
         env:
           DB_HOST: localhost
-          DB_NAME: ticketrush_test
+          DB_NAME: Ticket Rush_test
           REDIS_HOST: localhost
       - name: Build check
         run: cd frontend && npm run build && cd ../backend && npm run build

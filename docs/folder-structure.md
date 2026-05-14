@@ -1,6 +1,6 @@
 # Cấu trúc thư mục
 
-> **TicketRush Docs** | [Tổng quan](plan.md) | [Tech Stack](tech-stack.md) | **Folder Structure** | [Database](database.md) | [API](api.md) | [Technical](technical.md) | [Pages](pages.md) | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
+> **Ticket Rush Docs** | [Tổng quan](plan.md) | [Tech Stack](tech-stack.md) | **Folder Structure** | [Database](database.md) | [API](api.md) | [Technical](technical.md) | [Pages](pages.md) | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
 
 ---
 
@@ -9,7 +9,7 @@
 ### 2.1 Tổng quan Monorepo
 
 ```
-TicketRush/
+Ticket Rush/
 ├── frontend/
 ├── backend/
 ├── docs/              # 9 files tài liệu kỹ thuật

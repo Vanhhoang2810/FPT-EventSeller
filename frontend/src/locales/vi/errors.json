@@ -1,0 +1,24 @@
+{
+  "generic": "Đã xảy ra lỗi, vui lòng thử lại",
+  "field": {
+    "invalidEmail": "Email không hợp lệ",
+    "requiredPassword": "Vui lòng nhập mật khẩu",
+    "passwordMin": "Mật khẩu tối thiểu 8 ký tự",
+    "passwordUppercase": "Cần ít nhất 1 chữ hoa",
+    "passwordNumber": "Cần ít nhất 1 chữ số",
+    "passwordMismatch": "Mật khẩu xác nhận không khớp",
+    "fullNameMin": "Họ tên tối thiểu 2 ký tự"
+  },
+  "network": "Mất kết nối. Kiểm tra internet.",
+  "unauthorized": "Vui lòng đăng nhập để tiếp tục",
+  "forbidden": "Bạn không có quyền thực hiện thao tác này",
+  "notFound": "Trang này không tồn tại",
+  "serverError": "Lỗi máy chủ. Vui lòng thử lại sau.",
+  "validation": "Dữ liệu không hợp lệ",
+  "seatTaken": "Một hoặc nhiều ghế đã được người khác chọn",
+  "bookingExpired": "Đã hết thời gian giữ chỗ (10 phút). Vui lòng chọn lại ghế",
+  "eventNotOnSale": "Sự kiện này chưa mở bán vé",
+  "maxTicketsReached": "Đã đạt giới hạn {{max}} vé/người",
+  "promoInvalid": "Mã giảm giá không hợp lệ hoặc đã hết hạn",
+  "promoMinAmount": "Đơn tối thiểu {{amount}} để áp dụng mã này"
+}

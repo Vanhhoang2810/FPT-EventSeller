@@ -1,52 +1,75 @@
-# TicketRush — Project Instructions
+# Ticket Rush — Project Instructions
 
 ## Ngôn ngữ
-- Code: tiếng Anh (biến, hàm, class, file, branch)
-- Comment, commit message, error message, UI text: tiếng Việt
+- Code (biến, hàm, class, file, branch): **tiếng Anh**
+- Comment, commit message, error message, UI text, docstring: **tiếng Việt**
 - Thuật ngữ kỹ thuật giữ nguyên tiếng Anh
 
+## Tech stack
+- **Frontend**: React 19, Vite 6, TypeScript, TailwindCSS 4, Redux Toolkit (RTK Query), React Router 7, Socket.IO Client, react-i18next, Framer Motion
+- **Backend**: Node.js 22, Express 5, TypeScript, Sequelize 6, MySQL 8, Redis 7 (ioredis), BullMQ, Socket.IO 4, Passport (Google OAuth), Nodemailer
+- **Payments**: VNPay sandbox, MoMo sandbox
+- **Testing**: Jest + Supertest (BE), Vitest (FE)
+- Chi tiết: `docs/tech-stack.md`
+
+## Cấu trúc dự án
+- Frontend: feature-based (`src/features/[module]/pages|components|services|store`)
+- Backend: module-based layered (`src/modules/[module]/controller+service+routes+validation`)
+- Database: 20 bảng, Sequelize ORM, migrations + seeders
+- Chi tiết: `docs/folder-structure.md`, `docs/database.md`
+
 ## Tài liệu
-- Docs nằm trong `docs/` (9 files) + `DESIGN.md` (root)
-- Hub file: `docs/plan.md` — overview, phases, mapping tiêu chí
-- Đề bài gốc: `CONTEXT.md` — nguồn sự thật, không được sửa
+- `docs/` chứa 9 file tài liệu kỹ thuật
+- `docs/plan.md` — hub file: overview, phases, mapping tiêu chí
+- `DESIGN.md` — design system (colors, components, animations)
+- `CONTEXT.md` — đề bài gốc (nguồn sự thật, **không được sửa**)
 
 ## Quy tắc khi implement
 
-### Docs-sync: Tự sửa docs khi phát hiện sai sót
-Khi implement mà phát hiện docs (docs/*.md hoặc DESIGN.md) **sai, thiếu, hoặc conflict** với code thực tế:
-1. **Sửa docs ngay** trong cùng commit — không để "sửa sau"
-2. Ghi rõ trong commit message: `docs: cập nhật [file] — [lý do]`
-3. Ưu tiên: code đúng > docs đúng. Nếu docs sai mà code đúng → sửa docs. Nếu code sai → sửa code.
+### Docs-sync
+Khi implement mà phát hiện docs **sai, thiếu, hoặc conflict** với code thực tế:
+1. Sửa docs ngay trong cùng commit
+2. Ưu tiên: code đúng > docs đúng
 
-Ví dụ:
-- Implement API mà thấy endpoint path trong `docs/api.md` không hợp lý → sửa cả code lẫn docs
-- Implement component thấy tên khác folder-structure.md → sửa docs cho khớp
-- Thêm field mới vào DB schema → cập nhật `docs/database.md`
+### Design system
+- Glassmorphism 2.0: `backdrop-blur` + semi-transparent backgrounds + subtle borders
+- Color palette: emerald (`#059669`) primary, orange (`#F97316`) accent
+- Light/dark mode: dùng `text-primary-700 dark:text-primary-400` cho text trên nền trắng
+- Buttons: dùng `btn-glass` class, `hover:opacity-90`
+- Cards: `rounded-2xl border border-border bg-card`
 
-### Cross-check sau mỗi phase
-Sau khi hoàn thành 1 phase (Phase 1, 2, 3, 4):
-1. Chạy prompt cross-check (xem `docs/plan.md` hoặc README.md)
-2. Fix mọi inconsistency phát hiện
-3. Đánh dấu phase completed trong `docs/plan.md`
+### Key patterns đã establish
+- **Booking flow**: lockSeats (pessimistic locking) → checkout (promo + payment) → confirmBooking (tickets + QR)
+- **Auth**: JWT access (2h) + refresh token (7d, HttpOnly cookie, rotation with LOCK.UPDATE)
+- **Socket.IO**: rooms `event:${id}`, `chat:${id}`, `admin:dashboard`, `user:${id}`
+- **Chat**: optionalAuth middleware, visitorId ownership checks
+- **VNPay**: `sortObject` with `encodeURIComponent` + `%20→+`, `qs.stringify({encode:false})`
+- **Queue**: Redis sorted set + MULTI/EXEC atomic grant + reverse token lookup
+- **i18n**: `useTranslation('namespace')`, keys trong `locales/{vi,en}/*.json`
 
-## Tech stack
-- Frontend: React 19, Vite 6, TypeScript, TailwindCSS 4, shadcn/ui, Redux Toolkit, React Router 7
-- Backend: Node.js 22, Express 5, TypeScript, Sequelize 6, MySQL 8, Redis 7, Socket.IO 4, BullMQ
-- Chi tiết: `docs/tech-stack.md`
+### Lệnh chạy
+```bash
+# Backend (port 3001)
+cd backend && npm run dev
 
-## Folder structure
-- Frontend: feature-based (`src/features/[module]/`)
-- Backend: module-based layered (`src/modules/[module]/controller+service+routes+validation+types`)
-- Chi tiết: `docs/folder-structure.md`
+# Frontend (port 5173)
+cd frontend && npm run dev
 
-## Database
-- 15 bảng, Sequelize ORM, migrations + seeders
-- Pessimistic locking (SELECT FOR UPDATE) cho seat booking
-- Chi tiết: `docs/database.md`
+# DB migrate + seed
+cd backend && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all
+
+# Tests
+cd backend && npm test
+cd frontend && npm test
+```
+
+### Tài khoản seed
+- Admin: `admin@ticketrush.vn` / `Admin@12345`
+- User: `user@ticketrush.vn` / `User@12345`
 
 ## Testing
-- Frontend: Vitest
 - Backend: Jest + Supertest
+- Frontend: Vitest
 - Test description tiếng Việt
 - Mỗi bug fix → viết failing test trước
 

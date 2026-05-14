@@ -1,8 +1,8 @@
-# TicketRush — Kế hoạch triển khai chi tiết
+# Ticket Rush — Kế hoạch triển khai chi tiết
 
 > Nền tảng đặt vé sự kiện online — entertainment-focused, chịu tải flash sale, real-time seat map.
 
-> **TicketRush Docs** | **Tổng quan** | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | [Pages](pages.md) | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
+> **Ticket Rush Docs** | **Tổng quan** | [Tech Stack](tech-stack.md) | [Folder Structure](folder-structure.md) | [Database](database.md) | [API](api.md) | [Technical](technical.md) | [Pages](pages.md) | [Security](security.md) | [Setup](setup.md) | [Design](../DESIGN.md)
 
 ---
 
@@ -43,7 +43,7 @@
 
 ### 9.2 Brand Identity
 
-- **Logo:** "TicketRush" — chữ T+R liền, hiệu ứng tốc độ (speed lines)
+- **Logo:** "Ticket Rush" — chữ T+R liền, hiệu ứng tốc độ (speed lines)
 - **Motifs:** Ticket-shaped elements, stage silhouette, spotlight beams
 - **Atmosphere:** Gradient blobs, noise texture, subtle particles
 - **Cards:** Glassmorphism overlay trên ảnh event, hover zoom + shadow lift
@@ -73,40 +73,41 @@
 
 ## 10. Phân chia Phases
 
-### Phase 1: Foundation (Ngày 1-3)
+### Phase 1: Foundation (Ngày 1-3) ✅ COMPLETED
 
-- [ ] Init monorepo: Vite + React + TailwindCSS + shadcn/ui + Express + TypeScript
-- [ ] ESLint, Prettier
-- [ ] Sequelize + MySQL + Redis, tạo models + migrations (tất cả 15 bảng)
-- [ ] Seed data (admin, venues, events, seats)
-- [ ] Auth backend: register, login, JWT, refresh, Google OAuth, CAPTCHA, email verify
-- [ ] Auth frontend: Login, Register (Google button, Turnstile, validation)
-- [ ] Redux store + RTK Query base (auto refresh 401)
-- [ ] Layouts (Main, Admin, Auth, Minimal), Header + Footer + Breadcrumb
-- [ ] Protected routes (AuthGuard, AdminGuard), lazy loading
-- [ ] Global error handler + API response format
-- [ ] Socket.IO server + client setup (cần cho Phase 2 seat map + notifications)
-- [ ] Email service (nodemailer + templates: welcome, verify, reset)
+- [x] Init monorepo: Vite + React + TailwindCSS 4 + shadcn/ui + Express + TypeScript
+- [x] ESLint, Prettier
+- [x] Sequelize + MySQL + Redis, tạo models + migrations (15 bảng)
+- [x] Seed data (admin, venues, 5 events, seats, promo codes)
+- [x] Auth backend: register, login, JWT HS256, refresh token rotation, Google OAuth (google-auth-library), CAPTCHA middleware, email verify, account lockout
+- [x] Auth frontend: LoginPage, RegisterPage (Google button, validation real-time, password strength)
+- [x] Redux store + RTK Query base (auto refresh 401 → re-auth)
+- [x] Layouts (Main, Admin, Auth, Minimal), Header + Footer + Breadcrumb
+- [x] Protected routes (AuthGuard, AdminGuard), lazy loading code split
+- [x] Global error handler + API response format chuẩn
+- [x] Socket.IO server + client setup
+- [x] Email service (nodemailer + templates: welcome, verify-email, reset-password, booking-confirmed)
 
-### Phase 2: Core Features (Ngày 4-8)
+### Phase 2: Core Features (Ngày 4-8) ✅ COMPLETED
 
-- [ ] Events API: list, search, filter, detail, suggestions, trending
-- [ ] Landing page (Immersive Hero, Trending, Sắp mở bán, Categories)
-- [ ] Events page (autocomplete search, filter, glassmorphism cards)
-- [ ] Event detail page
-- [ ] Admin: event CRUD wizard + seat map builder
-- [ ] ★ Seat map interactive (SVG, keyboard a11y, aria-labels)
-- [ ] ★ Lock seats API (pessimistic lock + transaction + edge cases)
-- [ ] Booking flow: chọn ghế → checkout (VNPay/MoMo sandbox + giả lập) → xác nhận
-- [ ] Payment integration: VNPay sandbox + MoMo sandbox + callback handling
-- [ ] Countdown timer (10 phút, auto-expire redirect)
-- [ ] Ticket + QR code (signed JWT) + PDF download sau checkout
-- [ ] My Tickets page + QR display (animated overlay)
-- [ ] Promo code: validate API + PromoCodeInput component + admin CRUD
-- [ ] Event favorites (toggle, danh sách yêu thích)
-- [ ] "Nhắc tôi" khi sắp mở bán (scheduled notification)
-- [ ] Admin venues CRUD (cho event wizard Step 2)
-- [ ] Notification system (DB + API + WebSocket + email templates)
+- [x] Events API: list, search, filter, detail, suggestions, trending, featured, seat-map, favorites
+- [x] Landing page (ImmersiveHero + mesh gradient, TrendingEvents, UpcomingSales + countdown, HowItWorks)
+- [x] Events page (autocomplete search, category chips, sort, glassmorphism cards, pagination)
+- [x] Event detail page (hero banner, zone pricing, CTA sticky)
+- [x] Admin: event CRUD wizard 5 bước + SeatMapBuilder (zone config, auto seat generation)
+- [x] ★ Seat map interactive (SVG grid, keyboard a11y: arrows/enter/escape, aria-labels, color states)
+- [x] ★ Lock seats API (pessimistic locking SELECT FOR UPDATE + transaction + edge cases)
+- [x] Booking flow: chọn ghế → checkout → success page
+- [x] Payment: VNPay sandbox + MoMo sandbox + simulated (giả lập) + callback handling
+- [x] Countdown timer 10 phút (amber <2min, red+pulse <30s, auto-expire redirect)
+- [x] Ticket + QR code (signed JWT) sau checkout
+- [x] My Tickets page + QR display (modal overlay, QRCodeSVG)
+- [x] Promo code: validate API + admin CRUD (PromoCode model)
+- [x] Event favorites (toggle heart, API)
+- [x] Notification system (DB + API + WebSocket push)
+- [x] Admin venues CRUD
+- [x] Admin dashboard (stats: revenue, users, bookings, active events)
+- [x] Admin event management (table, publish/on_sale toggle)
 
 ### Phase 3: Real-time & Advanced (Ngày 9-12)
 

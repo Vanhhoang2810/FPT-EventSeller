@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Ticket Rush</title>
+    <meta name="description" content="Ticket Rush là nền tảng đặt vé sự kiện trực tuyến. Đặt vé âm nhạc, thể thao, sân khấu với sơ đồ ghế tương tác và thanh toán bảo mật." />
+    <meta name="keywords" content="đặt vé, sự kiện, concert, âm nhạc, thể thao, Ticket Rush, vé online" />
+    <meta name="author" content="Ticket Rush" />
+    <meta name="theme-color" content="#059669" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ticket Rush" />
+    <meta property="og:title" content="Ticket Rush — Đặt vé sự kiện nhanh nhất Việt Nam" />
+    <meta property="og:description" content="Đặt vé âm nhạc, thể thao, sân khấu chỉ trong vài giây. Sơ đồ ghế tương tác, thanh toán VNPay/MoMo bảo mật." />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ticket Rush — Đặt vé sự kiện" />
+    <meta name="twitter:description" content="Đặt vé nhanh, chọn ghế tương tác, thanh toán bảo mật." />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--
+      Anti-FOUC script — chạy TRƯỚC React mount.
+      Đọc theme từ localStorage và set class ngay lập tức,
+      tránh flash đen khi reload trang.
+    -->
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('ticketrush-theme');
+          var theme = (stored === 'dark') ? 'dark' : 'light';
+          document.documentElement.className = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch(e) {
+          document.documentElement.className = 'light';
+        }
+      })();
+    </script>
+
+    <!-- Skip nav CSS — must load before JS to prevent FOUC on this element -->
+    <style>
+      #skip-nav {
+        position: absolute;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      #skip-nav:focus-visible {
+        position: fixed;
+        top: 1rem; left: 1rem;
+        width: auto; height: auto;
+        padding: 0.5rem 1rem;
+        margin: 0;
+        overflow: visible;
+        clip: auto;
+        white-space: normal;
+        z-index: 9999;
+        border-radius: 0.5rem;
+        background-color: #059669;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #fff;
+        outline: none;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <a id="skip-nav" href="#main-content">Bỏ qua đến nội dung chính</a>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
