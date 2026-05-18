@@ -52,13 +52,11 @@ function buildEmail(title: string, body: string): string {
 }
 
 export class EmailService {
-  static async sendVerificationEmail(
-    to: string,
-    name: string,
-    token: string,
-  ): Promise<void> {
+  static async sendVerificationEmail(to: string, name: string, token: string): Promise<void> {
     const verifyUrl = `${env.clientUrl}/verify-email?token=${token}`;
-    const html = buildEmail('Xác minh email', `
+    const html = buildEmail(
+      'Xác minh email',
+      `
       <h2 style="color: #FAFAFA; font-size: 22px; margin-bottom: 8px;">Xin chào ${name}!</h2>
       <p style="color: #A1A1AA; line-height: 1.6; margin-bottom: 24px;">
         Cảm ơn bạn đã đăng ký tài khoản Ticket Rush. Vui lòng nhấn nút bên dưới để xác minh địa chỉ email của bạn.
@@ -69,13 +67,16 @@ export class EmailService {
       <p style="color: #71717A; font-size: 14px; text-align: center;">
         Link sẽ hết hạn sau 24 giờ. Nếu bạn không đăng ký, hãy bỏ qua email này.
       </p>
-    `);
+    `,
+    );
 
     await this.send(to, 'Xác minh email — Ticket Rush', html);
   }
 
   static async sendWelcomeEmail(to: string, name: string): Promise<void> {
-    const html = buildEmail('Chào mừng đến Ticket Rush', `
+    const html = buildEmail(
+      'Chào mừng đến Ticket Rush',
+      `
       <h2 style="color: #FAFAFA; font-size: 22px; margin-bottom: 8px;">Chào mừng ${name}! 🎉</h2>
       <p style="color: #A1A1AA; line-height: 1.6; margin-bottom: 24px;">
         Bạn đã tham gia Ticket Rush thành công. Khám phá hàng ngàn sự kiện âm nhạc, thể thao, sân khấu ngay hôm nay.
@@ -83,18 +84,17 @@ export class EmailService {
       <div style="text-align: center; margin-bottom: 24px;">
         <a href="${env.clientUrl}/events" style="${BUTTON_STYLE}">Khám phá sự kiện</a>
       </div>
-    `);
+    `,
+    );
 
     await this.send(to, 'Chào mừng đến Ticket Rush!', html);
   }
 
-  static async sendPasswordResetEmail(
-    to: string,
-    name: string,
-    token: string,
-  ): Promise<void> {
+  static async sendPasswordResetEmail(to: string, name: string, token: string): Promise<void> {
     const resetUrl = `${env.clientUrl}/reset-password?token=${token}`;
-    const html = buildEmail('Đặt lại mật khẩu', `
+    const html = buildEmail(
+      'Đặt lại mật khẩu',
+      `
       <h2 style="color: #FAFAFA; font-size: 22px; margin-bottom: 8px;">Đặt lại mật khẩu</h2>
       <p style="color: #A1A1AA; line-height: 1.6; margin-bottom: 24px;">
         Xin chào ${name}, chúng tôi nhận được yêu cầu đặt lại mật khẩu tài khoản của bạn.
@@ -107,7 +107,8 @@ export class EmailService {
       <p style="color: #71717A; font-size: 14px; text-align: center;">
         Link sẽ hết hạn sau 1 giờ. Nếu bạn không yêu cầu, hãy bỏ qua email này.
       </p>
-    `);
+    `,
+    );
 
     await this.send(to, 'Đặt lại mật khẩu — Ticket Rush', html);
   }
@@ -118,7 +119,9 @@ export class EmailService {
     bookingDetails: { eventTitle: string; seats: string[]; totalAmount: number; bookingId: number },
   ): Promise<void> {
     const formattedAmount = new Intl.NumberFormat('vi-VN').format(bookingDetails.totalAmount) + '₫';
-    const html = buildEmail('Đặt vé thành công', `
+    const html = buildEmail(
+      'Đặt vé thành công',
+      `
       <h2 style="color: #10B981; font-size: 22px; margin-bottom: 8px;">✅ Đặt vé thành công!</h2>
       <p style="color: #A1A1AA; line-height: 1.6; margin-bottom: 24px;">
         Xin chào ${name}, đặt vé của bạn đã được xác nhận.
@@ -129,9 +132,10 @@ export class EmailService {
         <p style="color: #10B981; margin: 0; font-size: 18px;"><strong>Tổng: ${formattedAmount}</strong></p>
       </div>
       <div style="text-align: center;">
-        <a href="${env.clientUrl}/my-tickets/${bookingDetails.bookingId}" style="${BUTTON_STYLE}">Xem vé của tôi</a>
+        <a href="${env.clientUrl}/my-tickets" style="${BUTTON_STYLE}">Xem vé của tôi</a>
       </div>
-    `);
+    `,
+    );
 
     await this.send(to, `Đặt vé thành công — ${bookingDetails.eventTitle}`, html);
   }

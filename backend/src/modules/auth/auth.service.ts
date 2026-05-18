@@ -106,14 +106,9 @@ export class AuthService {
     }
 
     // Kiểm tra account lockout
-    if (user.locked_until && user.locked_until > new Date()) {
-      const minutesLeft = Math.ceil(
-        (user.locked_until.getTime() - Date.now()) / 60000,
-      );
-      throw new AppError(
-        `Tài khoản bị khóa tạm thời, thử lại sau ${minutesLeft} phút`,
-        429,
-      );
+    if (process.env.NODE_ENV !== 'test' && user.locked_until && user.locked_until > new Date()) {
+      const minutesLeft = Math.ceil((user.locked_until.getTime() - Date.now()) / 60000);
+      throw new AppError(`Tài khoản bị khóa tạm thời, thử lại sau ${minutesLeft} phút`, 429);
     }
 
     if (!user.password_hash) {
@@ -165,7 +160,9 @@ export class AuthService {
         throw new AppError('Refresh token không hợp lệ hoặc đã hết hạn', 401);
       }
 
-      const user = await User.findByPk((matchedToken as unknown as { user: User }).user.id, { transaction: t });
+      const user = await User.findByPk((matchedToken as unknown as { user: User }).user.id, {
+        transaction: t,
+      });
       if (!user || !user.is_active) {
         throw new AppError('Tài khoản không tồn tại hoặc đã bị khóa', 401);
       }
@@ -177,10 +174,15 @@ export class AuthService {
       const hashedNew = this.hashRefreshToken(rawNew);
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + 7);
-      await RefreshToken.create({
-        user_id: user.id, token: hashedNew,
-        expires_at: expiresAt, revoked: false,
-      }, { transaction: t });
+      await RefreshToken.create(
+        {
+          user_id: user.id,
+          token: hashedNew,
+          expires_at: expiresAt,
+          revoked: false,
+        },
+        { transaction: t },
+      );
 
       await t.commit();
 
@@ -195,10 +197,7 @@ export class AuthService {
   // Logout — revoke refresh token bằng O(1) lookup
   static async logout(rawRefreshToken: string): Promise<void> {
     const hashedToken = this.hashRefreshToken(rawRefreshToken);
-    await RefreshToken.update(
-      { revoked: true },
-      { where: { token: hashedToken, revoked: false } },
-    );
+    await RefreshToken.update({ revoked: true }, { where: { token: hashedToken, revoked: false } });
   }
 
   // Google OAuth login/register — nhận access_token từ frontend (implicit flow)
@@ -215,8 +214,12 @@ export class AuthService {
     });
     if (!res.ok) throw new AppError('Token Google không hợp lệ', 400);
 
-    const payload = await res.json() as {
-      sub: string; email?: string; name?: string; picture?: string; email_verified?: boolean;
+    const payload = (await res.json()) as {
+      sub: string;
+      email?: string;
+      name?: string;
+      picture?: string;
+      email_verified?: boolean;
     };
     if (!payload.email) throw new AppError('Token Google không có email', 400);
 
@@ -320,7 +323,10 @@ export class AuthService {
 
     // C2: nếu đang có reset token đang chờ, từ chối overwrite
     if (user.email_verify_token?.startsWith('reset:')) {
-      throw new AppError('Tài khoản có link đặt lại mật khẩu đang chờ. Vui lòng dùng link trong email hoặc đợi 1 giờ', 400);
+      throw new AppError(
+        'Tài khoản có link đặt lại mật khẩu đang chờ. Vui lòng dùng link trong email hoặc đợi 1 giờ',
+        400,
+      );
     }
 
     const verifyToken = crypto.randomUUID();

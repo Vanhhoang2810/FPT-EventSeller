@@ -31,13 +31,16 @@ export class AdminService {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [totalRevenue, todayRevenue, totalUsers, totalBookings, activeEvents] = await Promise.all([
-      Payment.sum('amount', { where: { status: 'completed' } }) || 0,
-      Payment.sum('amount', { where: { status: 'completed', paid_at: { [Op.gte]: today } } }) || 0,
-      User.count({ where: { role: 'customer' } }),
-      Booking.count({ where: { status: 'confirmed' } }),
-      Event.count({ where: { status: { [Op.in]: ['published', 'on_sale'] } } }),
-    ]);
+    const [totalRevenue, todayRevenue, totalUsers, totalBookings, activeEvents] = await Promise.all(
+      [
+        Payment.sum('amount', { where: { status: 'completed' } }) || 0,
+        Payment.sum('amount', { where: { status: 'completed', paid_at: { [Op.gte]: today } } }) ||
+          0,
+        User.count({ where: { role: 'customer' } }),
+        Booking.count({ where: { status: 'confirmed' } }),
+        Event.count({ where: { status: { [Op.in]: ['published', 'on_sale'] } } }),
+      ],
+    );
 
     return { totalRevenue, todayRevenue, totalUsers, totalBookings, activeEvents };
   }
@@ -58,17 +61,31 @@ export class AdminService {
       distinct: true,
     });
 
-    return { data: rows, pagination: { page, limit, total: count, totalPages: Math.ceil(count / limit) } };
+    return {
+      data: rows,
+      pagination: { page, limit, total: count, totalPages: Math.ceil(count / limit) },
+    };
   }
 
   // Create event
-  static async createEvent(adminId: number, data: {
-    title: string; description?: string; shortDescription?: string;
-    bannerUrl?: string; thumbnailUrl?: string; category: EventCategory;
-    venueId: number; startTime: Date; endTime: Date;
-    saleStartTime: Date; saleEndTime?: Date; maxTicketsPerUser?: number;
-    queueEnabled?: boolean;
-  }) {
+  static async createEvent(
+    adminId: number,
+    data: {
+      title: string;
+      description?: string;
+      shortDescription?: string;
+      bannerUrl?: string;
+      thumbnailUrl?: string;
+      category: EventCategory;
+      venueId: number;
+      startTime: Date;
+      endTime: Date;
+      saleStartTime: Date;
+      saleEndTime?: Date;
+      maxTicketsPerUser?: number;
+      queueEnabled?: boolean;
+    },
+  ) {
     const slug = await this.generateUniqueSlug(data.title);
 
     const event = await Event.create({
@@ -98,19 +115,36 @@ export class AdminService {
       entity_id: event.id,
       details: { title: event.title },
     });
-    broadcastAdminActivity({ type: 'create_event', entityType: 'event', entityId: event.id, description: `Tạo sự kiện: ${event.title}` });
+    broadcastAdminActivity({
+      type: 'create_event',
+      entityType: 'event',
+      entityId: event.id,
+      description: `Tạo sự kiện: ${event.title}`,
+    });
 
     return event;
   }
 
   // Update event
-  static async updateEvent(adminId: number, eventId: number, data: Partial<{
-    title: string; description: string; shortDescription: string;
-    bannerUrl: string; thumbnailUrl: string; category: EventCategory;
-    venueId: number; startTime: Date; endTime: Date;
-    saleStartTime: Date; saleEndTime: Date; maxTicketsPerUser: number;
-    queueEnabled: boolean;
-  }>) {
+  static async updateEvent(
+    adminId: number,
+    eventId: number,
+    data: Partial<{
+      title: string;
+      description: string;
+      shortDescription: string;
+      bannerUrl: string;
+      thumbnailUrl: string;
+      category: EventCategory;
+      venueId: number;
+      startTime: Date;
+      endTime: Date;
+      saleStartTime: Date;
+      saleEndTime: Date;
+      maxTicketsPerUser: number;
+      queueEnabled: boolean;
+    }>,
+  ) {
     const event = await Event.findByPk(eventId);
     if (!event) throw new AppError('Sự kiện không tồn tại', 404);
 
@@ -129,7 +163,8 @@ export class AdminService {
     if (data.endTime !== undefined) updateData.end_time = data.endTime;
     if (data.saleStartTime !== undefined) updateData.sale_start_time = data.saleStartTime;
     if (data.saleEndTime !== undefined) updateData.sale_end_time = data.saleEndTime;
-    if (data.maxTicketsPerUser !== undefined) updateData.max_tickets_per_user = data.maxTicketsPerUser;
+    if (data.maxTicketsPerUser !== undefined)
+      updateData.max_tickets_per_user = data.maxTicketsPerUser;
     if (data.queueEnabled !== undefined) updateData.queue_enabled = data.queueEnabled;
 
     await event.update(updateData);
@@ -141,20 +176,26 @@ export class AdminService {
       entity_id: event.id,
       details: data as Record<string, unknown>,
     });
-    broadcastAdminActivity({ type: 'update_event', entityType: 'event', entityId: event.id, description: `Cập nhật sự kiện: ${event.title}` });
+    broadcastAdminActivity({
+      type: 'update_event',
+      entityType: 'event',
+      entityId: event.id,
+      description: `Cập nhật sự kiện: ${event.title}`,
+    });
 
     return event;
   }
 
   // Transition hợp lệ giữa các trạng thái sự kiện
-  private static readonly ALLOWED_STATUS_TRANSITIONS: Partial<Record<EventStatus, EventStatus[]>> = {
-    draft:       ['published', 'cancelled'],
-    published:   ['on_sale', 'cancelled'],
-    on_sale:     ['sold_out', 'completed', 'cancelled'],
-    sold_out:    ['on_sale', 'completed', 'cancelled'],
-    completed:   [],
-    cancelled:   [],
-  };
+  private static readonly ALLOWED_STATUS_TRANSITIONS: Partial<Record<EventStatus, EventStatus[]>> =
+    {
+      draft: ['published', 'cancelled'],
+      published: ['on_sale', 'cancelled'],
+      on_sale: ['sold_out', 'completed', 'cancelled'],
+      sold_out: ['on_sale', 'completed', 'cancelled'],
+      completed: [],
+      cancelled: [],
+    };
 
   // Update event status — H3 fix: kiểm tra transition hợp lệ
   static async updateEventStatus(adminId: number, eventId: number, status: EventStatus) {
@@ -163,9 +204,7 @@ export class AdminService {
 
     const allowed = this.ALLOWED_STATUS_TRANSITIONS[event.status] ?? [];
     if (!allowed.includes(status)) {
-      throw new AppError(
-        `Không thể chuyển trạng thái từ "${event.status}" sang "${status}"`, 400,
-      );
+      throw new AppError(`Không thể chuyển trạng thái từ "${event.status}" sang "${status}"`, 400);
     }
 
     await event.update({ status });
@@ -175,7 +214,9 @@ export class AdminService {
       try {
         const io = getIO();
         io.to(`event:${eventId}`).emit('event:cancelled', { eventId });
-      } catch { /* optional */ }
+      } catch {
+        /* optional */
+      }
     }
 
     await AuditLog.create({
@@ -185,22 +226,39 @@ export class AdminService {
       entity_id: event.id,
       details: { status },
     });
-    broadcastAdminActivity({ type: 'update_event_status', entityType: 'event', entityId: event.id, description: `Đổi trạng thái sự kiện #${event.id} → ${status}` });
+    broadcastAdminActivity({
+      type: 'update_event_status',
+      entityType: 'event',
+      entityId: event.id,
+      description: `Đổi trạng thái sự kiện #${event.id} → ${status}`,
+    });
 
     return event;
   }
 
   // Setup zones for event (bulk)
-  static async setupZones(adminId: number, eventId: number, zones: Array<{
-    name: string; price: number; colorCode: string; rowsCount: number; seatsPerRow: number; sortOrder?: number;
-  }>) {
+  static async setupZones(
+    adminId: number,
+    eventId: number,
+    zones: Array<{
+      name: string;
+      price: number;
+      colorCode: string;
+      rowsCount: number;
+      seatsPerRow: number;
+      sortOrder?: number;
+    }>,
+  ) {
     const event = await Event.findByPk(eventId);
     if (!event) throw new AppError('Sự kiện không tồn tại', 404);
 
     const t = await sequelize.transaction();
     try {
       // Xóa zones + seats cũ nếu chưa có booking — đọc trong transaction để giảm race window
-      const existingBookings = await Booking.count({ where: { event_id: eventId, status: { [Op.in]: ['pending', 'confirmed'] } }, transaction: t });
+      const existingBookings = await Booking.count({
+        where: { event_id: eventId, status: { [Op.in]: ['pending', 'confirmed'] } },
+        transaction: t,
+      });
       if (existingBookings > 0) {
         // Không rollback manual — để outer catch xử lý để tránh double-rollback
         throw new AppError('Không thể cấu hình lại ghế khi đã có đơn đặt vé', 409);
@@ -227,7 +285,12 @@ export class AdminService {
 
       // Tạo ghế tự động
       const rowLabels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      const allSeats: Array<{ zone_id: number; row_label: string; seat_number: number; status: 'available' }> = [];
+      const allSeats: Array<{
+        zone_id: number;
+        row_label: string;
+        seat_number: number;
+        status: 'available';
+      }> = [];
 
       for (let idx = 0; idx < createdZones.length; idx++) {
         const zone = createdZones[idx];
@@ -271,7 +334,13 @@ export class AdminService {
     return Venue.findAll({ order: [['name', 'ASC']] });
   }
 
-  static async createVenue(data: { name: string; address: string; city?: string; capacity: number; imageUrl?: string }) {
+  static async createVenue(data: {
+    name: string;
+    address: string;
+    city?: string;
+    capacity: number;
+    imageUrl?: string;
+  }) {
     return Venue.create({
       name: data.name,
       address: data.address,
@@ -281,7 +350,16 @@ export class AdminService {
     });
   }
 
-  static async updateVenue(venueId: number, data: Partial<{ name: string; address: string; city: string; capacity: number; imageUrl: string }>) {
+  static async updateVenue(
+    venueId: number,
+    data: Partial<{
+      name: string;
+      address: string;
+      city: string;
+      capacity: number;
+      imageUrl: string;
+    }>,
+  ) {
     const venue = await Venue.findByPk(venueId);
     if (!venue) throw new AppError('Địa điểm không tồn tại', 404);
     await venue.update({
@@ -303,12 +381,18 @@ export class AdminService {
       where: { event_id: eventId, status: { [Op.in]: ['pending', 'confirmed'] } },
     });
     if (confirmedBookings > 0) {
-      throw new AppError('Không thể xóa sự kiện đã có đơn đặt vé. Hãy hủy sự kiện thay vì xóa.', 409);
+      throw new AppError(
+        'Không thể xóa sự kiện đã có đơn đặt vé. Hãy hủy sự kiện thay vì xóa.',
+        409,
+      );
     }
 
     await event.destroy();
     await AuditLog.create({
-      admin_id: adminId, action: 'delete_event', entity_type: 'event', entity_id: eventId,
+      admin_id: adminId,
+      action: 'delete_event',
+      entity_type: 'event',
+      entity_id: eventId,
       details: { title: event.title },
     });
   }
@@ -323,50 +407,78 @@ export class AdminService {
 
     const t = await sequelize.transaction();
     try {
-      const bookingSeats = await BookingSeat.findAll({ where: { booking_id: bookingId }, transaction: t });
-      const seatIds = bookingSeats.map((bs) => bs.seat_id);
-
-      await Seat.update({ status: 'available', locked_by: null, locked_at: null }, {
-        where: { id: seatIds, status: 'sold' },
+      const bookingSeats = await BookingSeat.findAll({
+        where: { booking_id: bookingId },
         transaction: t,
       });
+      const seatIds = bookingSeats.map((bs) => bs.seat_id);
+
+      await Seat.update(
+        { status: 'available', locked_by: null, locked_at: null },
+        {
+          where: { id: seatIds, status: 'sold' },
+          transaction: t,
+        },
+      );
 
       // Dùng Booking.update với WHERE status='confirmed' thay vì instance.update
       // để tránh race condition khi booking đã đổi status giữa fetch và update
-      const [affected] = await Booking.update({ status: 'refunded' }, {
-        where: { id: bookingId, status: 'confirmed' },
-        transaction: t,
-      });
+      const [affected] = await Booking.update(
+        { status: 'refunded' },
+        {
+          where: { id: bookingId, status: 'confirmed' },
+          transaction: t,
+        },
+      );
       if (affected === 0) {
         throw new AppError('Đơn đặt vé không còn ở trạng thái đã xác nhận', 409);
       }
 
-      await Payment.update({ status: 'refunded' }, {
-        where: { booking_id: bookingId },
-        transaction: t,
-      });
+      await Payment.update(
+        { status: 'refunded' },
+        {
+          where: { booking_id: bookingId },
+          transaction: t,
+        },
+      );
 
-      await Ticket.update({ status: 'cancelled' }, {
-        where: { booking_id: bookingId },
-        transaction: t,
-      });
+      await Ticket.update(
+        { status: 'cancelled' },
+        {
+          where: { booking_id: bookingId },
+          transaction: t,
+        },
+      );
 
       // AuditLog trong transaction — nếu fail thì rollback cùng với refund
-      await AuditLog.create({
-        admin_id: adminId, action: 'refund_booking', entity_type: 'booking', entity_id: bookingId,
-        details: { amount: booking.total_amount },
-      }, { transaction: t });
+      await AuditLog.create(
+        {
+          admin_id: adminId,
+          action: 'refund_booking',
+          entity_type: 'booking',
+          entity_id: bookingId,
+          details: { amount: booking.total_amount },
+        },
+        { transaction: t },
+      );
 
       await t.commit();
 
-      broadcastAdminActivity({ type: 'refund_booking', entityType: 'booking', entityId: bookingId, description: `Hoàn tiền đơn #${bookingId}` });
+      broadcastAdminActivity({
+        type: 'refund_booking',
+        entityType: 'booking',
+        entityId: bookingId,
+        description: `Hoàn tiền đơn #${bookingId}`,
+      });
 
       try {
         const io = getIO();
         io.to(`event:${booking.event_id}`).emit('seat:bulk-updated', {
           seats: seatIds.map((id) => ({ seatId: id, status: 'available' })),
         });
-      } catch { /* optional */ }
+      } catch {
+        /* optional */
+      }
     } catch (err) {
       await t.rollback().catch(() => {});
       throw err;
@@ -377,7 +489,9 @@ export class AdminService {
     const venue = await Venue.findByPk(venueId);
     if (!venue) throw new AppError('Địa điểm không tồn tại', 404);
     // Chỉ xóa khi không có event đang dùng
-    const eventCount = await Event.count({ where: { venue_id: venueId, status: { [Op.notIn]: ['cancelled'] } } });
+    const eventCount = await Event.count({
+      where: { venue_id: venueId, status: { [Op.notIn]: ['cancelled'] } },
+    });
     if (eventCount > 0) throw new AppError('Không thể xóa địa điểm đang có sự kiện', 409);
     await venue.destroy();
   }
@@ -386,10 +500,11 @@ export class AdminService {
   static async getUsers(page = 1, limit = 20, search?: string) {
     const offset = (page - 1) * limit;
     const where: Record<string, unknown> = {};
-    if (search) where[Op.or as unknown as string] = [
-      { email: { [Op.like]: `%${search}%` } },
-      { full_name: { [Op.like]: `%${search}%` } },
-    ];
+    if (search)
+      where[Op.or as unknown as string] = [
+        { email: { [Op.like]: `%${search}%` } },
+        { full_name: { [Op.like]: `%${search}%` } },
+      ];
 
     const { count, rows } = await User.findAndCountAll({
       where,
@@ -399,7 +514,10 @@ export class AdminService {
       offset,
     });
 
-    return { data: rows, pagination: { page, limit, total: count, totalPages: Math.ceil(count / limit) } };
+    return {
+      data: rows,
+      pagination: { page, limit, total: count, totalPages: Math.ceil(count / limit) },
+    };
   }
 
   static async toggleBanUser(adminId: number, userId: number) {
@@ -416,7 +534,12 @@ export class AdminService {
       entity_type: 'user',
       entity_id: userId,
     });
-    broadcastAdminActivity({ type: newIsActive ? 'unban_user' : 'ban_user', entityType: 'user', entityId: userId, description: `${newIsActive ? 'Unban' : 'Ban'} user: ${user.email}` });
+    broadcastAdminActivity({
+      type: newIsActive ? 'unban_user' : 'ban_user',
+      entityType: 'user',
+      entityId: userId,
+      description: `${newIsActive ? 'Unban' : 'Ban'} user: ${user.email}`,
+    });
 
     return user;
   }
@@ -445,13 +568,23 @@ export class AdminService {
     else if (endDate) where.created_at = { [Op.lte]: endDate };
 
     const userWhere = search
-      ? { [Op.or]: [{ email: { [Op.like]: `%${search}%` } }, { full_name: { [Op.like]: `%${search}%` } }] }
+      ? {
+          [Op.or]: [
+            { email: { [Op.like]: `%${search}%` } },
+            { full_name: { [Op.like]: `%${search}%` } },
+          ],
+        }
       : undefined;
 
     const { count, rows } = await Booking.findAndCountAll({
       where,
       include: [
-        { model: User, as: 'user', attributes: ['id', 'email', 'full_name'], ...(userWhere && { where: userWhere, required: true }) },
+        {
+          model: User,
+          as: 'user',
+          attributes: ['id', 'email', 'full_name'],
+          ...(userWhere && { where: userWhere, required: true }),
+        },
         { model: Event, as: 'event', attributes: ['id', 'title', 'slug'] },
         { model: Payment, as: 'payment' },
       ],
@@ -461,7 +594,10 @@ export class AdminService {
       distinct: true,
     });
 
-    return { data: rows, pagination: { page, limit, total: count, totalPages: Math.ceil(count / limit) } };
+    return {
+      data: rows,
+      pagination: { page, limit, total: count, totalPages: Math.ceil(count / limit) },
+    };
   }
 
   // ─── Chart APIs ───────────────────────────────────────────────
@@ -486,7 +622,11 @@ export class AdminService {
         const d = new Date(Date.now() - i * 3600000);
         const label = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')} ${String(d.getHours()).padStart(2, '0')}:00`;
         const found = rows.find((r) => r.label === label);
-        result.push({ label, revenue: Number(found?.revenue ?? 0), bookings: Number(found?.bookings ?? 0) });
+        result.push({
+          label,
+          revenue: Number(found?.revenue ?? 0),
+          bookings: Number(found?.bookings ?? 0),
+        });
       }
       return result;
     }
@@ -509,7 +649,11 @@ export class AdminService {
         d.setMonth(d.getMonth() - i);
         const label = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
         const found = rows.find((r) => r.label === label);
-        result.push({ label, revenue: Number(found?.revenue ?? 0), bookings: Number(found?.bookings ?? 0) });
+        result.push({
+          label,
+          revenue: Number(found?.revenue ?? 0),
+          bookings: Number(found?.bookings ?? 0),
+        });
       }
       return result;
     }
@@ -545,14 +689,23 @@ export class AdminService {
       d.setDate(d.getDate() - i);
       const label = d.toISOString().slice(0, 10);
       const found = rows.find((r) => r.label === label);
-      result.push({ label, revenue: Number(found?.revenue ?? 0), bookings: Number(found?.bookings ?? 0) });
+      result.push({
+        label,
+        revenue: Number(found?.revenue ?? 0),
+        bookings: Number(found?.bookings ?? 0),
+      });
     }
     return result;
   }
 
   // Tỷ lệ lấp đầy ghế theo event đang hoạt động
   static async getSeatFillStats() {
-    const rows = await sequelize.query<{ event_id: number; title: string; total: number; sold: number }>(
+    const rows = await sequelize.query<{
+      event_id: number;
+      title: string;
+      total: number;
+      sold: number;
+    }>(
       `SELECT e.id as event_id, e.title,
               COUNT(s.id) as total,
               SUM(CASE WHEN s.status = 'sold' THEN 1 ELSE 0 END) as sold
@@ -605,33 +758,30 @@ export class AdminService {
     const GENDER_ORDER = ['male', 'female', 'other', null];
     const AGE_ORDER = ['under18', '18_24', '25_34', '35_44', '45plus', 'unknown'];
 
-    const gender = GENDER_ORDER
-      .map((g) => {
-        const row = genderRows.find((r) => r.gender === g);
-        return { name: g ?? 'other', value: Number(row?.count ?? 0) };
-      })
-      .filter((g) => g.value > 0);
+    const gender = GENDER_ORDER.map((g) => {
+      const row = genderRows.find((r) => r.gender === g);
+      return { name: g ?? 'other', value: Number(row?.count ?? 0) };
+    }).filter((g) => g.value > 0);
 
-    const ageGroups = AGE_ORDER
-      .map((ag) => {
-        const row = ageRows.find((r) => r.age_group === ag);
-        return { name: ag, value: Number(row?.count ?? 0) };
-      })
-      .filter((ag) => ag.value > 0);
+    const ageGroups = AGE_ORDER.map((ag) => {
+      const row = ageRows.find((r) => r.age_group === ag);
+      return { name: ag, value: Number(row?.count ?? 0) };
+    }).filter((ag) => ag.value > 0);
 
     return { gender, ageGroups };
   }
 
   // Conversion funnel
   static async getConversionFunnel() {
-    const [totalAttempts, confirmed, expired, cancelled, refunded, totalRevenue] = await Promise.all([
-      Booking.count(),
-      Booking.count({ where: { status: 'confirmed' } }),
-      Booking.count({ where: { status: 'expired' } }),
-      Booking.count({ where: { status: 'cancelled' } }),
-      Booking.count({ where: { status: 'refunded' } }),
-      Payment.sum('amount', { where: { status: 'completed' } }) || 0,
-    ]);
+    const [totalAttempts, confirmed, expired, cancelled, refunded, totalRevenue] =
+      await Promise.all([
+        Booking.count(),
+        Booking.count({ where: { status: 'confirmed' } }),
+        Booking.count({ where: { status: 'expired' } }),
+        Booking.count({ where: { status: 'cancelled' } }),
+        Booking.count({ where: { status: 'refunded' } }),
+        Payment.sum('amount', { where: { status: 'completed' } }) || 0,
+      ]);
     const pending = totalAttempts - confirmed - expired - cancelled - refunded;
     return [
       { stage: 'Chọn ghế', value: totalAttempts },
@@ -673,7 +823,10 @@ export class AdminService {
       offset,
       distinct: true,
     });
-    return { data: rows, pagination: { page, limit, total: count, totalPages: Math.ceil(count / limit) } };
+    return {
+      data: rows,
+      pagination: { page, limit, total: count, totalPages: Math.ceil(count / limit) },
+    };
   }
 
   // Chi tiết user + lịch sử booking
@@ -729,7 +882,7 @@ export class AdminService {
     // Dùng payment.amount (số tiền thực thu sau discount) thay vì total_amount (trước discount)
     const totalRevenue = bookings.reduce((s, b) => {
       const p = (b as unknown as { payment?: { amount: number } }).payment;
-      return s + Number(p?.amount ?? (Number(b.total_amount) - Number(b.discount_amount)));
+      return s + Number(p?.amount ?? Number(b.total_amount) - Number(b.discount_amount));
     }, 0);
     return { bookings, totalRevenue, count: bookings.length };
   }
@@ -748,5 +901,16 @@ export class AdminService {
     }
 
     return slug;
+  }
+
+  static async getEventDetail(id: number) {
+    const event = await Event.findByPk(id, {
+      include: [
+        { model: Zone, as: 'zones' },
+        { model: Venue, as: 'venue' },
+      ],
+    });
+    if (!event) throw new AppError('Không tìm thấy sự kiện', 404);
+    return event;
   }
 }

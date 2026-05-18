@@ -8,7 +8,9 @@ export class AdminController {
     try {
       const data = await AdminService.getDashboardStats();
       apiResponse.success(res, data);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   // Events
@@ -21,7 +23,9 @@ export class AdminController {
         req.query.status as string,
       );
       apiResponse.paginated(res, result.data as never[], result.pagination);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async createEvent(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -42,28 +46,44 @@ export class AdminController {
         queueEnabled: req.body.queueEnabled,
       });
       apiResponse.created(res, event, 'Tạo sự kiện thành công');
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async updateEvent(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const event = await AdminService.updateEvent(req.user!.id, Number(req.params.id), req.body);
       apiResponse.success(res, event, 'Cập nhật sự kiện thành công');
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async updateEventStatus(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const event = await AdminService.updateEventStatus(req.user!.id, Number(req.params.id), req.body.status);
+      const event = await AdminService.updateEventStatus(
+        req.user!.id,
+        Number(req.params.id),
+        req.body.status,
+      );
       apiResponse.success(res, event, 'Cập nhật trạng thái thành công');
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async setupZones(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const result = await AdminService.setupZones(req.user!.id, Number(req.params.id), req.body.zones);
+      const result = await AdminService.setupZones(
+        req.user!.id,
+        Number(req.params.id),
+        req.body.zones,
+      );
       apiResponse.success(res, result, 'Cấu hình sơ đồ ghế thành công');
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   // Venues
@@ -71,42 +91,54 @@ export class AdminController {
     try {
       const data = await AdminService.getVenues();
       apiResponse.success(res, data);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async createVenue(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const venue = await AdminService.createVenue(req.body);
       apiResponse.created(res, venue, 'Tạo địa điểm thành công');
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async updateVenue(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const venue = await AdminService.updateVenue(Number(req.params.id), req.body);
       apiResponse.success(res, venue, 'Cập nhật địa điểm thành công');
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async deleteEvent(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       await AdminService.deleteEvent(req.user!.id, Number(req.params.id));
       apiResponse.success(res, null, 'Đã xóa sự kiện');
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async refundBooking(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       await AdminService.refundBooking(req.user!.id, Number(req.params.id));
       apiResponse.success(res, null, 'Đã hoàn tiền thành công');
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async deleteVenue(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       await AdminService.deleteVenue(Number(req.params.id));
       apiResponse.success(res, null, 'Đã xóa địa điểm');
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   // Users
@@ -118,14 +150,18 @@ export class AdminController {
         req.query.search as string,
       );
       apiResponse.paginated(res, result.data as never[], result.pagination);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async toggleBanUser(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const user = await AdminService.toggleBanUser(req.user!.id, Number(req.params.id));
       apiResponse.success(res, user);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   // Bookings
@@ -141,7 +177,9 @@ export class AdminController {
         req.query.endDate ? new Date(req.query.endDate as string) : undefined,
       );
       apiResponse.paginated(res, result.data as never[], result.pagination);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   // Charts
@@ -153,35 +191,45 @@ export class AdminController {
         validPeriods.includes(period) ? (period as 'hour' | 'day' | 'month' | 'year') : 'day',
       );
       apiResponse.success(res, data);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async seatFillStats(_req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const data = await AdminService.getSeatFillStats();
       apiResponse.success(res, data);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async demographics(_req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const data = await AdminService.getDemographics();
       apiResponse.success(res, data);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async conversionFunnel(_req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const data = await AdminService.getConversionFunnel();
       apiResponse.success(res, data);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async peakHours(_req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const data = await AdminService.getPeakHours();
       apiResponse.success(res, data);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   // Audit logs
@@ -194,7 +242,9 @@ export class AdminController {
         req.query.action as string | undefined,
       );
       apiResponse.paginated(res, result.data as never[], result.pagination);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   // User detail
@@ -202,13 +252,17 @@ export class AdminController {
     try {
       const data = await AdminService.getUserDetail(Number(req.params.id));
       apiResponse.success(res, data);
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
   }
 
   // Reports export CSV
   static async exportReport(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const startDate = req.query.startDate ? new Date(req.query.startDate as string) : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+      const startDate = req.query.startDate
+        ? new Date(req.query.startDate as string)
+        : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
       const endDate = req.query.endDate ? new Date(req.query.endDate as string) : new Date();
       const { bookings } = await AdminService.getReportData(startDate, endDate);
 
@@ -233,6 +287,17 @@ export class AdminController {
       res.setHeader('Content-Type', 'text/csv; charset=utf-8');
       res.setHeader('Content-Disposition', `attachment; filename="bao-cao-${Date.now()}.csv"`);
       res.send('﻿' + csv); // BOM cho Excel đọc được tiếng Việt
-    } catch (err) { next(err); }
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async getEventDetail(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const event = await AdminService.getEventDetail(Number(req.params.id));
+      res.json({ success: true, data: event });
+    } catch (err) {
+      next(err);
+    }
   }
 }

@@ -16,6 +16,7 @@ import jwt from 'jsonwebtoken';
 import { env } from '../../config/env';
 import { logger } from '../../utils/logger';
 import type { CheckoutInput } from './booking.validation';
+import { EmailService } from '../email/email.service';
 
 const BOOKING_TIMEOUT_MS = 10 * 60 * 1000; // 10 phút
 
@@ -26,7 +27,12 @@ export class BookingService {
 
     // Tự động expire các booking pending đã hết hạn (chưa có BullMQ job)
     const expiredBookings = await Booking.findAll({
-      where: { user_id: userId, event_id: eventId, status: 'pending', expires_at: { [Op.lte]: now } },
+      where: {
+        user_id: userId,
+        event_id: eventId,
+        status: 'pending',
+        expires_at: { [Op.lte]: now },
+      },
     });
     for (const expired of expiredBookings) {
       await this.expireBooking(expired).catch(() => {});
@@ -45,7 +51,12 @@ export class BookingService {
     try {
       // Kiểm tra pending booking trong transaction — chống TOCTOU với LOCK.UPDATE
       const existingBooking = await Booking.findOne({
-        where: { user_id: userId, event_id: eventId, status: 'pending', expires_at: { [Op.gt]: now } },
+        where: {
+          user_id: userId,
+          event_id: eventId,
+          status: 'pending',
+          expires_at: { [Op.gt]: now },
+        },
         lock: transaction.LOCK.UPDATE,
         transaction,
       });
@@ -64,14 +75,27 @@ export class BookingService {
 
       if (seats.length !== seatIds.length) {
         await transaction.rollback();
-        throw new AppError('Một hoặc nhiều ghế đã được người khác chọn. Vui lòng chọn ghế khác', 409);
+        throw new AppError(
+          'Một hoặc nhiều ghế đã được người khác chọn. Vui lòng chọn ghế khác',
+          409,
+        );
       }
 
       // Kiểm tra giới hạn vé/người — tính cả seats đang lock trong pending bookings
       const [confirmedTickets, pendingSeats] = await Promise.all([
-        Ticket.count({ where: { user_id: userId, event_id: eventId, status: 'active' }, transaction }),
+        Ticket.count({
+          where: { user_id: userId, event_id: eventId, status: 'active' },
+          transaction,
+        }),
         BookingSeat.count({
-          include: [{ model: Booking, as: 'booking', where: { user_id: userId, event_id: eventId, status: 'pending' }, attributes: [] }],
+          include: [
+            {
+              model: Booking,
+              as: 'booking',
+              where: { user_id: userId, event_id: eventId, status: 'pending' },
+              attributes: [],
+            },
+          ],
           transaction,
         }),
       ]);
@@ -131,7 +155,9 @@ export class BookingService {
         io.to(`event:${eventId}`).emit('seat:bulk-updated', {
           seats: seatIds.map((id) => ({ seatId: id, status: 'locked' })),
         });
-      } catch { /* WebSocket optional */ }
+      } catch {
+        /* WebSocket optional */
+      }
 
       return { booking, expiresAt };
     } catch (err) {
@@ -167,11 +193,13 @@ export class BookingService {
   static async checkout(bookingId: number, userId: number, input: CheckoutInput) {
     const booking = await Booking.findOne({
       where: { id: bookingId, user_id: userId, status: 'pending' },
-      include: [{
-        model: BookingSeat,
-        as: 'bookingSeats',
-        include: [{ model: Seat, as: 'seat', include: [{ model: Zone, as: 'zone' }] }],
-      }],
+      include: [
+        {
+          model: BookingSeat,
+          as: 'bookingSeats',
+          include: [{ model: Seat, as: 'seat', include: [{ model: Zone, as: 'zone' }] }],
+        },
+      ],
     });
 
     if (!booking) throw new AppError('Không tìm thấy đơn đặt vé', 404);
@@ -194,28 +222,48 @@ export class BookingService {
     const finalAmount = Math.max(0, booking.total_amount - discountAmount);
 
     if (input.method === 'simulated') {
-      return this.confirmBooking(booking, finalAmount, discountAmount, promoCodeId, 'simulated', null);
+      return this.confirmBooking(
+        booking,
+        finalAmount,
+        discountAmount,
+        promoCodeId,
+        'simulated',
+        null,
+      );
     }
 
     // Idempotency: nếu đã có pending payment → trả lại thay vì tạo thêm (tránh double-charge khi retry)
-    const existingPayment = await Payment.findOne({ where: { booking_id: booking.id, status: 'pending' } });
+    const existingPayment = await Payment.findOne({
+      where: { booking_id: booking.id, status: 'pending' },
+    });
     if (existingPayment) {
-      return { bookingId: booking.id, paymentId: existingPayment.id, method: existingPayment.method, amount: Number(existingPayment.amount) };
+      return {
+        bookingId: booking.id,
+        paymentId: existingPayment.id,
+        method: existingPayment.method,
+        amount: Number(existingPayment.amount),
+      };
     }
 
     // VNPay/MoMo → tạo payment pending + cập nhật discount trong transaction
     const tx = await sequelize.transaction();
     let payment: Payment;
     try {
-      payment = await Payment.create({
-        booking_id: booking.id,
-        amount: finalAmount,
-        method: input.method,
-        status: 'pending',
-      }, { transaction: tx });
+      payment = await Payment.create(
+        {
+          booking_id: booking.id,
+          amount: finalAmount,
+          method: input.method,
+          status: 'pending',
+        },
+        { transaction: tx },
+      );
 
       if (discountAmount > 0) {
-        await booking.update({ discount_amount: discountAmount, promo_code_id: promoCodeId }, { transaction: tx });
+        await booking.update(
+          { discount_amount: discountAmount, promo_code_id: promoCodeId },
+          { transaction: tx },
+        );
       }
       await tx.commit();
     } catch (err) {
@@ -223,7 +271,12 @@ export class BookingService {
       throw err;
     }
 
-    return { bookingId: booking.id, paymentId: payment.id, method: input.method, amount: finalAmount };
+    return {
+      bookingId: booking.id,
+      paymentId: payment.id,
+      method: input.method,
+      amount: finalAmount,
+    };
   }
 
   // Xác nhận booking (dùng chung cho simulated + callback)
@@ -239,13 +292,16 @@ export class BookingService {
     try {
       // Optimistic lock: chỉ update khi booking vẫn đang ở trạng thái pending
       // Tránh race condition khi callback VNPay và BullMQ expiry job chạy đồng thời
-      const [affectedRows] = await Booking.update({
-        status: 'confirmed',
-        confirmed_at: new Date(),
-        total_amount: amount,
-        discount_amount: discountAmount,
-        promo_code_id: promoCodeId,
-      }, { where: { id: booking.id, status: 'pending' }, transaction: t });
+      const [affectedRows] = await Booking.update(
+        {
+          status: 'confirmed',
+          confirmed_at: new Date(),
+          total_amount: amount,
+          discount_amount: discountAmount,
+          promo_code_id: promoCodeId,
+        },
+        { where: { id: booking.id, status: 'pending' }, transaction: t },
+      );
 
       if (affectedRows === 0) {
         await t.rollback();
@@ -253,33 +309,42 @@ export class BookingService {
       }
 
       // Upsert payment: update pending record nếu có, tạo mới nếu là simulated
-      const [updatedCount] = await Payment.update({
-        status: 'completed',
-        transaction_id: transactionId,
-        paid_at: new Date(),
-        amount,
-      }, { where: { booking_id: booking.id, status: 'pending' }, transaction: t });
-
-      if (updatedCount === 0) {
-        // simulated hoặc không có pending payment → tạo mới
-        await Payment.create({
-          booking_id: booking.id,
-          amount,
-          method,
+      const [updatedCount] = await Payment.update(
+        {
           status: 'completed',
           transaction_id: transactionId,
           paid_at: new Date(),
-        }, { transaction: t });
+          amount,
+        },
+        { where: { booking_id: booking.id, status: 'pending' }, transaction: t },
+      );
+
+      if (updatedCount === 0) {
+        // simulated hoặc không có pending payment → tạo mới
+        await Payment.create(
+          {
+            booking_id: booking.id,
+            amount,
+            method,
+            status: 'completed',
+            transaction_id: transactionId,
+            paid_at: new Date(),
+          },
+          { transaction: t },
+        );
       }
 
       // Ghi nhận promo usage sau khi booking được xác nhận
       if (promoCodeId) {
-        await PromoUsage.create({
-          promo_id: promoCodeId,
-          user_id: booking.user_id,
-          booking_id: booking.id,
-          discount_amount: discountAmount,
-        }, { transaction: t });
+        await PromoUsage.create(
+          {
+            promo_id: promoCodeId,
+            user_id: booking.user_id,
+            booking_id: booking.id,
+            discount_amount: discountAmount,
+          },
+          { transaction: t },
+        );
 
         // Atomic increment — chỉ tăng nếu chưa vượt usage_limit (chống race condition)
         const [result] = await sequelize.query(
@@ -299,10 +364,13 @@ export class BookingService {
 
       // Đánh dấu ghế là sold
       const seatIds = bookingSeats.map((bs) => bs.seat_id);
-      await Seat.update({ status: 'sold', locked_by: null, locked_at: null }, {
-        where: { id: seatIds },
-        transaction: t,
-      });
+      await Seat.update(
+        { status: 'sold', locked_by: null, locked_at: null },
+        {
+          where: { id: seatIds },
+          transaction: t,
+        },
+      );
 
       // Tạo tickets với QR signed JWT
       const tickets = await Ticket.bulkCreate(
@@ -312,7 +380,14 @@ export class BookingService {
           user_id: booking.user_id,
           event_id: booking.event_id,
           qr_code: jwt.sign(
-            { ticketId: 0, bookingId: booking.id, seatId: bs.seat_id, eventId: booking.event_id, userId: booking.user_id, issuedAt: Date.now() },
+            {
+              ticketId: 0,
+              bookingId: booking.id,
+              seatId: bs.seat_id,
+              eventId: booking.event_id,
+              userId: booking.user_id,
+              issuedAt: Date.now(),
+            },
             env.jwt.qrSecret,
             { expiresIn: '365d' } as never,
           ),
@@ -324,7 +399,14 @@ export class BookingService {
       // Cập nhật lại qr_code với ticketId thực
       for (const ticket of tickets) {
         const newQr = jwt.sign(
-          { ticketId: ticket.id, bookingId: booking.id, seatId: ticket.seat_id, eventId: booking.event_id, userId: booking.user_id, issuedAt: Date.now() },
+          {
+            ticketId: ticket.id,
+            bookingId: booking.id,
+            seatId: ticket.seat_id,
+            eventId: booking.event_id,
+            userId: booking.user_id,
+            issuedAt: Date.now(),
+          },
           env.jwt.qrSecret,
           { expiresIn: '365d' } as never,
         );
@@ -339,8 +421,31 @@ export class BookingService {
         io.to(`event:${booking.event_id}`).emit('seat:bulk-updated', {
           seats: seatIds.map((id) => ({ seatId: id, status: 'sold' })),
         });
-      } catch { /* optional */ }
+      } catch {
+        /* optional */
+      }
 
+      // Gửi email xác nhận vé
+      try {
+        const fullBooking = await Booking.findByPk(booking.id, {
+          include: [{ model: Event, as: 'event' }, { association: 'user' }],
+        });
+        if (fullBooking) {
+          const seatLabels = bookingSeats.map((bs) => `Ghế ${bs.seat_id}`);
+          await EmailService.sendBookingConfirmedEmail(
+            (fullBooking as any).user.email,
+            (fullBooking as any).user.full_name,
+            {
+              eventTitle: (fullBooking as any).event.title,
+              seats: seatLabels,
+              totalAmount: amount,
+              bookingId: booking.id,
+            },
+          );
+        }
+      } catch (emailErr) {
+        logger.error('Gửi email xác nhận thất bại:', emailErr);
+      }
       return { booking, tickets };
     } catch (err) {
       await t.rollback().catch(() => {});
@@ -352,20 +457,29 @@ export class BookingService {
   static async expireBooking(booking: Booking) {
     const t = await sequelize.transaction();
     try {
-      const bookingSeats = await BookingSeat.findAll({ where: { booking_id: booking.id }, transaction: t });
-      const seatIds = bookingSeats.map((bs) => bs.seat_id);
-
-      await Seat.update({ status: 'available', locked_by: null, locked_at: null }, {
-        where: { id: seatIds, status: 'locked' },
+      const bookingSeats = await BookingSeat.findAll({
+        where: { booking_id: booking.id },
         transaction: t,
       });
+      const seatIds = bookingSeats.map((bs) => bs.seat_id);
+
+      await Seat.update(
+        { status: 'available', locked_by: null, locked_at: null },
+        {
+          where: { id: seatIds, status: 'locked' },
+          transaction: t,
+        },
+      );
 
       // WHERE status='pending' — tránh overwrite booking đã confirmed bởi payment callback đồng thời
       const [affected] = await Booking.update(
         { status: 'expired' },
         { where: { id: booking.id, status: 'pending' }, transaction: t },
       );
-      if (affected === 0) { await t.rollback(); return; } // đã confirmed/cancelled → bỏ qua
+      if (affected === 0) {
+        await t.rollback();
+        return;
+      } // đã confirmed/cancelled → bỏ qua
       await t.commit();
 
       try {
@@ -373,7 +487,9 @@ export class BookingService {
         io.to(`event:${booking.event_id}`).emit('seat:bulk-updated', {
           seats: seatIds.map((id) => ({ seatId: id, status: 'available' })),
         });
-      } catch { /* optional */ }
+      } catch {
+        /* optional */
+      }
     } catch (err) {
       await t.rollback().catch(() => {});
       throw err;
@@ -384,7 +500,12 @@ export class BookingService {
   static async getMyPendingBooking(userId: number, eventId: number) {
     const now = new Date();
     const booking = await Booking.findOne({
-      where: { user_id: userId, event_id: eventId, status: 'pending', expires_at: { [Op.gt]: now } },
+      where: {
+        user_id: userId,
+        event_id: eventId,
+        status: 'pending',
+        expires_at: { [Op.gt]: now },
+      },
       attributes: ['id'],
     });
     return booking ? { bookingId: booking.id } : null;
@@ -435,7 +556,10 @@ export class BookingService {
 
     if (!promo) throw new AppError('Mã giảm giá không hợp lệ hoặc đã hết hạn', 400);
     if (booking.total_amount < promo.min_amount) {
-      throw new AppError(`Đơn tối thiểu ${promo.min_amount.toLocaleString('vi-VN')}₫ để áp dụng mã này`, 400);
+      throw new AppError(
+        `Đơn tối thiểu ${promo.min_amount.toLocaleString('vi-VN')}₫ để áp dụng mã này`,
+        400,
+      );
     }
     if (promo.usage_limit !== null && promo.usage_count >= promo.usage_limit) {
       throw new AppError('Mã giảm giá đã hết lượt sử dụng', 400);
@@ -454,7 +578,12 @@ export class BookingService {
     // Kiểm tra per_user_limit — cộng cả pending bookings (exclude booking hiện tại)
     const userUsage = await PromoUsage.count({ where: { promo_id: promo.id, user_id: userId } });
     const pendingUserUsage = await Booking.count({
-      where: { promo_code_id: promo.id, user_id: userId, status: 'pending', id: { [Op.ne]: booking.id } },
+      where: {
+        promo_code_id: promo.id,
+        user_id: userId,
+        status: 'pending',
+        id: { [Op.ne]: booking.id },
+      },
     });
     if (userUsage + pendingUserUsage >= promo.per_user_limit) {
       throw new AppError('Bạn đã dùng hết lượt sử dụng mã này', 400);
@@ -470,6 +599,9 @@ export class BookingService {
       discountAmount = Number(promo.discount_value);
     }
 
-    return { discountAmount: Math.min(discountAmount, booking.total_amount), promoCodeId: promo.id };
+    return {
+      discountAmount: Math.min(discountAmount, booking.total_amount),
+      promoCodeId: promo.id,
+    };
   }
 }

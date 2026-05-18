@@ -10,6 +10,7 @@ router.get('/dashboard', AdminController.dashboard);
 
 // Events CRUD đầy đủ
 router.get('/events', AdminController.listEvents);
+router.get('/events/:id', AdminController.getEventDetail);
 router.post('/events', AdminController.createEvent);
 router.put('/events/:id', AdminController.updateEvent);
 router.put('/events/:id/status', AdminController.updateEventStatus);

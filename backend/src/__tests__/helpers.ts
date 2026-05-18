@@ -18,5 +18,5 @@ export async function loginAs(email: string, password: string): Promise<string> 
   return res.body.data.accessToken;
 }
 
-export const ADMIN = { email: 'admin@ticketrush.vn', password: 'Admin@123456' };
-export const DEMO  = { email: 'demo@ticketrush.vn',  password: 'Demo@123456'  };
+export const ADMIN = { email: 'admin@ticketrush.vn', password: 'Admin@12345' };
+export const DEMO = { email: 'user@ticketrush.vn', password: 'User@12345' };
