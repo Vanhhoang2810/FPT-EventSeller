@@ -713,9 +713,3 @@ npm run db:reset       # Reset toàn bộ DB (undo + migrate + seed)
 | ... | ... | ... |
 
 ---
-
-<div align="center">
-
-**INT3306** — Phát triển ứng dụng web — UET-VNU — Spring 2026
-
-</div>
