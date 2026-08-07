@@ -94,12 +94,7 @@
     "funnel": {
       "title": "Phễu chuyển đổi",
       "subtitle": "Tỷ lệ chuyển đổi từ chọn ghế → thanh toán",
-      "stages": [
-        "Chọn ghế",
-        "Thanh toán",
-        "Xác nhận",
-        "Doanh thu"
-      ]
+      "stages": ["Chọn ghế", "Thanh toán", "Xác nhận", "Doanh thu"]
     },
     "liveActivity": {
       "title": "Hoạt động trực tiếp",
@@ -297,12 +292,7 @@
     },
     "funnel": {
       "title": "Phễu chuyển đổi",
-      "stages": [
-        "Chọn ghế",
-        "Thanh toán",
-        "Xác nhận",
-        "Doanh thu"
-      ]
+      "stages": ["Chọn ghế", "Thanh toán", "Xác nhận", "Doanh thu"]
     },
     "categoryLabels": {
       "music": "Âm nhạc",
@@ -493,7 +483,8 @@
       "title": "VD: Đêm nhạc Trịnh Công Sơn",
       "shortDesc": "Tóm tắt 1-2 câu về sự kiện",
       "thumbnail": "https://example.com/thumbnail.jpg",
-      "banner": "https://example.com/banner.jpg"
+      "banner": "https://example.com/banner.jpg",
+      "wizardForm.placeholders.description": "Mô tả sự kiện"
     },
     "validation": {
       "titleRequired": "Thiếu tên sự kiện",

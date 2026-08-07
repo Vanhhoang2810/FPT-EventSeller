@@ -201,7 +201,7 @@ export function EventDetailPage() {
               {/* CTA */}
               {canBuy ? (
                 <Link
-                  to={`/events/${event.slug}/seats`}
+                  to={event.queue_enabled ? `/queue/${event.slug}/${event.id}` : `/events/${event.slug}/seats`}
                   className={cn(
                     'flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-sm font-bold',
                     'btn-glass',
