@@ -30,7 +30,7 @@ export const bookingApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     lockSeats: builder.mutation<
       { success: boolean; data: { bookingId: number; expiresAt: string }; message: string },
-      { eventId: number; seatIds: number[]; queueToken?: string }
+      { eventId: number; seatIds?: number[]; standingSelections?: { zoneId: number; quantity: number }[]; queueToken?: string }
     >({
       query: ({ queueToken, ...body }) => ({
         url: '/bookings/lock-seats',
@@ -38,7 +38,6 @@ export const bookingApi = apiSlice.injectEndpoints({
         body,
         headers: queueToken ? { 'x-queue-token': queueToken } : undefined,
       }),
-      // Invalidate seat map sau khi lock ghế thành công
       invalidatesTags: (_r, _e, { eventId }) => [{ type: 'Event' as const, id: `seatmap-${eventId}` }],
     }),
 
@@ -48,7 +47,6 @@ export const bookingApi = apiSlice.injectEndpoints({
     }),
 
     checkout: builder.mutation<
-      // simulated: { booking, tickets } | vnpay: { url } | momo: { payUrl } — không đọc result trực tiếp nên type là unknown
       { success: boolean; data: unknown; message: string },
       { bookingId: number; method: string; promoCode?: string }
     >({
@@ -81,6 +79,19 @@ export const bookingApi = apiSlice.injectEndpoints({
     createMoMoPayment: builder.mutation<{ success: boolean; data: { payUrl?: string } }, number>({
       query: (bookingId) => ({ url: `/payments/${bookingId}/momo/create`, method: 'POST' }),
     }),
+
+    // Thanh toán giả lập — confirm ngay lập tức, lưu đúng method (vnpay/momo/simulated)
+    simulatePayment: builder.mutation<
+      { success: boolean; data: { bookingId: number; transactionId: string; method: string } },
+      { bookingId: number; method: string }
+    >({
+      query: ({ bookingId, method }) => ({
+        url: `/payments/${bookingId}/simulate`,
+        method: 'POST',
+        body: { method },
+      }),
+      invalidatesTags: ['Booking'],
+    }),
   }),
 });
 
@@ -91,6 +102,7 @@ export const {
   useCancelBookingMutation,
   useCreateVnPayUrlMutation,
   useCreateMoMoPaymentMutation,
+  useSimulatePaymentMutation,
   useGetMyPendingBookingQuery,
   useRequestCancellationMutation,
 } = bookingApi;

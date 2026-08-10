@@ -26,6 +26,9 @@ export function SeatSelectionPage() {
   const location = useLocation();
   const queueToken = (location.state as { queueToken?: string } | null)?.queueToken;
   const [selectedSeats, setSelectedSeats] = useState<SelectedSeat[]>([]);
+  const [standingSelections, setStandingSelections] = useState<Record<number, number>>({});
+  const [standingPrices, setStandingPrices] = useState<Record<number, number>>({});
+  const [standingNames, setStandingNames] = useState<Record<number, string>>({});
   const [lockSeats, { isLoading: isLocking }] = useLockSeatsMutation();
   // Trạng thái ghế real-time: override lên dữ liệu từ API
   const [realtimeSeatStatus, setRealtimeSeatStatus] = useState<Record<number, string>>({});
@@ -106,6 +109,17 @@ export function SeatSelectionPage() {
     })),
   }));
 
+  const totalCurrentTickets = selectedSeats.length + Object.values(standingSelections).reduce((a, b) => a + b, 0);
+
+  const handleUpdateStanding = (zoneId: number, quantity: number, price: number) => {
+    setStandingSelections(prev => ({ ...prev, [zoneId]: quantity }));
+    if (quantity > 0) {
+      setStandingPrices(prev => ({ ...prev, [zoneId]: price }));
+      const zoneName = seatMapZones.find(z => z.id === zoneId)?.name || '';
+      setStandingNames(prev => ({ ...prev, [zoneId]: zoneName }));
+    }
+  };
+
   const handleToggleSeat = (seatId: number, zoneId: number, price: number) => {
     if (seatId === -1) { setSelectedSeats([]); return; } // Escape clears all
     const zone = seatMapZones.find((z) => z.id === zoneId);
@@ -117,7 +131,7 @@ export function SeatSelectionPage() {
       if (exists) return prev.filter((s) => s.seatId !== seatId);
 
       const maxTickets = event?.max_tickets_per_user ?? 5;
-      if (prev.length >= maxTickets) {
+      if (totalCurrentTickets >= maxTickets) {
         toast.warning(t('seatSelection.maxTickets', { max: maxTickets }));
         return prev;
       }
@@ -125,16 +139,25 @@ export function SeatSelectionPage() {
     });
   };
 
-  const total = selectedSeats.reduce((sum, s) => sum + Number(s.price), 0);
+  const seatsTotal = selectedSeats.reduce((sum, s) => sum + Number(s.price), 0);
+  const standingTotal = Object.entries(standingSelections).reduce((sum, [zId, qty]) => {
+    return sum + (qty * (standingPrices[Number(zId)] || 0));
+  }, 0);
+  const total = seatsTotal + standingTotal;
 
   const handleProceed = async () => {
-    if (!event || selectedSeats.length === 0) return;
+    if (!event || totalCurrentTickets === 0) return;
     // Set TRƯỚC await — WebSocket broadcast có thể đến TRƯỚC HTTP response
     pendingLockIdsRef.current = new Set(selectedSeats.map((s) => s.seatId));
     try {
+      const standingPayload = Object.entries(standingSelections)
+        .filter(([, qty]) => qty > 0)
+        .map(([zId, qty]) => ({ zoneId: Number(zId), quantity: qty }));
+
       const result = await lockSeats({
         eventId: event.id,
         seatIds: selectedSeats.map((s) => s.seatId),
+        standingSelections: standingPayload,
         ...(queueToken && { queueToken }),
       }).unwrap();
       isNavigatingRef.current = true;
@@ -196,10 +219,15 @@ export function SeatSelectionPage() {
                 <Wifi size={12} className={isConnected ? 'text-success' : 'text-error'} />
                 {isConnected ? t('seatSelection.syncStatus') : t('seatSelection.connecting')}
               </div>
+              
               <SeatMap
                 zones={mergedZones}
                 selectedSeatIds={selectedSeats.map((s) => s.seatId)}
                 onToggleSeat={handleToggleSeat}
+                standingSelections={standingSelections}
+                onUpdateStanding={handleUpdateStanding}
+                maxTicketsPerUser={event.max_tickets_per_user ?? 5}
+                totalCurrentTickets={totalCurrentTickets}
               />
             </>
           )}
@@ -209,11 +237,11 @@ export function SeatSelectionPage() {
         <div className="hidden lg:block mt-4 lg:mt-0">
           <div className="sticky top-[116px] rounded-xl border border-border bg-card p-4">
             <h3 className="mb-3 text-sm font-semibold text-foreground flex items-center gap-1.5">
-              <Ticket size={16} className="text-primary-700 dark:text-primary-700 dark:text-primary-400" />
-              {t('seatSelection.selectedSeats', { count: selectedSeats.length })}
+              <Ticket size={16} className="text-primary-700 dark:text-primary-400" />
+              {t('seatSelection.selectedSeats', { count: totalCurrentTickets })}
             </h3>
 
-            {selectedSeats.length === 0 ? (
+            {totalCurrentTickets === 0 ? (
               <p className="text-xs text-muted-foreground py-4 text-center">{t('seatSelection.noSeats')}</p>
             ) : (
               <div className="space-y-2 max-h-64 overflow-y-auto mb-4">
@@ -223,6 +251,19 @@ export function SeatSelectionPage() {
                     <div className="flex items-center gap-2">
                       <span className="text-primary-700 dark:text-primary-400 text-xs">{formatCurrency(s.price)}</span>
                       <button onClick={() => handleToggleSeat(s.seatId, s.zoneId, s.price)} className="text-muted-foreground hover:text-error transition-colors">
+                        <X size={12} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                
+                {/* Standing selections */}
+                {Object.entries(standingSelections).filter(([, qty]) => qty > 0).map(([zId, qty]) => (
+                  <div key={`std-${zId}`} className="flex items-center justify-between rounded-lg bg-secondary px-3 py-2 text-sm">
+                    <span className="font-medium text-foreground">{standingNames[Number(zId)]} <span className="text-xs text-muted-foreground font-normal">x{qty}</span></span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-primary-700 dark:text-primary-400 text-xs">{formatCurrency((standingPrices[Number(zId)] || 0) * qty)}</span>
+                      <button onClick={() => handleUpdateStanding(Number(zId), 0, 0)} className="text-muted-foreground hover:text-error transition-colors">
                         <X size={12} />
                       </button>
                     </div>
@@ -238,14 +279,14 @@ export function SeatSelectionPage() {
               </div>
               <button
                 onClick={handleProceed}
-                disabled={selectedSeats.length === 0 || isLocking}
+                disabled={totalCurrentTickets === 0 || isLocking}
                 className={cn(
                   'w-full rounded-xl py-3 text-sm font-semibold text-white transition-all',
                   'btn-glass',
                   'disabled:opacity-50 disabled:cursor-not-allowed',
                 )}
               >
-                {isLocking ? t('seatSelection.locking') : t('seatSelection.continue', { count: selectedSeats.length })}
+                {isLocking ? t('seatSelection.locking') : t('seatSelection.continue', { count: totalCurrentTickets })}
               </button>
             </div>
 
@@ -260,11 +301,11 @@ export function SeatSelectionPage() {
       </div>
 
       {/* Floating CTA bar — chỉ hiện trên mobile khi đã chọn ghế */}
-      {selectedSeats.length > 0 && (
+      {totalCurrentTickets > 0 && (
         <div className="fixed bottom-0 inset-x-0 z-40 border-t border-border bg-background/95 backdrop-blur-sm px-4 py-3 lg:hidden">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="text-xs text-muted-foreground">{t('seatSelection.seatsSelected', { count: selectedSeats.length })}</p>
+              <p className="text-xs text-muted-foreground">{t('seatSelection.seatsSelected', { count: totalCurrentTickets })}</p>
               <p className="font-bold text-foreground">{formatCurrency(total)}</p>
             </div>
             <button

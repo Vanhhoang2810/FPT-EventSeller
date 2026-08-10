@@ -6,8 +6,8 @@ import { apiResponse } from '../../utils/apiResponse';
 export class BookingController {
   static async lockSeats(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { eventId, seatIds } = req.body;
-      const result = await BookingService.lockSeats(req.user!.id, eventId, seatIds);
+      const { eventId, seatIds, standingSelections } = req.body;
+      const result = await BookingService.lockSeats(req.user!.id, eventId, seatIds || [], standingSelections || []);
 
       // Consume queue token SAU KHI lock thành công (tránh mất token nếu lock thất bại)
       const queueToken = res.locals.queueToken as string | undefined;
@@ -60,6 +60,15 @@ export class BookingController {
         return;
       }
       const result = await BookingService.getMyPendingBooking(req.user!.id, eventId);
+      apiResponse.success(res, result);
+    } catch (err) { next(err); }
+  }
+
+  static async getMyBookings(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const limit = Math.min(Number(req.query.limit) || 20, 50);
+      const offset = Number(req.query.offset) || 0;
+      const result = await BookingService.getMyBookings(req.user!.id, limit, offset);
       apiResponse.success(res, result);
     } catch (err) { next(err); }
   }

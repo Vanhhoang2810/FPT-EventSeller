@@ -22,7 +22,7 @@ const BOOKING_TIMEOUT_MS = 10 * 60 * 1000; // 10 phút
 
 export class BookingService {
   // ★ Lock ghế — pessimistic locking với SELECT FOR UPDATE
-  static async lockSeats(userId: number, eventId: number, seatIds: number[]) {
+  static async lockSeats(userId: number, eventId: number, seatIds: number[], standingSelections: { zoneId: number, quantity: number }[] = []) {
     const now = new Date();
 
     // Tự động expire các booking pending đã hết hạn (chưa có BullMQ job)
@@ -65,15 +65,41 @@ export class BookingService {
         throw new AppError('Bạn đã có đơn đang chờ thanh toán cho sự kiện này', 409);
       }
 
+      let finalSeatIds = [...seatIds];
+
+      if (standingSelections && standingSelections.length > 0) {
+        for (const sel of standingSelections) {
+          const availableSeats = await Seat.findAll({
+            attributes: ['id'],
+            where: { zone_id: sel.zoneId, status: 'available' },
+            limit: sel.quantity,
+            lock: transaction.LOCK.UPDATE,
+            transaction,
+          });
+
+          if (availableSeats.length < sel.quantity) {
+            await transaction.rollback();
+            throw new AppError('Khu vực đứng không đủ số lượng vé trống', 409);
+          }
+
+          finalSeatIds.push(...availableSeats.map(s => s.id));
+        }
+      }
+
+      if (finalSeatIds.length === 0) {
+        await transaction.rollback();
+        throw new AppError('Vui lòng chọn ít nhất 1 vé', 400);
+      }
+
       // SELECT FOR UPDATE — khóa các hàng để ngăn đọc đồng thời
       const seats = await Seat.findAll({
-        where: { id: seatIds, status: 'available' },
+        where: { id: finalSeatIds, status: 'available' },
         include: [{ model: Zone, as: 'zone', attributes: ['id', 'name', 'price', 'color_code'] }],
         lock: transaction.LOCK.UPDATE,
         transaction,
       });
 
-      if (seats.length !== seatIds.length) {
+      if (seats.length !== finalSeatIds.length) {
         await transaction.rollback();
         throw new AppError(
           'Một hoặc nhiều ghế đã được người khác chọn. Vui lòng chọn ghế khác',
@@ -115,7 +141,7 @@ export class BookingService {
       // Lock ghế
       await Seat.update(
         { status: 'locked', locked_by: userId, locked_at: new Date() },
-        { where: { id: seatIds }, transaction },
+        { where: { id: finalSeatIds }, transaction },
       );
 
       const totalAmount = seats.reduce((sum, s) => {
@@ -153,7 +179,7 @@ export class BookingService {
       try {
         const io = getIO();
         io.to(`event:${eventId}`).emit('seat:bulk-updated', {
-          seats: seatIds.map((id) => ({ seatId: id, status: 'locked' })),
+          seats: finalSeatIds.map((id) => ({ seatId: id, status: 'locked' })),
         });
       } catch {
         /* WebSocket optional */
@@ -440,6 +466,7 @@ export class BookingService {
               seats: seatLabels,
               totalAmount: amount,
               bookingId: booking.id,
+              startTime: (fullBooking as any).event.start_time,
             },
           );
         }
@@ -603,5 +630,26 @@ export class BookingService {
       discountAmount: Math.min(discountAmount, booking.total_amount),
       promoCodeId: promo.id,
     };
+  }
+
+  // Lấy danh sách booking của user — dùng cho Booking History trong profile
+  static async getMyBookings(userId: number, limit = 20, offset = 0) {
+    const bookings = await Booking.findAll({
+      where: { user_id: userId },
+      include: [
+        {
+          model: Event,
+          as: 'event',
+          attributes: ['title', 'slug', 'start_time', 'banner_url'],
+          include: [{ model: Venue, as: 'venue', attributes: ['name', 'city'] }],
+        },
+        { model: BookingSeat, as: 'bookingSeats', attributes: ['id', 'seat_id', 'price'] },
+        { model: Payment, as: 'payment', attributes: ['method', 'status', 'amount'] },
+      ],
+      order: [['created_at', 'DESC']],
+      limit,
+      offset,
+    });
+    return bookings;
   }
 }

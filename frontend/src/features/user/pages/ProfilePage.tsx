@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { IMaskInput } from 'react-imask';
 import { User, Mail, Phone, Lock, Save, Ticket, Bell, CheckCircle, Camera, Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -356,16 +357,32 @@ export function ProfilePage() {
                 {(bookings ?? []).map((b) => {
                   const s = STATUS_MAP[b.status as keyof typeof STATUS_MAP] ?? STATUS_MAP.expired;
                   return (
-                    <tr key={b.id} className="border-b border-border last:border-0 hover:bg-secondary/50 transition-colors">
+                    <tr key={b.id} className="border-b border-border last:border-0 hover:bg-secondary/50 transition-colors cursor-pointer">
                       <td className="px-4 py-3">
-                        <p className="font-medium text-foreground line-clamp-1">{b.event?.title ?? t('profile.historyOrderFallback', { id: b.id })}</p>
+                        {b.event?.slug ? (
+                          <Link to={`/events/${b.event.slug}`} className="font-medium text-foreground hover:text-primary-400 transition-colors line-clamp-1 block">
+                            {b.event.title}
+                          </Link>
+                        ) : (
+                          <p className="font-medium text-foreground line-clamp-1">{b.event?.title ?? t('profile.historyOrderFallback', { id: b.id })}</p>
+                        )}
                         <p className="text-xs text-muted-foreground">{formatDateTime(b.created_at)} · {t('profile.historySeatCount', { count: b.seat_count })}</p>
                       </td>
                       <td className="px-4 py-3 text-right hidden sm:table-cell font-medium text-foreground">
                         {formatCurrency(Number(b.total_amount))}
                       </td>
                       <td className="px-4 py-3 text-center">
-                        <span className={cn('rounded-full px-2 py-0.5 text-[11px] font-medium', s.cls)}>{s.label}</span>
+                        <div className="flex items-center justify-center gap-2">
+                          <span className={cn('rounded-full px-2 py-0.5 text-[11px] font-medium', s.cls)}>{s.label}</span>
+                          {b.status === 'confirmed' && (
+                            <Link
+                              to="/my-tickets"
+                              className="text-[11px] text-primary-400 hover:text-primary-300 underline transition-colors"
+                            >
+                              Xem vé
+                            </Link>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   );

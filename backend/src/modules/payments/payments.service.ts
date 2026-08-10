@@ -44,9 +44,12 @@ export class PaymentsService {
       vnp_CurrCode: 'VND',
       vnp_IpAddr: cleanIp,
       vnp_Locale: 'vn',
-      vnp_OrderInfo: `Thanh toan ve so ${booking.id}`,  // bỏ '#' — ký tự đặc biệt gây lỗi chữ ký
+      vnp_OrderInfo: `Thanh toan ve so ${booking.id}`,
       vnp_OrderType: 'other',
+      // vnp_ReturnUrl: redirect browser về sau thanh toán
       vnp_ReturnUrl: `${env.apiUrl}/api/payments/vnpay/return`,
+      // vnp_IpnUrl: VNPay gọi server-to-server để xác nhận GD — gửi động, không cần cấu hình trên merchant portal
+      vnp_IpnUrl: `${env.apiUrl}/api/payments/vnpay/ipn`,
       vnp_TxnRef: txnRef,
     };
 

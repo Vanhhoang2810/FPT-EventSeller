@@ -9,6 +9,7 @@ export interface EventVenue {
 export interface EventZone {
   id: number;
   name: string;
+  type: 'seated' | 'standing';
   price: number;
   color_code: string;
   rows_count: number;

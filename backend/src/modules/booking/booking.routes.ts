@@ -18,6 +18,8 @@ const router = Router();
 router.post('/lock-seats', authenticate, verifyQueueToken, lockLimiter, validate(lockSeatsSchema), BookingController.lockSeats);
 // Kiểm tra pending booking cho event — dùng để redirect user trước khi chọn ghế
 router.get('/pending', authenticate, BookingController.getMyPendingBooking);
+// Danh sách booking của user — dùng cho profile/booking history
+router.get('/', authenticate, BookingController.getMyBookings);
 router.get('/:id', authenticate, BookingController.getBooking);
 router.post('/:id/checkout', authenticate, validate(checkoutSchema), BookingController.checkout);
 router.delete('/:id', authenticate, BookingController.cancel);

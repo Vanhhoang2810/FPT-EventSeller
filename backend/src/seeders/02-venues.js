@@ -48,6 +48,33 @@ module.exports = {
         created_at: new Date(),
         updated_at: new Date(),
       },
+      {
+        name: 'Van Phuc City Outdoor Stage',
+        address: 'Khu đô thị Van Phúc, Thuận An',
+        city: 'Bình Dương',
+        capacity: 5000,
+        image_url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        name: 'Cung Văn hoá Hữu nghị Hà Nội',
+        address: '91 Trần Hưng Đạo, Hoàn Kiếm',
+        city: 'Hà Nội',
+        capacity: 1800,
+        image_url: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        name: 'GEM Center HCM',
+        address: '8 Nguyễn Bỉnh Khiêm, Quận 1',
+        city: 'TP. Hồ Chí Minh',
+        capacity: 3000,
+        image_url: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
     ]);
   },
 

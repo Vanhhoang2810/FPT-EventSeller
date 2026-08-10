@@ -116,9 +116,15 @@ export class EmailService {
   static async sendBookingConfirmedEmail(
     to: string,
     name: string,
-    bookingDetails: { eventTitle: string; seats: string[]; totalAmount: number; bookingId: number },
+    bookingDetails: { eventTitle: string; seats: string[]; totalAmount: number; bookingId: number; startTime?: string },
   ): Promise<void> {
     const formattedAmount = new Intl.NumberFormat('vi-VN').format(bookingDetails.totalAmount) + '₫';
+    const formattedDate = bookingDetails.startTime
+      ? new Intl.DateTimeFormat('vi-VN', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+          hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Ho_Chi_Minh',
+        }).format(new Date(bookingDetails.startTime))
+      : '';
     const html = buildEmail(
       'Đặt vé thành công',
       `
@@ -128,6 +134,7 @@ export class EmailService {
       </p>
       <div style="background: #27272A; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
         <p style="color: #FAFAFA; margin: 0 0 8px;"><strong>Sự kiện:</strong> ${bookingDetails.eventTitle}</p>
+        ${formattedDate ? `<p style="color: #A1A1AA; margin: 0 0 8px;">🕐 <strong>Thời gian:</strong> ${formattedDate}</p>` : ''}
         <p style="color: #FAFAFA; margin: 0 0 8px;"><strong>Ghế:</strong> ${bookingDetails.seats.join(', ')}</p>
         <p style="color: #10B981; margin: 0; font-size: 18px;"><strong>Tổng: ${formattedAmount}</strong></p>
       </div>

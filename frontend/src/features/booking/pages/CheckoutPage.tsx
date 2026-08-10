@@ -32,6 +32,7 @@ export function CheckoutPage() {
   const [promoDiscount, setPromoDiscount] = useState<number | null>(null);
   const [isApplyingPromo, setIsApplyingPromo] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
+  const [showFakeVnpay, setShowFakeVnpay] = useState(false);
   const accessToken = useSelector(selectAccessToken);
 
   const PAYMENT_METHODS = [
@@ -83,24 +84,28 @@ export function CheckoutPage() {
 
   const handleCheckout = async () => {
     if (!booking || isExpired) return;
+    
+    if (method === 'vnpay') {
+      setShowFakeVnpay(true);
+      return;
+    }
+    
+    await performCheckout(method);
+  };
+
+  const performCheckout = async (actualMethod: string) => {
     try {
       // Bước 1: áp dụng promo + tạo payment record — chỉ gọi 1 lần, tránh double-charge khi retry
       if (!checkoutCalledRef.current) {
         await checkout({
           bookingId: booking.id,
-          method,
+          method: actualMethod,
           ...(promoCode && promoDiscount !== null ? { promoCode: promoCode.toUpperCase() } : {}),
         }).unwrap();
         checkoutCalledRef.current = true;
       }
 
-      // Bước 2: với VNPay/MoMo, lấy URL redirect sau khi discount đã được persist
-      if (method === 'vnpay') {
-        const res = await createVnPay(booking.id).unwrap();
-        if (res.data.url) { window.location.href = res.data.url; return; }
-      }
-
-      if (method === 'momo') {
+      if (actualMethod === 'momo') {
         const res = await createMoMo(booking.id).unwrap();
         const payUrl = res.data?.payUrl;
         if (payUrl) { window.location.href = payUrl; return; }
@@ -108,7 +113,7 @@ export function CheckoutPage() {
         return;
       }
 
-      // simulated: checkout đã confirm booking trực tiếp
+      // simulated (or fake vnpay): checkout đã confirm booking trực tiếp
       toast.success(t('checkout.paySuccess'));
       navigate(`/booking-success/${booking.id}`);
     } catch (err: unknown) {
@@ -331,6 +336,55 @@ export function CheckoutPage() {
 
         </div>
       </div>
+
+      {/* Fake VNPay Modal */}
+      {showFakeVnpay && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-300">
+            {/* VNPay Header */}
+            <div className="bg-[#005aab] p-4 flex items-center justify-between">
+               <span className="text-white font-bold text-lg tracking-wide">Thanh toán VNPAY</span>
+               <button onClick={() => setShowFakeVnpay(false)} className="text-white/80 hover:text-white font-bold text-xl">✕</button>
+            </div>
+            
+            <div className="p-6 flex flex-col items-center">
+               <h3 className="text-gray-800 font-bold text-lg mb-2">Quét mã QR để thanh toán</h3>
+               <p className="text-gray-500 text-sm mb-6 text-center">
+                 Sử dụng ứng dụng ngân hàng hoặc ví điện tử có hỗ trợ VNPAY-QR để quét mã.
+               </p>
+               
+               {/* Fake QR */}
+               <div className="border-4 border-[#005aab] rounded-xl p-2 mb-6">
+                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=vnpay_fake_qr_code_event_seller" alt="VNPay QR" className="w-48 h-48" />
+               </div>
+               
+               <div className="w-full bg-blue-50 rounded-lg p-4 mb-6 text-center border border-blue-100">
+                 <p className="text-sm text-gray-500 mb-1 font-medium">Số tiền thanh toán</p>
+                 <p className="text-2xl font-black text-[#005aab]">{formatCurrency(finalAmount)}</p>
+               </div>
+
+               <div className="flex gap-3 w-full">
+                 <button 
+                   onClick={() => setShowFakeVnpay(false)}
+                   className="flex-1 py-3 px-4 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition-colors"
+                 >
+                   Hủy giao dịch
+                 </button>
+                 <button 
+                   onClick={async () => {
+                     setShowFakeVnpay(false);
+                     await performCheckout('simulated');
+                   }}
+                   disabled={isCheckingOut}
+                   className="flex-1 py-3 px-4 rounded-xl bg-[#005aab] text-white font-semibold hover:bg-[#004a8c] transition-colors disabled:opacity-50"
+                 >
+                   {isCheckingOut ? t('checkout.processing') : 'Mô phỏng thanh toán'}
+                 </button>
+               </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

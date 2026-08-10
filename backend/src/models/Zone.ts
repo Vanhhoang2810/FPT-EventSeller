@@ -4,6 +4,7 @@ import { sequelize } from '../config/database';
 export interface ZoneAttributes {
   id: number;
   event_id: number;
+  type: 'seated' | 'standing';
   name: string;
   price: number;
   color_code: string;
@@ -14,11 +15,12 @@ export interface ZoneAttributes {
   updated_at?: Date;
 }
 
-type ZoneCreation = Optional<ZoneAttributes, 'id' | 'sort_order'>;
+type ZoneCreation = Optional<ZoneAttributes, 'id' | 'type' | 'sort_order'>;
 
 export class Zone extends Model<ZoneAttributes, ZoneCreation> implements ZoneAttributes {
   declare id: number;
   declare event_id: number;
+  declare type: 'seated' | 'standing';
   declare name: string;
   declare price: number;
   declare color_code: string;
@@ -33,6 +35,7 @@ Zone.init(
   {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     event_id: { type: DataTypes.INTEGER, allowNull: false },
+    type: { type: DataTypes.ENUM('seated', 'standing'), defaultValue: 'seated' },
     name: { type: DataTypes.STRING(50), allowNull: false },
     price: { type: DataTypes.DECIMAL(12, 0), allowNull: false },
     color_code: { type: DataTypes.STRING(7), allowNull: false },
