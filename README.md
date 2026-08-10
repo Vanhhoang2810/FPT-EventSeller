@@ -13,8 +13,6 @@
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **Bài tập lớn** — INT3306 Phát triển ứng dụng web | UET-VNU | Spring 2026
-
 [Demo](#-cài-đặt--chạy) · [Tài liệu](#7-tài-liệu) · [Tech Stack](#2-tech-stack) · [Screenshots](#3-screenshots)
 
 </div>
