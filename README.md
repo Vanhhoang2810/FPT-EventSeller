@@ -1,8 +1,8 @@
-﻿<div align="center">
+<div align="center">
 
-# ≡ƒÄ½ Ticket Rush
+# 🎫 Ticket Rush
 
-**Nß╗ün tß║úng ─æß║╖t v├⌐ sß╗▒ kiß╗çn trß╗▒c tuyß║┐n ΓÇö Real-time Seat Map, Flash Sale Ready, Virtual Queue**
+**Nền tảng đặt vé sự kiện trực tuyến — Real-time Seat Map, Flash Sale Ready, Virtual Queue**
 
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js&logoColor=white)](https://nodejs.org)
@@ -13,29 +13,29 @@
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-[Demo](#-c├ái-─æß║╖t--chß║íy) ┬╖ [T├ái liß╗çu](#7-t├ái-liß╗çu) ┬╖ [Tech Stack](#2-tech-stack) ┬╖ [Screenshots](#3-screenshots)
+[Demo](#-cài-đặt--chạy) · [Tài liệu](#7-tài-liệu) · [Tech Stack](#2-tech-stack) · [Screenshots](#3-screenshots)
 
 </div>
 
 ---
 
-## ≡ƒôï Mß╗Ñc lß╗Ñc
+## 📋 Mục lục
 
-1. [T├¡nh n─âng](#1-t├¡nh-n─âng)
+1. [Tính năng](#1-tính-năng)
    - 1.1 [Customer](#11-customer)
    - 1.2 [Admin](#12-admin)
 2. [Tech Stack](#2-tech-stack)
 3. [Slide](#3-slide)
-4. [Cß║Ñu tr├║c dß╗▒ ├ín](#4-cß║Ñu-tr├║c-dß╗▒-├ín)
-5. [C├ái ─æß║╖t & Chß║íy](#5-c├ái-─æß║╖t--chß║íy)
-   - 5.1 [Y├¬u cß║ºu](#51-y├¬u-cß║ºu)
-   - 5.2 [Clone & c├ái ─æß║╖t](#52-clone--c├ái-─æß║╖t)
-   - 5.3 [Cß║Ñu h├¼nh environment](#53-cß║Ñu-h├¼nh-environment)
+4. [Cấu trúc dự án](#4-cấu-trúc-dự-án)
+5. [Cài đặt & Chạy](#5-cài-đặt--chạy)
+   - 5.1 [Yêu cầu](#51-yêu-cầu)
+   - 5.2 [Clone & cài đặt](#52-clone--cài-đặt)
+   - 5.3 [Cấu hình environment](#53-cấu-hình-environment)
    - 5.4 [Database setup](#54-database-setup)
-   - 5.5 [Chß║íy development](#55-chß║íy-development)
-   - 5.6 [T├ái khoß║ún test](#56-t├ái-khoß║ún-test-sau-khi-seed)
+   - 5.5 [Chạy development](#55-chạy-development)
+   - 5.6 [Tài khoản test](#56-tài-khoản-test-sau-khi-seed)
    - 5.7 [Test VNPay sandbox](#57-test-vnpay-sandbox)
-   - 5.8 [C├ái Redis tr├¬n Windows](#58-c├ái-redis-tr├¬n-windows)
+   - 5.8 [Cài Redis trên Windows](#58-cài-redis-trên-windows)
    - 5.9 [Setup ngrok](#59-setup-ngrok-cho-vnpay-ipn--momo-redirect)
    - 5.10 [Setup Google OAuth](#510-setup-google-oauth)
    - 5.11 [Setup SMTP](#511-setup-smtp-gmail)
@@ -43,56 +43,56 @@
    - 5.13 [Setup MoMo Sandbox](#513-setup-momo-sandbox)
    - 5.14 [Setup Turnstile CAPTCHA](#514-setup-cloudflare-turnstile-captcha)
    - 5.15 [Troubleshooting](#615-troubleshooting)
-6. [T├ái liß╗çu](#6-t├ái-liß╗çu)
+6. [Tài liệu](#6-tài-liệu)
 7. [API Documentation](#7-api-documentation)
-   - 7.1 [Modules ch├¡nh](#71-modules-ch├¡nh)
+   - 7.1 [Modules chính](#71-modules-chính)
    - 7.2 [WebSocket Events](#72-websocket-events)
 8. [Scripts](#8-scripts)
    - 8.1 [Frontend](#81-frontend)
    - 8.2 [Backend](#82-backend)
-9. [Nh├│m thß╗▒c hiß╗çn](#9-nh├│m-thß╗▒c-hiß╗çn)
+9. [Nhóm thực hiện](#9-nhóm-thực-hiện)
 
 ---
 
-## 1. T├¡nh n─âng
+## 1. Tính năng
 
 ### 1.1 Customer
 
-| # | T├¡nh n─âng | M├┤ tß║ú |
+| # | Tính năng | Mô tả |
 |---|-----------|-------|
-| 1 | **T├¼m kiß║┐m sß╗▒ kiß╗çn** | Autocomplete, filter theo thß╗â loß║íi / ng├áy / gi├í, sß║»p xß║┐p |
-| 2 | **S╞í ─æß╗ô ghß║┐ real-time** | Interactive seat map, WebSocket live update, pinch zoom mobile |
-| 3 | **─Éß║╖t v├⌐ + giß╗» chß╗ù** | Pessimistic locking (SELECT FOR UPDATE), timeout 10 ph├║t |
-| 4 | **Thanh to├ín** | VNPay sandbox, MoMo sandbox, thanh to├ín m├┤ phß╗Ång |
-| 5 | **V├⌐ QR Code** | Signed JWT, download PDF, admin scan verify |
-| 6 | **Virtual Queue** | H├áng chß╗¥ ß║úo khi traffic cao, Redis sorted set, BullMQ batch grant |
-| 7 | **M├ú giß║úm gi├í** | Validate + apply promo, per-user limit, event-scoped |
-| 8 | **Y├¬u th├¡ch** | Toggle favorite, danh s├ích y├¬u th├¡ch |
-| 9 | **Th├┤ng b├ío** | Real-time WebSocket + email notifications |
-| 10 | **─Éa ng├┤n ngß╗»** | Tiß║┐ng Viß╗çt / English (react-i18next) |
+| 1 | **Tìm kiếm sự kiện** | Autocomplete, filter theo thể loại / ngày / giá, sắp xếp |
+| 2 | **Sơ đồ ghế real-time** | Interactive seat map, WebSocket live update, pinch zoom mobile |
+| 3 | **Đặt vé + giữ chỗ** | Pessimistic locking (SELECT FOR UPDATE), timeout 10 phút |
+| 4 | **Thanh toán** | VNPay sandbox, MoMo sandbox, thanh toán mô phỏng |
+| 5 | **Vé QR Code** | Signed JWT, download PDF, admin scan verify |
+| 6 | **Virtual Queue** | Hàng chờ ảo khi traffic cao, Redis sorted set, BullMQ batch grant |
+| 7 | **Mã giảm giá** | Validate + apply promo, per-user limit, event-scoped |
+| 8 | **Yêu thích** | Toggle favorite, danh sách yêu thích |
+| 9 | **Thông báo** | Real-time WebSocket + email notifications |
+| 10 | **Đa ngôn ngữ** | Tiếng Việt / English (react-i18next) |
 | 11 | **Live Chat** | Chat widget, typing indicator, read receipts, recall messages |
-| 12 | **Google OAuth** | ─É─âng nhß║¡p bß║▒ng Google account |
+| 12 | **Google OAuth** | Đăng nhập bằng Google account |
 | 13 | **Dark/Light mode** | Theme toggle, persistent preference |
 
 ### 1.2 Admin
 
-| # | T├¡nh n─âng | M├┤ tß║ú |
+| # | Tính năng | Mô tả |
 |---|-----------|-------|
-| 1 | **Dashboard** | Real-time: doanh thu, tß╗ë lß╗ç lß║Ñp ─æß║ºy, demographics, conversion funnel |
-| 2 | **Quß║ún l├╜ sß╗▒ kiß╗çn** | CRUD wizard 5 b╞░ß╗¢c + seat map builder + clone event |
-| 3 | **Quß║ún l├╜ user** | Danh s├ích, chi tiß║┐t, ban/unban, booking history |
-| 4 | **Quß║ún l├╜ booking** | T├¼m kiß║┐m, filter, refund |
-| 5 | **M├ú giß║úm gi├í** | CRUD, bulk actions, usage tracking |
-| 6 | **Venues** | CRUD ─æß╗ïa ─æiß╗âm tß╗ò chß╗⌐c |
-| 7 | **Export b├ío c├ío** | CSV export vß╗¢i filter theo ng├áy |
-| 8 | **Audit logs** | Lß╗ïch sß╗¡ thao t├íc admin, search + filter |
-| 9 | **Live Chat** | Quß║ún l├╜ conversations, bulk actions, typing indicator |
+| 1 | **Dashboard** | Real-time: doanh thu, tỉ lệ lấp đầy, demographics, conversion funnel |
+| 2 | **Quản lý sự kiện** | CRUD wizard 5 bước + seat map builder + clone event |
+| 3 | **Quản lý user** | Danh sách, chi tiết, ban/unban, booking history |
+| 4 | **Quản lý booking** | Tìm kiếm, filter, refund |
+| 5 | **Mã giảm giá** | CRUD, bulk actions, usage tracking |
+| 6 | **Venues** | CRUD địa điểm tổ chức |
+| 7 | **Export báo cáo** | CSV export với filter theo ngày |
+| 8 | **Audit logs** | Lịch sử thao tác admin, search + filter |
+| 9 | **Live Chat** | Quản lý conversations, bulk actions, typing indicator |
 
 ---
 
 ## 2. Tech Stack
 
-| Layer | C├┤ng nghß╗ç |
+| Layer | Công nghệ |
 |-------|-----------|
 | **Frontend** | React 19, Vite 6, TypeScript, TailwindCSS 4, Redux Toolkit (RTK Query), React Router 7, Framer Motion, Socket.IO Client, react-i18next, react-hook-form, Zod |
 | **Backend** | Node.js 22, Express 5, TypeScript, Sequelize 6 (MySQL), Redis 7 (ioredis), BullMQ, Socket.IO 4, Passport (Google OAuth), Nodemailer, Multer |
@@ -104,94 +104,92 @@
 
 ---
 
-## 3. Screenshots
-
-> *Th├¬m screenshots v├áo th╞░ mß╗Ñc `docs/screenshots/` v├á cß║¡p nhß║¡t ß╗ƒ ─æ├óy*
+## 3. Slide
 
 ---
 
 
-## 4. Cß║Ñu tr├║c dß╗▒ ├ín
+## 4. Cấu trúc dự án
 
 ```
 TicketRush/
-Γö£ΓöÇΓöÇ frontend/                    # React SPA
-Γöé   Γö£ΓöÇΓöÇ src/
-Γöé   Γöé   Γö£ΓöÇΓöÇ app/                 # Router, store, providers, SessionProvider
-Γöé   Γöé   Γö£ΓöÇΓöÇ features/            # Feature-based modules
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ auth/            # Login, register, Google OAuth
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ booking/         # Seat selection, checkout, success
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ chat/            # Chat widget + services
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ events/          # Event list, detail, seat map
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ admin/           # Admin dashboard, management pages
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ landing/         # Homepage components
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ queue/           # Virtual queue waiting room
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ tickets/         # My tickets, QR display
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ user/            # Profile, avatar upload
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ favorites/       # Favorite events
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ notifications/   # Notification services
-Γöé   Γöé   Γöé   ΓööΓöÇΓöÇ static/          # About, FAQ, Contact, Privacy, Terms
-Γöé   Γöé   Γö£ΓöÇΓöÇ shared/              # Hooks, utils, components, constants
-Γöé   Γöé   Γö£ΓöÇΓöÇ layouts/             # MainLayout, AdminLayout, AuthLayout
-Γöé   Γöé   ΓööΓöÇΓöÇ locales/             # i18n (vi/en)
-Γöé   Γö£ΓöÇΓöÇ public/                  # Static assets
-Γöé   ΓööΓöÇΓöÇ .env.example             # Template biß║┐n m├┤i tr╞░ß╗¥ng
-Γöé
-Γö£ΓöÇΓöÇ backend/                     # Express API
-Γöé   Γö£ΓöÇΓöÇ src/
-Γöé   Γöé   Γö£ΓöÇΓöÇ modules/             # Feature modules
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ auth/            # JWT, Google OAuth, password reset
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ booking/         # Lock seats, checkout, confirm
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ payments/        # VNPay, MoMo integration
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ tickets/         # QR verify, PDF export
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ events/          # Public event queries
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ admin/           # Admin CRUD, reports, audit
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ chat/            # Live chat routes
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ queue/           # Virtual queue service
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ promo/           # Promo code management
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ users/           # Profile, avatar upload
-Γöé   Γöé   Γöé   Γö£ΓöÇΓöÇ notifications/   # Notification CRUD
-Γöé   Γöé   Γöé   ΓööΓöÇΓöÇ email/           # Email service (Nodemailer)
-Γöé   Γöé   Γö£ΓöÇΓöÇ jobs/                # BullMQ background jobs (5)
-Γöé   Γöé   Γö£ΓöÇΓöÇ models/              # Sequelize models (18)
-Γöé   Γöé   Γö£ΓöÇΓöÇ migrations/          # DB migrations (20)
-Γöé   Γöé   Γö£ΓöÇΓöÇ seeders/             # Sample data
-Γöé   Γöé   Γö£ΓöÇΓöÇ middleware/          # Auth, validation, rate limit, CAPTCHA
-Γöé   Γöé   Γö£ΓöÇΓöÇ config/              # DB, Redis, Socket.IO, env
-Γöé   Γöé   ΓööΓöÇΓöÇ utils/               # Logger, API response helpers
-Γöé   Γö£ΓöÇΓöÇ uploads/                 # User avatar uploads
-Γöé   ΓööΓöÇΓöÇ .env.example             # Template biß║┐n m├┤i tr╞░ß╗¥ng
-Γöé
-Γö£ΓöÇΓöÇ docs/                        # T├ái liß╗çu kß╗╣ thuß║¡t (9 files)
-Γö£ΓöÇΓöÇ .gitignore                   # Git ignore rules
-Γö£ΓöÇΓöÇ CLAUDE.md                    # Project instructions cho Claude Code
-Γö£ΓöÇΓöÇ DESIGN.md                    # Design system
-Γö£ΓöÇΓöÇ CONTEXT.md                   # ─Éß╗ü b├ái gß╗æc
-ΓööΓöÇΓöÇ README.md
+├── frontend/                    # React SPA
+│   ├── src/
+│   │   ├── app/                 # Router, store, providers, SessionProvider
+│   │   ├── features/            # Feature-based modules
+│   │   │   ├── auth/            # Login, register, Google OAuth
+│   │   │   ├── booking/         # Seat selection, checkout, success
+│   │   │   ├── chat/            # Chat widget + services
+│   │   │   ├── events/          # Event list, detail, seat map
+│   │   │   ├── admin/           # Admin dashboard, management pages
+│   │   │   ├── landing/         # Homepage components
+│   │   │   ├── queue/           # Virtual queue waiting room
+│   │   │   ├── tickets/         # My tickets, QR display
+│   │   │   ├── user/            # Profile, avatar upload
+│   │   │   ├── favorites/       # Favorite events
+│   │   │   ├── notifications/   # Notification services
+│   │   │   └── static/          # About, FAQ, Contact, Privacy, Terms
+│   │   ├── shared/              # Hooks, utils, components, constants
+│   │   ├── layouts/             # MainLayout, AdminLayout, AuthLayout
+│   │   └── locales/             # i18n (vi/en)
+│   ├── public/                  # Static assets
+│   └── .env.example             # Template biến môi trường
+│
+├── backend/                     # Express API
+│   ├── src/
+│   │   ├── modules/             # Feature modules
+│   │   │   ├── auth/            # JWT, Google OAuth, password reset
+│   │   │   ├── booking/         # Lock seats, checkout, confirm
+│   │   │   ├── payments/        # VNPay, MoMo integration
+│   │   │   ├── tickets/         # QR verify, PDF export
+│   │   │   ├── events/          # Public event queries
+│   │   │   ├── admin/           # Admin CRUD, reports, audit
+│   │   │   ├── chat/            # Live chat routes
+│   │   │   ├── queue/           # Virtual queue service
+│   │   │   ├── promo/           # Promo code management
+│   │   │   ├── users/           # Profile, avatar upload
+│   │   │   ├── notifications/   # Notification CRUD
+│   │   │   └── email/           # Email service (Nodemailer)
+│   │   ├── jobs/                # BullMQ background jobs (5)
+│   │   ├── models/              # Sequelize models (18)
+│   │   ├── migrations/          # DB migrations (20)
+│   │   ├── seeders/             # Sample data
+│   │   ├── middleware/          # Auth, validation, rate limit, CAPTCHA
+│   │   ├── config/              # DB, Redis, Socket.IO, env
+│   │   └── utils/               # Logger, API response helpers
+│   ├── uploads/                 # User avatar uploads
+│   └── .env.example             # Template biến môi trường
+│
+├── docs/                        # Tài liệu kỹ thuật (9 files)
+├── .gitignore                   # Git ignore rules
+├── CLAUDE.md                    # Project instructions cho Claude Code
+├── DESIGN.md                    # Design system
+├── CONTEXT.md                   # Đề bài gốc
+└── README.md
 ```
 
 ---
 
-## 5. C├ái ─æß║╖t & Chß║íy
+## 5. Cài đặt & Chạy
 
-### 5.1 Y├¬u cß║ºu
+### 5.1 Yêu cầu
 
-| Phß║ºn mß╗üm | Phi├¬n bß║ún | Link tß║úi |
+| Phần mềm | Phiên bản | Link tải |
 |-----------|-----------|----------|
 | **Node.js** | 22 LTS | [nodejs.org/download](https://nodejs.org/en/download) |
 | **XAMPP** | 8.x (MySQL 8) | [apachefriends.org](https://www.apachefriends.org/download.html) |
 | **Redis** | 7.x | [GitHub Windows port](https://github.com/tporadowski/redis/releases) |
 | **Git** | 2.x+ | [git-scm.com](https://git-scm.com/download/win) |
 
-**Kiß╗âm tra sau khi c├ái:**
+**Kiểm tra sau khi cài:**
 ```bash
 node -v      # v22.x.x
-mysql --version  # hoß║╖c mß╗ƒ XAMPP ΓåÆ Start MySQL
+mysql --version  # hoặc mở XAMPP → Start MySQL
 redis-cli ping   # PONG
 git --version
 ```
 
-### 5.2 Clone & c├ái ─æß║╖t
+### 5.2 Clone & cài đặt
 
 ```bash
 git clone <repo-url>
@@ -204,7 +202,7 @@ cd frontend && npm install
 cd ../backend && npm install
 ```
 
-### 5.3 Cß║Ñu h├¼nh environment
+### 5.3 Cấu hình environment
 
 **`backend/.env`**
 ```env
@@ -259,23 +257,23 @@ VITE_TURNSTILE_SITE_KEY=<from-cloudflare>
 ### 5.4 Database setup
 
 ```bash
-# Tß║ío database "ticketrush" trong phpMyAdmin hoß║╖c CLI
+# Tạo database "ticketrush" trong phpMyAdmin hoặc CLI
 cd backend
 npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
 ```
 
-### 5.5 Chß║íy development
+### 5.5 Chạy development
 
 ```bash
-# Terminal 1 ΓÇö Backend (port 3001)
+# Terminal 1 — Backend (port 3001)
 cd backend && npm run dev
 
-# Terminal 2 ΓÇö Frontend (port 5173)
+# Terminal 2 — Frontend (port 5173)
 cd frontend && npm run dev
 ```
 
-### 5.6 T├ái khoß║ún test (sau khi seed)
+### 5.6 Tài khoản test (sau khi seed)
 
 | Role | Email | Password |
 |------|-------|----------|
@@ -284,35 +282,35 @@ cd frontend && npm run dev
 
 ### 5.7 Test VNPay sandbox
 
-| Field | Gi├í trß╗ï |
+| Field | Giá trị |
 |-------|---------|
-| Ng├ón h├áng | NCB |
-| Sß╗æ thß║╗ | `9704198526191432198` |
-| T├¬n chß╗º thß║╗ | `NGUYEN VAN A` |
-| Ng├áy ph├ít h├ánh | `07/15` |
-| Mß║¡t khß║⌐u OTP | `123456` |
+| Ngân hàng | NCB |
+| Số thẻ | `9704198526191432198` |
+| Tên chủ thẻ | `NGUYEN VAN A` |
+| Ngày phát hành | `07/15` |
+| Mật khẩu OTP | `123456` |
 
-### 5.8 C├ái Redis tr├¬n Windows
+### 5.8 Cài Redis trên Windows
 
-Redis kh├┤ng c├│ bß║ún ch├¡nh thß╗⌐c cho Windows. D├╣ng 1 trong 3 c├ích:
+Redis không có bản chính thức cho Windows. Dùng 1 trong 3 cách:
 
-**C├ích 1 ΓÇö Tß║úi bß║ún port tß╗½ GitHub (─æ╞ín giß║ún nhß║Ñt):**
+**Cách 1 — Tải bản port từ GitHub (đơn giản nhất):**
 ```bash
-# Tß║úi tß╗½: https://github.com/tporadowski/redis/releases
-# Giß║úi n├⌐n ΓåÆ chß║íy redis-server.exe
+# Tải từ: https://github.com/tporadowski/redis/releases
+# Giải nén → chạy redis-server.exe
 redis-server.exe
 
 # Test:
-redis-cli ping   # ΓåÆ PONG
+redis-cli ping   # → PONG
 ```
 
-**C├ích 2 ΓÇö Memurai (Redis-compatible cho Windows):**
+**Cách 2 — Memurai (Redis-compatible cho Windows):**
 ```bash
-# Tß║úi tß╗½: https://www.memurai.com/
-# C├ái xong tß╗▒ chß║íy nh╞░ Windows service
+# Tải từ: https://www.memurai.com/
+# Cài xong tự chạy như Windows service
 ```
 
-**C├ích 3 ΓÇö WSL2/Docker:**
+**Cách 3 — WSL2/Docker:**
 ```bash
 # WSL2
 wsl --install
@@ -324,113 +322,113 @@ sudo service redis-server start
 docker run -d --name redis -p 6379:6379 redis:7-alpine
 ```
 
-> Nß║┐u kh├┤ng c├│ Redis, app vß║½n chß║íy nh╞░ng Virtual Queue + BullMQ jobs sß║╜ kh├┤ng hoß║ít ─æß╗Öng.
+> Nếu không có Redis, app vẫn chạy nhưng Virtual Queue + BullMQ jobs sẽ không hoạt động.
 
 ### 5.9 Setup ngrok (cho VNPay IPN + MoMo redirect)
 
-VNPay IPN v├á MoMo cß║ºn gß╗ìi vß╗ü server qua URL public. D├╣ng **ngrok** ─æß╗â tunnel localhost:
+VNPay IPN và MoMo cần gọi về server qua URL public. Dùng **ngrok** để tunnel localhost:
 
 ```bash
-# 1. C├ái ngrok
+# 1. Cài ngrok
 winget install ngrok.ngrok          # Windows
-# hoß║╖c tß║úi tß║íi https://ngrok.com/download
+# hoặc tải tại https://ngrok.com/download
 
-# 2. ─É─âng k├╜ free account + lß║Ñy authtoken
+# 2. Đăng ký free account + lấy authtoken
 #    https://dashboard.ngrok.com/signup
 ngrok config add-authtoken <your-token>
 
 # 3. Tunnel backend
 ngrok http 3001
-# Output: https://abc123.ngrok-free.app ΓåÆ http://localhost:3001
+# Output: https://abc123.ngrok-free.app → http://localhost:3001
 ```
 
-Sau ─æ├│ cß║¡p nhß║¡t `backend/.env`:
+Sau đó cập nhật `backend/.env`:
 ```env
 API_URL=https://abc123.ngrok-free.app
-CLIENT_URL=http://localhost:5173      # frontend vß║½n localhost
+CLIENT_URL=http://localhost:5173      # frontend vẫn localhost
 ```
 
-Cß║Ñu h├¼nh VNPay IPN URL trong merchant portal:
+Cấu hình VNPay IPN URL trong merchant portal:
 ```
 https://abc123.ngrok-free.app/api/payments/vnpay/ipn
 ```
 
-> **L╞░u ├╜**: Mß╗ùi lß║ºn restart ngrok sß║╜ ─æß╗òi URL ΓåÆ cß║ºn update `.env` + restart backend.
+> **Lưu ý**: Mỗi lần restart ngrok sẽ đổi URL → cần update `.env` + restart backend.
 
 ### 5.10 Setup Google OAuth
 
-1. V├áo [Google Cloud Console](https://console.cloud.google.com) ΓåÆ tß║ío project
-2. **APIs & Services ΓåÆ OAuth consent screen** ΓåÆ External ΓåÆ ─æiß╗ün App name + email ΓåÆ Save
-3. **Credentials ΓåÆ Create Credentials ΓåÆ OAuth client ID**
+1. Vào [Google Cloud Console](https://console.cloud.google.com) → tạo project
+2. **APIs & Services → OAuth consent screen** → External → điền App name + email → Save
+3. **Credentials → Create Credentials → OAuth client ID**
    - Type: **Web application**
    - Authorized JavaScript origins: `http://localhost:5173`
-4. Copy **Client ID** ΓåÆ `backend/.env` (`GOOGLE_CLIENT_ID`) + `frontend/.env` (`VITE_GOOGLE_CLIENT_ID`)
-5. Copy **Client Secret** ΓåÆ `backend/.env` (`GOOGLE_CLIENT_SECRET`)
+4. Copy **Client ID** → `backend/.env` (`GOOGLE_CLIENT_ID`) + `frontend/.env` (`VITE_GOOGLE_CLIENT_ID`)
+5. Copy **Client Secret** → `backend/.env` (`GOOGLE_CLIENT_SECRET`)
 
 ### 5.11 Setup SMTP (Gmail)
 
-1. [Google Account ΓåÆ Security](https://myaccount.google.com/security) ΓåÆ bß║¡t **2-Step Verification**
-2. V├áo **App passwords** ΓåÆ tß║ío password cho "Mail"
-3. Copy 16 k├╜ tß╗▒ ΓåÆ `backend/.env` ΓåÆ `SMTP_PASS`
-4. `SMTP_USER` = email Gmail cß╗ºa bß║ín
+1. [Google Account → Security](https://myaccount.google.com/security) → bật **2-Step Verification**
+2. Vào **App passwords** → tạo password cho "Mail"
+3. Copy 16 ký tự → `backend/.env` → `SMTP_PASS`
+4. `SMTP_USER` = email Gmail của bạn
 
 ### 5.12 Setup MoMo Sandbox
 
-MoMo public sandbox credentials (kh├┤ng cß║ºn ─æ─âng k├╜):
+MoMo public sandbox credentials (không cần đăng ký):
 ```env
 MOMO_PARTNER_CODE=MOMO
 MOMO_ACCESS_KEY=F8BBA842ECF85
 MOMO_SECRET_KEY=K951B6PE1waDMi640xX08PD3vg6EkVlz
 ```
-> MoMo redirect cß║ºn ngrok (kh├┤ng redirect vß╗ü localhost). Xem [5.9](#69-setup-ngrok-cho-vnpay-ipn--momo-redirect).
+> MoMo redirect cần ngrok (không redirect về localhost). Xem [5.9](#69-setup-ngrok-cho-vnpay-ipn--momo-redirect).
 
 ### 5.13 Setup Cloudflare Turnstile (CAPTCHA)
 
-1. [Cloudflare Dashboard](https://dash.cloudflare.com) ΓåÆ Turnstile ΓåÆ Add site (domain: `localhost`)
-2. **Site Key** ΓåÆ `frontend/.env` ΓåÆ `VITE_TURNSTILE_SITE_KEY`
-3. **Secret Key** ΓåÆ `backend/.env` ΓåÆ `TURNSTILE_SECRET_KEY`
+1. [Cloudflare Dashboard](https://dash.cloudflare.com) → Turnstile → Add site (domain: `localhost`)
+2. **Site Key** → `frontend/.env` → `VITE_TURNSTILE_SITE_KEY`
+3. **Secret Key** → `backend/.env` → `TURNSTILE_SECRET_KEY`
 
-> Bß╗Å qua b╞░ß╗¢c n├áy vß║½n chß║íy ─æ╞░ß╗úc ΓÇö CAPTCHA middleware skip khi key trß╗æng.
+> Bỏ qua bước này vẫn chạy được — CAPTCHA middleware skip khi key trống.
 
 ### 5.14 Troubleshooting
 
-| Vß║Ñn ─æß╗ü | Giß║úi ph├íp |
+| Vấn đề | Giải pháp |
 |--------|-----------|
-| `EADDRINUSE :3001` | `netstat -ano \| findstr :3001` ΓåÆ `taskkill /F /PID <pid>` |
-| Redis connection refused | Chß║íy `redis-server.exe` hoß║╖c kiß╗âm tra Memurai service |
-| MySQL access denied | Kiß╗âm tra `DB_USER` + `DB_PASSWORD` trong `.env`, mß╗ƒ XAMPP Control Panel |
-| `SequelizeDatabaseError` | Ch╞░a tß║ío DB hoß║╖c ch╞░a chß║íy migration: `npx sequelize-cli db:migrate` |
-| VNPay "Sai chß╗» k├╜" | Kiß╗âm tra `VNPAY_HASH_SECRET` ─æ├║ng, restart backend |
-| MoMo 503 | Cß║ºn ngrok, `API_URL` phß║úi l├á URL public |
-| Google OAuth 500 | Kiß╗âm tra `GOOGLE_CLIENT_ID` cß║ú backend + frontend `.env` |
-| Logout khi reload | Clear cookies: DevTools ΓåÆ Application ΓåÆ Cookies ΓåÆ x├│a `refreshToken` ΓåÆ login lß║íi |
-| Favicon c┼⌐ Vite t├¡m | `Ctrl+Shift+R` hoß║╖c Incognito tab |
-| Website trß║»ng tr╞ín | Chß║íy `npm run build` ΓåÆ xem lß╗ùi JSON parse trong locale files |
+| `EADDRINUSE :3001` | `netstat -ano \| findstr :3001` → `taskkill /F /PID <pid>` |
+| Redis connection refused | Chạy `redis-server.exe` hoặc kiểm tra Memurai service |
+| MySQL access denied | Kiểm tra `DB_USER` + `DB_PASSWORD` trong `.env`, mở XAMPP Control Panel |
+| `SequelizeDatabaseError` | Chưa tạo DB hoặc chưa chạy migration: `npx sequelize-cli db:migrate` |
+| VNPay "Sai chữ ký" | Kiểm tra `VNPAY_HASH_SECRET` đúng, restart backend |
+| MoMo 503 | Cần ngrok, `API_URL` phải là URL public |
+| Google OAuth 500 | Kiểm tra `GOOGLE_CLIENT_ID` cả backend + frontend `.env` |
+| Logout khi reload | Clear cookies: DevTools → Application → Cookies → xóa `refreshToken` → login lại |
+| Favicon cũ Vite tím | `Ctrl+Shift+R` hoặc Incognito tab |
+| Website trắng trơn | Chạy `npm run build` → xem lỗi JSON parse trong locale files |
 
 ---
 
-## 6. T├ái liß╗çu
+## 6. Tài liệu
 
-| # | File | Nß╗Öi dung |
+| # | File | Nội dung |
 |---|------|----------|
-| 1 | [docs/plan.md](docs/plan.md) | Tß╗òng quan, 4 phases triß╗ân khai, mapping ti├¬u ch├¡ |
-| 2 | [docs/tech-stack.md](docs/tech-stack.md) | Danh s├ích c├┤ng nghß╗ç + l├╜ do chß╗ìn |
-| 3 | [docs/folder-structure.md](docs/folder-structure.md) | Cß║Ñu tr├║c th╞░ mß╗Ñc frontend + backend |
-| 4 | [docs/database.md](docs/database.md) | Schema 20 bß║úng, ERD, associations |
+| 1 | [docs/plan.md](docs/plan.md) | Tổng quan, 4 phases triển khai, mapping tiêu chí |
+| 2 | [docs/tech-stack.md](docs/tech-stack.md) | Danh sách công nghệ + lý do chọn |
+| 3 | [docs/folder-structure.md](docs/folder-structure.md) | Cấu trúc thư mục frontend + backend |
+| 4 | [docs/database.md](docs/database.md) | Schema 20 bảng, ERD, associations |
 | 5 | [docs/api.md](docs/api.md) | 60+ API endpoints, WebSocket events |
-| 6 | [docs/technical.md](docs/technical.md) | Giß║úi ph├íp kß╗╣ thuß║¡t: concurrency, queue, payments |
+| 6 | [docs/technical.md](docs/technical.md) | Giải pháp kỹ thuật: concurrency, queue, payments |
 | 7 | [docs/pages.md](docs/pages.md) | 30+ frontend pages + responsive specs |
 | 8 | [docs/security.md](docs/security.md) | Auth flow, OAuth2, rate limit, CAPTCHA, checklist |
-| 9 | [docs/setup.md](docs/setup.md) | H╞░ß╗¢ng dß║½n c├ái ─æß║╖t chi tiß║┐t |
+| 9 | [docs/setup.md](docs/setup.md) | Hướng dẫn cài đặt chi tiết |
 | 10 | [DESIGN.md](DESIGN.md) | Design system: glassmorphism, colors, components, animations |
 
 ---
 
 ## 7. API Documentation
 
-Sau khi chß║íy backend: **[http://localhost:3001/api-docs](http://localhost:3001/api-docs)** (Swagger UI)
+Sau khi chạy backend: **[http://localhost:3001/api-docs](http://localhost:3001/api-docs)** (Swagger UI)
 
-### 7.1 Modules ch├¡nh
+### 7.1 Modules chính
 
 | Module | Prefix | Endpoints |
 |--------|--------|-----------|
@@ -446,16 +444,16 @@ Sau khi chß║íy backend: **[http://localhost:3001/api-docs](http://localhost:
 
 ### 8.2 WebSocket Events
 
-| Event | Direction | M├┤ tß║ú |
+| Event | Direction | Mô tả |
 |-------|-----------|-------|
-| `seat:bulk-updated` | Server ΓåÆ Client | Ghß║┐ thay ─æß╗òi trß║íng th├íi real-time |
-| `chat:message` | Bidirectional | Tin nhß║»n mß╗¢i |
+| `seat:bulk-updated` | Server → Client | Ghế thay đổi trạng thái real-time |
+| `chat:message` | Bidirectional | Tin nhắn mới |
 | `chat:typing` | Bidirectional | Typing indicator |
-| `chat:messages_read` | Server ΓåÆ Client | Read receipts |
-| `queue:position` | Server ΓåÆ Client | Cß║¡p nhß║¡t vß╗ï tr├¡ h├áng ─æß╗úi |
-| `queue:granted` | Server ΓåÆ Client | ─É╞░ß╗úc cß║Ñp quyß╗ün v├áo mua v├⌐ |
-| `notification:new` | Server ΓåÆ Client | Th├┤ng b├ío mß╗¢i |
-| `event:cancelled` | Server ΓåÆ Client | Sß╗▒ kiß╗çn bß╗ï huß╗╖ |
+| `chat:messages_read` | Server → Client | Read receipts |
+| `queue:position` | Server → Client | Cập nhật vị trí hàng đợi |
+| `queue:granted` | Server → Client | Được cấp quyền vào mua vé |
+| `notification:new` | Server → Client | Thông báo mới |
+| `event:cancelled` | Server → Client | Sự kiện bị huỷ |
 
 ---
 
@@ -478,18 +476,18 @@ npm run build          # TypeScript compile
 npm run start          # Production start
 npm run test           # Jest + Supertest
 npm run test:watch     # Jest watch mode
-npm run db:migrate     # Chß║íy migrations
-npm run db:migrate:undo # Rollback migration cuß╗æi
-npm run db:seed        # Seed data mß║½u
-npm run db:seed:undo   # X├│a seed data
-npm run db:reset       # Reset to├án bß╗Ö DB (undo + migrate + seed)
+npm run db:migrate     # Chạy migrations
+npm run db:migrate:undo # Rollback migration cuối
+npm run db:seed        # Seed data mẫu
+npm run db:seed:undo   # Xóa seed data
+npm run db:reset       # Reset toàn bộ DB (undo + migrate + seed)
 ```
 
 ---
 
-## 9. Nhóm thß╗▒c hiß╗çn
+## 9. Nh�m thực hiện
 
-| Th├ánh vi├¬n | MSSV | Vai tr├▓ |
+| Thành viên | MSSV | Vai trò |
 |-----------|------|---------|
 | ... | ... | ... |
 | ... | ... | ... |
