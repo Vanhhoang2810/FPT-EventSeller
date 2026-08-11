@@ -20,6 +20,7 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+.vs/
 
 # Uploads (user content)
 backend/uploads/avatars/*
@@ -28,3 +29,5 @@ backend/uploads/avatars/*
 # Misc
 HANDOFF.md
 *.tgz
+
+client_secret_*.json
