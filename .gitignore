@@ -3,10 +3,10 @@ dist/
 build/
 
 # Env files (giữ .env.example)
-.env
-.env.local
-.env.development
-.env.production
+#.env
+#.env.local
+#.env.development
+#.env.production
 !.env.example
 
 # Logs
